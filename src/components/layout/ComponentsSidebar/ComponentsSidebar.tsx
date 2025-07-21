@@ -41,11 +41,6 @@ export const ComponentsSidebar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Function to handle navigation
-  const handleNavigation = (path: string) => {
-    navigate(path);
-  };
-
   // Function to handle component navigation
   const handleComponentClick = (componentName: string) => {
     if (componentName === 'Button') {

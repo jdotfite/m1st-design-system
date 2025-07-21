@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout/PageTemplate';
-import { ThemeSwitch, Modal, Button, Tooltip } from '../../ui';
-import { useTheme } from '../../../contexts';
+import { Modal, Tooltip } from '../../ui';
 import './ColorSystemPage.css';
 
 interface ColorToken {
@@ -20,7 +19,6 @@ interface ColorPalette {
 }
 
 export const ColorSystemPage: React.FC = () => {
-  const { theme } = useTheme();
   const [selectedColor, setSelectedColor] = useState<ColorToken | null>(null);
   const [activeTab, setActiveTab] = useState<'brand' | 'neutral' | 'semantic' | 'component'>('brand');
 
