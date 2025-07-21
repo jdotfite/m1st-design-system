@@ -1,0 +1,19 @@
+/* Card Component Styles */
+
+/* Material Design compliant shadows */
+.card-shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+.card-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Material Design elevation surfaces for dark theme */
+.card-elevated {
+  background-color: var(--color-surface-1dp, var(--color-background-container-content));
+}
+
+.card-elevated-high {
+  background-color: var(--color-surface-2dp, var(--color-background-light));
+}

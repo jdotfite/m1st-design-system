@@ -4,12 +4,56 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="M1st Design System - Modern React Component Library"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- FOUC Prevention Script - Must be before any CSS -->
+    <script>
+      (function() {
+        try {
+          // Get system preference first
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          const savedTheme = localStorage.getItem('theme');
+          const theme = savedTheme || 'system';
+          const resolvedTheme = theme === 'system' ? systemTheme : theme;
+          
+          const root = document.documentElement;
+          root.setAttribute('data-theme', resolvedTheme);
+          
+          // Clean up any existing theme classes first
+          root.classList.remove('light', 'dark');
+          
+          // Apply the resolved theme class
+          root.classList.add(resolvedTheme);
+          
+          // Update theme color meta tag
+          const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', resolvedTheme === 'dark' ? '#101010' : '#ffffff');
+          }
+          
+          // Debug: Log current theme for troubleshooting
+          console.log('Initial theme setup:', {
+            systemTheme,
+            savedTheme,
+            theme,
+            resolvedTheme
+          });
+          
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          // Fallback to system theme
+          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', systemTheme);
+          document.documentElement.classList.add(systemTheme);
+        }
+      })();
+    </script>
+    
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/

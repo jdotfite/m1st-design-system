@@ -1,0 +1,208 @@
+/* =============================================================================
+   COLOR SYSTEM PAGE STYLES
+   ============================================================================= */
+
+.color-system-page {
+  --page-max-width: 1200px;
+}
+
+/* Color Swatch Styles */
+.color-swatch {
+  position: relative;
+  overflow: hidden;
+}
+
+.color-swatch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.color-swatch:hover::before {
+  opacity: 1;
+}
+
+/* Color Card Animations */
+.color-card {
+  transition: all 0.2s ease;
+}
+
+.color-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Color Palette Grid Responsive */
+.palette-section .grid {
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .palette-section .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .palette-section .grid {
+    gap: 2rem;
+  }
+}
+
+/* Navigation Tabs */
+.color-content {
+  min-height: 400px;
+}
+
+/* Copy to Clipboard Feedback */
+.color-card [class*="font-mono"]:hover {
+  background-color: var(--neutral-100);
+  position: relative;
+}
+
+.color-card [class*="font-mono"]:hover::after {
+  content: 'Click to copy';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--neutral-900);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0.9;
+}
+
+/* Modal Styles */
+.color-detail-modal {
+  backdrop-filter: blur(4px);
+}
+
+/* Dark Theme Support */
+.dark .color-card {
+  background-color: var(--neutral-100);
+  border-color: var(--neutral-200);
+}
+
+.dark .color-card h4 {
+  color: var(--neutral-900);
+}
+
+.dark .color-card p {
+  color: var(--neutral-700);
+}
+
+.dark .color-card [class*="bg-neutral-50"] {
+  background-color: var(--neutral-200);
+}
+
+/* Color Accessibility Indicators */
+.color-swatch[data-accessible="false"]::after {
+  content: '⚠';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #f59e0b;
+  color: white;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Theme Toggle Indicator Animation */
+.color-system-page [class*="text-red-600"] {
+  transition: all 0.3s ease;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(238, 56, 49, 0.1);
+}
+
+/* Loading States */
+.color-swatch.loading {
+  background: linear-gradient(90deg, 
+    var(--neutral-200) 0%, 
+    var(--neutral-300) 50%, 
+    var(--neutral-200) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .color-card {
+    border-width: 2px;
+    border-color: black;
+  }
+  
+  .color-swatch {
+    border-width: 2px;
+    border-color: black;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .color-card,
+  .color-swatch,
+  .color-swatch::before {
+    transition: none;
+  }
+  
+  .color-card:hover {
+    transform: none;
+  }
+  
+  .color-swatch:hover {
+    transform: none;
+  }
+  
+  .loading {
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .color-system-page {
+    background: white !important;
+  }
+  
+  .color-card {
+    break-inside: avoid;
+    border: 1px solid black !important;
+  }
+  
+  .color-swatch {
+    border: 1px solid black !important;
+  }
+  
+  /* Show color values in print */
+  .color-card::after {
+    content: attr(data-color-value);
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}

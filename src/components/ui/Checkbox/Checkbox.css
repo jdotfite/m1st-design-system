@@ -1,0 +1,30 @@
+/* Checkbox Component Styles */
+
+/* Custom checkbox styles can be added here if needed */
+.checkbox-custom {
+  appearance: none;
+  background-color: var(--page-background-container);
+  border: 1px solid var(--page-border-control);
+  border-radius: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-custom:checked {
+  background-color: var(--page-accent-primary);
+  border-color: var(--page-accent-primary);
+}
+
+.checkbox-custom:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

@@ -1,0 +1,18 @@
+/* Badge Component Styles */
+
+/* Additional custom styles can be added here if needed */
+.badge-dot {
+  position: relative;
+}
+
+.badge-dot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: currentColor;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+}

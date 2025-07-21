@@ -1,0 +1,121 @@
+/* =============================================================================
+   BUTTON COMPONENT STYLES - ENTERPRISE DESIGN SYSTEM
+   ============================================================================= */
+
+@layer components {
+  /* 
+   * Base button class with shared styles
+   * Applied to all button variants for consistency
+   */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium rounded-md transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background-container
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+
+  /* Primary button - main call to action */
+  .btn-primary {
+    @apply btn bg-[var(--button-primary-bg)] text-[var(--neutral-150)] border
+           border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)]
+           hover:border-[var(--button-primary-bg-hover)] hover:shadow-[var(--button-primary-shadow-hover)]
+           focus:ring-[var(--color-accent-primary)] focus:ring-opacity-20
+           shadow-[var(--button-primary-shadow)] font-semibold;
+  }
+
+  /* Secondary button - secondary actions */
+  .btn-secondary {
+    @apply btn bg-[var(--button-secondary-bg)] text-[var(--button-secondary-text)] border
+           border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)]
+           focus:ring-[var(--color-accent-primary)] focus:ring-opacity-20 font-semibold;
+  }
+
+  /* Ghost button - subtle actions */
+  .btn-ghost {
+    @apply btn bg-[var(--button-ghost-bg)] text-[var(--button-ghost-text)] border-2
+           border-[var(--button-ghost-border)] hover:bg-[var(--button-ghost-bg-hover)]
+           focus:ring-[var(--color-accent-primary)] focus:ring-opacity-20 font-medium;
+  }
+
+  /* Danger button - destructive actions */
+  .btn-danger {
+    @apply btn bg-[var(--button-danger-bg)] text-[var(--button-danger-text)] border-2
+           border-[var(--button-danger-border)] hover:bg-[var(--button-danger-bg-hover)]
+           hover:border-[var(--button-danger-bg-hover)] focus:ring-[var(--color-danger)]
+           focus:ring-opacity-20 shadow-sm hover:shadow-md font-semibold;
+  }
+
+  /* Success button - positive actions */
+  .btn-success {
+    @apply btn bg-[var(--color-success)] text-white border-2 border-[var(--color-success)]
+           hover:bg-[var(--color-success-emphasis)] hover:border-[var(--color-success-emphasis)]
+           focus:ring-[var(--color-success)] focus:ring-opacity-20
+           shadow-sm hover:shadow-md font-semibold;
+  }
+
+  /* Warning button - warning actions */
+  .btn-warning {
+    @apply btn bg-[var(--color-warning)] text-white border-2 border-[var(--color-warning)]
+           hover:bg-[var(--color-warning-emphasis)] hover:border-[var(--color-warning-emphasis)]
+           focus:ring-[var(--color-warning)] focus:ring-opacity-20
+           shadow-sm hover:shadow-md font-semibold;
+  }
+
+  /* Size variants */
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm min-h-[2rem] rounded-md;
+  }
+
+  .btn-md {
+    @apply px-4 py-2 text-sm min-h-[2.5rem] rounded-md;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-base min-h-[3rem] rounded-lg;
+  }
+
+  /* Icon variants */
+  .btn-icon-only {
+    @apply p-2 min-h-[2.5rem] min-w-[2.5rem];
+  }
+
+  .btn-icon-only.btn-sm {
+    @apply p-1.5 min-h-[2rem] min-w-[2rem];
+  }
+
+  .btn-icon-only.btn-lg {
+    @apply p-3 min-h-[3rem] min-w-[3rem];
+  }
+
+  /* State modifiers */
+  .btn-loading {
+    @apply opacity-75 cursor-not-allowed pointer-events-none;
+  }
+
+  .btn-full-width {
+    @apply w-full;
+  }
+
+  /* Focus variants for accessibility */
+  .btn-focus-visible:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--color-accent-primary)];
+  }
+}
+
+/* Button group styles for when buttons are used together */
+@layer components {
+  .btn-group {
+    @apply inline-flex rounded-md shadow-sm;
+  }
+
+  .btn-group .btn:not(:first-child) {
+    @apply -ml-px rounded-l-none;
+  }
+
+  .btn-group .btn:not(:last-child) {
+    @apply rounded-r-none;
+  }
+
+  .btn-group .btn:focus {
+    @apply relative z-10;
+  }
+}

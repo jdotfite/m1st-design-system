@@ -1,38 +1,81 @@
+/* Import component-specific styles */
+@import './components/components.css';
+
+/* App-specific styles and Tailwind component classes */
+@tailwind components;
+
+/* App layout - using only utility classes */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content {
+  margin-left: 100px; /* Fixed compact navigation width */
+  transition: margin-left 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Remove the collapsed state rule since nav is always compact */
+
+main {
+  @apply flex-1;
+}
+
+/* 
+REFACTORED: Removed all legacy classes (.container, .section, .card, .btn, .btn-primary)
+that were violating the 4-layer token architecture.
+
+The design system now enforces:
+- Foundation tokens (Layer 1): Only used in semantic layer definitions
+- Semantic tokens (Layer 2): Only used in page-level token definitions  
+- Page-level tokens (Layer 3): Used in component tokens and Tailwind config
+- Component tokens (Layer 4): Used directly in components
+
+Legacy classes have been replaced with:
+- Design system UI components (Button, Card, etc.) 
+- Tailwind utility classes using page-level tokens
+- Component-specific CSS using only page-level tokens
+
+For layout, use Tailwind utilities:
+- .container → max-w-content mx-auto px-l
+- .section → py-xl or py-xxl
+- .card → Use <Card> component from design system
+- .btn/.btn-primary → Use <Button> component from design system
+*/
+
+/* Typography using page-level tokens (Layer 3) */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold leading-tight mb-4;
+  color: var(--page-text-heading);
+}
+
+h1 {
+  @apply mb-6;
+  font-size: var(--font-size-6xl);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  @apply mb-4;
+  color: var(--page-text-body);
+}
+
+/* Utility classes using page-level tokens */
+.text-large {
+  @apply text-lg;
+}
+
+.text-muted {
+  color: var(--page-text-muted);
 }

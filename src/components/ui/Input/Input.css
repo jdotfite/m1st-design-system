@@ -1,0 +1,13 @@
+/* Input Component Styles */
+
+/* Additional custom styles can be added here if needed */
+.input-container {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--page-text-muted);
+}

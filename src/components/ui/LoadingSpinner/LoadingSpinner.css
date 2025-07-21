@@ -1,0 +1,269 @@
+/* =============================================================================
+   LOADING SPINNER COMPONENT STYLES - M1st Design System
+   ============================================================================= */
+
+.loading-spinner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-l, 1rem);
+}
+
+.loading-spinner-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner-logo {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================================================
+   LOGO BACKGROUND ADAPTIVE STYLING
+   ============================================================================= */
+
+.logo-background {
+  /* Remove background fill - transparent background */
+  fill: transparent;
+}
+
+/* =============================================================================
+   PULSE ANIMATIONS - Reddit-Style Expanding Fade
+   ============================================================================= */
+
+/* Single pulse - expands and fades cleanly with subtle easing */
+@keyframes pulse-background {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  85% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Apply single animation with proper SVG transform-origin */
+.pulse-square-1 {
+  transform-origin: 512px 512px;
+  animation: pulse-background var(--animation-duration, 1.3s) ease-in-out infinite;
+}
+
+/* Static logo remains unaffected by animations - no styles needed, just semantic grouping */
+
+/* =============================================================================
+   SIMPLE SPINNER VARIANT
+   ============================================================================= */
+
+.loading-spinner-simple {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.simple-spinner-circle {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  background: var(--spinner-center-color, transparent);
+}
+
+.simple-spinner-circle::before {
+  content: '';
+  position: absolute;
+  top: 9%;
+  left: 9%;
+  right: 9%;
+  bottom: 9%;
+  border: calc(var(--spinner-size, 64px) * 0.04) solid transparent;
+  border-top: calc(var(--spinner-size, 64px) * 0.04) solid var(--spinner-primary-color, var(--color-brand-primary));
+  border-right: calc(var(--spinner-size, 64px) * 0.04) solid var(--spinner-primary-color, var(--color-brand-primary));
+  border-radius: 50%;
+  animation: smooth-spin 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.simple-spinner-circle::after {
+  content: '';
+  position: absolute;
+  top: 26%;
+  left: 26%;
+  right: 26%;
+  bottom: 26%;
+  border: calc(var(--spinner-size, 64px) * 0.04) solid transparent;
+  border-bottom: calc(var(--spinner-size, 64px) * 0.04) solid var(--spinner-secondary-color, #213d70);
+  border-left: calc(var(--spinner-size, 64px) * 0.04) solid var(--spinner-secondary-color, #213d70);
+  border-radius: 50%;
+  animation: smooth-spin-reverse 2.4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes smooth-spin {
+  0% { 
+    transform: rotate(0deg);
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+  25% {
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+  50% {
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+  75% {
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+  100% { 
+    transform: rotate(360deg);
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+}
+
+@keyframes smooth-spin-reverse {
+  0% { 
+    transform: rotate(0deg);
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+  25% {
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+  50% {
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+  75% {
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+  100% { 
+    transform: rotate(-360deg);
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+}
+
+/* =============================================================================
+   ORIGINAL SIMPLE SPINNER VARIANT (Classic Design)
+   ============================================================================= */
+
+.loading-spinner-original {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.original-spinner-circle {
+  width: 100%;
+  height: 100%;
+  border: calc(var(--spinner-size, 64px) * 0.0625) solid var(--neutral-300);
+  border-top: calc(var(--spinner-size, 64px) * 0.0625) solid var(--color-brand-primary);
+  border-radius: 50%;
+  animation: spin 1.3s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =============================================================================
+   LOADING TEXT STYLING
+   ============================================================================= */
+
+.loading-spinner-text {
+  margin: 0;
+  font-size: var(--font-body-s-size, 0.875rem);
+  font-weight: 500;
+  text-align: center;
+  color: var(--page-text-secondary);
+  opacity: 0.8;
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .loading-spinner-wrapper {
+    gap: var(--space-m, 0.75rem);
+  }
+  
+  .loading-spinner-text {
+    font-size: var(--font-body-xs-size, 0.75rem);
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY - RESPECT USER MOTION PREFERENCES
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-square-1,
+  .pulse-square-2 {
+    animation: none;
+  }
+  
+  .simple-spinner-circle::before,
+  .simple-spinner-circle::after {
+    animation: none;
+  }
+  
+  .original-spinner-circle {
+    animation: none;
+    border-top-color: var(--color-brand-primary);
+  }
+  
+  /* Show a static indicator instead */
+  .pulse-square-1 {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  
+  .pulse-square-2 {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  
+  /* Static state for simple spinner */
+  .simple-spinner-circle::before {
+    border-top-color: var(--spinner-primary-color, var(--color-brand-primary));
+    border-right-color: var(--spinner-primary-color, var(--color-brand-primary));
+  }
+  
+  .simple-spinner-circle::after {
+    border-bottom-color: var(--spinner-secondary-color, var(--color-brand-primary));
+    border-left-color: var(--spinner-secondary-color, var(--color-brand-primary));
+  }
+}
+
+/* =============================================================================
+   DARK THEME OPTIMIZATIONS
+   ============================================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .loading-spinner-text {
+    opacity: 0.9;
+  }
+}
+
+.dark .loading-spinner-text,
+[data-theme="dark"] .loading-spinner-text {
+  opacity: 0.9;
+}

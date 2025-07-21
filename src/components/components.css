@@ -1,0 +1,205 @@
+/* Component-specific styles that require custom CSS */
+
+/* Header mobile navigation styles */
+.header-nav {
+  @apply md:flex md:items-center;
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--neutral-0);
+    border-bottom: 1px solid var(--neutral-200);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .header-nav.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Mobile menu button hamburger animation */
+.mobile-menu-btn {
+  @apply hidden md:hidden flex-col justify-around w-6 h-6 bg-transparent border-none cursor-pointer p-0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    @apply flex;
+  }
+}
+
+.mobile-menu-btn span {
+  @apply block h-0.5 rounded-sm transition-all duration-300;
+  background-color: var(--neutral-700);
+}
+
+/* Footer specific styles that benefit from custom CSS */
+.footer-links {
+  @apply grid gap-xl;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    @apply grid-cols-2;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    @apply grid-cols-1;
+  }
+}
+
+/* Social links that need specific sizing */
+.social-link {
+  @apply flex items-center justify-center w-10 h-10 border rounded no-underline transition-all duration-200;
+  border-color: var(--neutral-300);
+  color: var(--neutral-700);
+}
+
+.social-link:hover {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+/* Existing shared component styles... */
+
+/* Components Page Specific Styles */
+.components-page {
+  min-height: calc(100vh - 60px); /* Subtract header height */
+  background-color: var(--page-background-container);
+}
+
+.components-page .max-w-content {
+  max-width: 1200px;
+}
+
+/* Component Card Hover Effects */
+.components-page .group:hover {
+  transform: translateY(-1px);
+}
+
+/* Search Input Focus States */
+.components-page input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 56, 49, 0.1);
+}
+
+/* Filter Select Focus States */
+.components-page select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 56, 49, 0.1);
+}
+
+/* Component Preview Placeholder Styling */
+.components-page .aspect-video {
+  position: relative;
+  overflow: hidden;
+}
+
+.components-page .aspect-video::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--neutral-50) 0%, var(--neutral-100) 100%);
+  border-radius: 0.5rem;
+}
+
+/* Status Badge Animations */
+.components-page .group:hover span[class*="bg-green"],
+.components-page .group:hover span[class*="bg-yellow"],
+.components-page .group:hover span[class*="bg-orange"] {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+  .components-page .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .components-page h1 {
+    font-size: 2.5rem;
+  }
+  
+  .components-page .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .components-page {
+    background-color: var(--neutral-100);
+    color: var(--neutral-900);
+  }
+}
+
+/* Sidebar toggle button positioning and animations */
+.sidebar-toggle-container {
+  z-index: 51; /* Higher than sidebar content */
+}
+
+.sidebar-toggle-container button {
+  background: var(--page-background);
+  border-color: var(--neutral-200) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.sidebar-toggle-container button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-toggle-container button:active {
+  transform: scale(0.95);
+  transition-duration: 0.1s;
+}
+
+/* Focus ring enhancement for accessibility */
+.sidebar-toggle-container button:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(238, 56, 49, 0.3);
+}
+
+/* Sidebar collapse animations */
+.sidebar-collapsed {
+  width: 3rem; /* 48px */
+}
+
+.sidebar-expanded {
+  width: 16rem; /* 256px */
+}
+
+/* Ensure smooth transitions for all sidebar states */
+aside[class*="sidebar"] {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced transitions for sidebar content */
+.sidebar-content {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Content area adjustments for collapsed sidebar */
+.content-with-collapsed-sidebar {
+  margin-left: 0.75rem; /* 12px - small offset when collapsed */
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
