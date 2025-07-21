@@ -6,7 +6,6 @@ import { Tabs as TabsAdvanced } from '../../ui/Tabs/Tabs';
 import { Tabs as TabsSimple } from '../../ui/Tabs/TabsSimple';
 
 export const TabsPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('overview');
   const [activeAdvancedTab, setActiveAdvancedTab] = useState('tab1');
   const [activeSimpleTab, setActiveSimpleTab] = useState('home');
 

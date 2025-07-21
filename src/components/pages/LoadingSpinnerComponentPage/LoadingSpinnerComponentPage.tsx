@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { ComponentPageTemplate } from '../../layout';
-import { Button, Card, CardBody, LoadingSpinner } from '../../ui';
+import { Card, CardBody, LoadingSpinner } from '../../ui';
 
 export const LoadingSpinnerComponentPage: React.FC = () => {
-  const [isDemoLoading, setIsDemoLoading] = useState(false);
   const [activeFramework, setActiveFramework] = useState<'react' | 'angular'>('react');
 
   const spinnerSizes = [

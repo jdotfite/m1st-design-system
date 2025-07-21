@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout';
-import { Button, Card, CardBody, ThemeSwitch } from '../../ui';
-import { useTheme } from '../../../contexts';
+import { Button, Card, CardBody } from '../../ui';
 
 const GetStartedPage: React.FC = () => {
-  const { theme } = useTheme();
   const [activeFramework, setActiveFramework] = useState<'react' | 'angular' | 'vue' | 'stencil'>('react');
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
 
   const frameworkPackages = [
     {
