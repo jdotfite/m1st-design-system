@@ -34,7 +34,7 @@ import '@m1st/react-ui/styles';`,
       description: 'Angular components with TypeScript, standalone components, and signals',
       version: '1.0.0',
       installation: 'npm install @m1st/angular-ui',
-      imports: `import { M1stButtonComponent, M1stLoadingSpinnerComponent } from '@m1st/angular-ui';
+      imports: `import { M1stButtonComponent, M1stLoadingSpinnerComponent } from '@m1st/angular-ui'; 
 
 @Component({
   imports: [M1stButtonComponent, M1stLoadingSpinnerComponent],
