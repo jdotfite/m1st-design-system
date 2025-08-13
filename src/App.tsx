@@ -14,6 +14,7 @@ import {
   FoundationPage,
   HomePage,
   GetStartedPage,
+  RoadmapPage,
   TokenVisualizerPage,
   ColorSystemPage
 } from './components';
@@ -39,6 +40,7 @@ function App() {
                   <Route path="/foundation" element={<FoundationPage />} />
                   <Route path="/colors" element={<ColorSystemPage />} />
                   <Route path="/get-started" element={<GetStartedPage />} />
+                  <Route path="/roadmap" element={<RoadmapPage />} />
                   <Route path="/components" element={<ComponentsPage />} />
                   <Route path="/component/button" element={<ButtonComponentPage />} />
                   <Route path="/component/loading-spinner" element={<LoadingSpinnerComponentPage />} />

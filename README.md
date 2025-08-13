@@ -1,65 +1,84 @@
-# M1st Design System
+# M1st Design System Documentation
 
-A comprehensive, accessible, and modern design system built with React and Tailwind CSS.
+A comprehensive documentation and showcase site for the M1st Design System. This repository demonstrates the components and design tokens from our component library.
+
+## Repository Structure
+
+This documentation site works in conjunction with our component library:
+
+- **Component Library**: [m1st-design-components](https://github.com/Members1stFederalCreditUnion/m1st-design-components) - Contains the actual React components, design tokens, and distributable packages
+- **Documentation Site**: This repository - Showcases the design system and provides implementation guidance
 
 ## Features
 
-- 🎨 **Comprehensive Button System** - 6 button variants with 4 background compatibility
-- 🌓 **Dual Theme Support** - Light and dark modes with automatic system preference detection
-- ♿ **Accessibility First** - All components follow WCAG guidelines
+- 🎨 **Comprehensive Component Documentation** - Interactive examples of all design system components
+- 🌓 **Dual Theme Support** - Light and dark modes with automatic system preference detection  
+- ♿ **Accessibility Guidelines** - Documentation follows WCAG guidelines with accessibility examples
 - 📱 **Responsive Design** - Mobile-first approach with flexible layouts
-- 🧩 **Modular Components** - Reusable, composable UI components
-- 🎭 **Bootstrap-like Colors** - Familiar color system with modern implementation
+- 🧩 **Live Component Demos** - Real components imported from the @m1st/design-components package
+- 📚 **Implementation Guides** - Step-by-step instructions for developers and designers
 
-## Button System
+## Component Library Integration
 
-The button component features a comprehensive design system with 6 variants:
+This site imports components from the published npm package:
 
-### Primary Button
-- **Light Theme**: Almost black background (#1a1a1a) with almost white text (#fafafa)
-- **Dark Theme**: Almost white background (#fafafa) with almost black text (#1a1a1a)
+```bash
+npm install @m1st/design-components
+```
 
-### Secondary Button  
-- **Light Theme**: Almost black outline (#1a1a1a) with almost black text
-- **Dark Theme**: Almost white outline (#fafafa) with almost white text
-
-### Light Button
-- **All Themes**: Bootstrap-like light background with appropriate contrast
-
-### Additional Variants
-- **Outline**: Blue outline for compatibility
-- **Ghost**: Transparent background with blue text
-- **Danger**: Red background for destructive actions
-
-### 4 Background Compatibility
-All buttons work seamlessly on:
-1. **White backgrounds** - Pure white (#ffffff)
-2. **Light backgrounds** - Bootstrap-like light (#f8f9fa)
-3. **Container backgrounds** - Theme-aware container colors
-4. **Main backgrounds** - Theme-aware main layout colors
-
-## Usage
+Components are imported and used exactly as developers would in their applications:
 
 ```jsx
-import { Button } from './components/ui';
+import { Button, Modal, LoadingSpinner } from '@m1st/design-components';
+import '@m1st/design-components/styles';
 
-// Primary button (almost black with almost white text)
-<Button variant="primary" size="md">Save Changes</Button>
+function App() {
+  return (
+    <div className="m1st-app">
+      <Button variant="primary">Save Changes</Button>
+      <LoadingSpinner size="medium" />
+    </div>
+  );
+}
+```
 
-// Secondary button (almost black outline)
-<Button variant="secondary" size="md">Cancel</Button>
+## Available Scripts
 
-// Light button (Bootstrap-like)
-<Button variant="light" size="md">Info</Button>
+This is a React application built with Create React App. In the project directory, you can run:
 
-// With icons
-<Button variant="primary" leftIcon={<Icon />}>With Icon</Button>
+### `npm start`
 
-// Loading state
-<Button variant="primary" isLoading>Saving...</Button>
+Runs the documentation site in development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-// Full width
-<Button variant="primary" fullWidth>Full Width</Button>
+The page will reload if you make edits.
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the documentation site for production to the `build` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
+
+## Contributing
+
+For component library changes, please contribute to the [m1st-design-components](https://github.com/Members1stFederalCreditUnion/m1st-design-components) repository.
+
+For documentation improvements, create a pull request in this repository.
+
+## Learn More
+
+- [Component Library Repository](https://github.com/Members1stFederalCreditUnion/m1st-design-components)
+- [Design System Documentation](https://members1stfederalcreditunion.github.io/m1st-design-system/)
+- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+- [React documentation](https://reactjs.org/)
 ```
 
 ## Available Scripts

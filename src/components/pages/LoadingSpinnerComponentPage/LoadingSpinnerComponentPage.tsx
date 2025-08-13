@@ -129,11 +129,11 @@ export const LoadingSpinnerComponentPage: React.FC = () => {
   const angularInstallationSteps = [
     {
       step: '1. Install Package',
-      code: `npm install @m1st/angular-ui`
+      code: `npm install @m1st/design-components-angular`
     },
     {
       step: '2. Import Module',
-      code: `import { M1stLoadingSpinnerModule } from '@m1st/angular-ui';
+      code: `import { M1stLoadingSpinnerModule } from '@m1st/design-components-angular';
 
 @NgModule({
   imports: [M1stLoadingSpinnerModule],
@@ -153,11 +153,11 @@ export class AppModule { }`
   const reactInstallationSteps = [
     {
       step: '1. Install Package',
-      code: `npm install @m1st/react-ui`
+      code: `npm install @m1st/design-components`
     },
     {
       step: '2. Import Component',
-      code: `import { LoadingSpinner } from '@m1st/react-ui';`
+      code: `import { LoadingSpinner } from '@m1st/design-components';`
     },
     {
       step: '3. Use Component',
