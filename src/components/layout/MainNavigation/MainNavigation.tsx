@@ -14,6 +14,7 @@ const MainNavigation: React.FC = () => {
     { path: '/components', label: 'Components', shortLabel: 'Components' },
     { path: '/patterns', label: 'Patterns', shortLabel: 'Patterns' },
     { path: '/get-started', label: 'Get Started', shortLabel: 'Get Started' },
+    { path: '/roadmap', label: 'Roadmap', shortLabel: 'Roadmap' },
     { path: '/token-visualizer', label: 'Design Tokens', shortLabel: 'Design Tokens' }
   ];
 
@@ -66,6 +67,15 @@ const MainNavigation: React.FC = () => {
         return (
           <svg style={iconStyle} viewBox="0 0 24 24">
             <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        );
+      case '/roadmap':
+        return (
+          <svg style={iconStyle} viewBox="0 0 24 24">
+            <path d="M21 4H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+            <path d="M7 12h10"/>
+            <path d="M7 8h6"/>
+            <path d="M7 16h4"/>
           </svg>
         );
       case '/token-visualizer':
@@ -207,7 +217,7 @@ const MainNavigation: React.FC = () => {
           >
             {isDarkMode ? (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591zM21 4.5a.75.75 0 01-.182 1.085l-1.591 1.59a.75.75 0 01-1.06-1.06l1.59-1.591A.75.75 0 0121 4.5zM6.166 18.894a.75.75 0 001.06-1.06L6.635 17.25a.75.75 0 10-1.061 1.061l.591.591zM5.25 12a.75.75 0 01-.75-.75H2.25a.75.75 0 010-1.5H4.5a.75.75 0 01.75.75zM2.25 7.5a.75.75 0 01.182-1.085l1.591-1.59a.75.75 0 011.06 1.06L3.5 7.5a.75.75 0 01-1.25 0z" />
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
               </svg>
             ) : (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

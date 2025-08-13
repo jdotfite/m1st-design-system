@@ -9,12 +9,12 @@ const GetStartedPage: React.FC = () => {
     {
       framework: 'react',
       name: 'React UI',
-      package: '@m1st/react-ui',
+      package: '@m1st/design-components',
       description: 'React components with TypeScript support, hooks, and design tokens',
       version: '1.0.0',
-      installation: 'npm install @m1st/react-ui',
-      imports: `import { LoadingSpinner, Button, Modal } from '@m1st/react-ui';
-import '@m1st/react-ui/styles';`,
+      installation: 'npm install @m1st/design-components',
+      imports: `import { LoadingSpinner, Button, Modal } from '@m1st/design-components';
+import '@m1st/design-components/styles';`,
       usage: `function App() {
   return (
     <div className="m1st-app">
@@ -27,11 +27,11 @@ import '@m1st/react-ui/styles';`,
     {
       framework: 'angular',
       name: 'Angular UI',
-      package: '@m1st/angular-ui',
+      package: '@m1st/design-components-angular',
       description: 'Angular components with TypeScript, standalone components, and signals',
       version: '1.0.0',
-      installation: 'npm install @m1st/angular-ui',
-      imports: `import { M1stButtonComponent, M1stLoadingSpinnerComponent } from '@m1st/angular-ui'; 
+      installation: 'npm install @m1st/design-components-angular',
+      imports: `import { M1stButtonComponent, M1stLoadingSpinnerComponent } from '@m1st/design-components-angular'; 
 
 @Component({
   imports: [M1stButtonComponent, M1stLoadingSpinnerComponent],
@@ -43,12 +43,12 @@ import '@m1st/react-ui/styles';`,
     {
       framework: 'stencil',
       name: 'Web Components',
-      package: '@m1st/web-components',
+      package: '@m1st/design-components-web',
       description: 'Framework-agnostic web components built with Stencil',
       version: '1.0.0',
-      installation: 'npm install @m1st/web-components',
-      imports: `import '@m1st/web-components/dist/m1st-ui/m1st-ui.esm.js';
-import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
+      installation: 'npm install @m1st/design-components-web',
+      imports: `import '@m1st/design-components-web/dist/m1st-ui/m1st-ui.esm.js';
+import '@m1st/design-components-web/dist/m1st-ui/m1st-ui.css';`,
       usage: `<m1st-button variant="primary">Click me</m1st-button>
 <m1st-loading-spinner size="medium"></m1st-loading-spinner>`
     }
@@ -76,17 +76,17 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
                 <div className="text-2xl mb-2">⚛️</div>
                 <div className="font-semibold" style={{ color: 'var(--page-text-primary)' }}>React</div>
-                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/react-ui</div>
+                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/design-components</div>
               </div>
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
                 <div className="text-2xl mb-2">🅰️</div>
                 <div className="font-semibold" style={{ color: 'var(--page-text-primary)' }}>Angular</div>
-                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/angular-ui</div>
+                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/design-components-angular</div>
               </div>
               <div className="text-center p-4 rounded-lg" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
                 <div className="text-2xl mb-2">🌐</div>
                 <div className="font-semibold" style={{ color: 'var(--page-text-primary)' }}>Web Components</div>
-                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/web-components</div>
+                <div className="text-sm" style={{ color: 'var(--page-text-muted)' }}>@m1st/design-components-web</div>
               </div>
             </div>
           </CardBody>
@@ -161,38 +161,47 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
             </h2>
             
             <p className="mb-6" style={{ color: 'var(--page-text-secondary)' }}>
-              Our monorepo structure ensures consistency across all framework implementations:
+              Our design system is distributed across two main repositories for clear separation of concerns:
             </p>
 
             <div className="p-4 rounded-lg mb-6 font-mono" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
               <pre className="text-sm" style={{ color: 'var(--page-text-primary)' }}>
-{`m1st-design-system/
-├── packages/
-│   ├── core/                    # @m1st/core
-│   │   ├── tokens/             # Design tokens (CSS custom properties)
-│   │   ├── foundations/        # Base styles, typography, spacing
-│   │   └── utils/              # Shared utilities
-│   ├── react-ui/               # @m1st/react-ui
-│   ├── angular-ui/             # @m1st/angular-ui
-│   └── web-components/         # @m1st/web-components (Stencil)
-├── apps/
-│   ├── documentation/          # Design system documentation
-│   ├── react-playground/       # React component playground
-│   └── storybook/             # Component stories
-└── tools/
-    ├── build-tools/           # Build scripts and configurations
-    └── testing/               # Shared testing utilities`}
+{`# Component Library Repository
+github.com/Members1stFederalCreditUnion/m1st-design-components
+├── src/
+│   ├── components/              # React components
+│   │   ├── Button/
+│   │   ├── Modal/
+│   │   ├── LoadingSpinner/
+│   │   └── ...
+│   ├── styles/                  # Design tokens & CSS
+│   │   ├── tokens/             # Color, spacing, typography tokens
+│   │   ├── themes/             # Light/dark theme definitions
+│   │   └── components/         # Component-specific styles
+│   └── utils/                   # Shared utilities
+├── dist/                        # Built package for distribution
+├── tests/                       # Component tests
+└── docs/                        # API documentation
+
+# Documentation & Showcase Repository  
+github.com/Members1stFederalCreditUnion/m1st-design-system
+├── src/
+│   ├── components/
+│   │   ├── pages/              # Documentation pages
+│   │   └── demo/               # Component demonstrations
+│   └── styles/                 # Showcase-specific styles
+└── public/                     # Static assets`}
               </pre>
             </div>
 
             <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--page-text-primary)' }}>
-              Package Dependencies
+              Repository Responsibilities
             </h3>
             <ul className="space-y-2 mb-6" style={{ color: 'var(--page-text-secondary)' }}>
-              <li>• <strong>@m1st/core</strong>: Foundation for all framework packages</li>
-              <li>• <strong>@m1st/react-ui</strong>: Depends on @m1st/core</li>
-              <li>• <strong>@m1st/angular-ui</strong>: Depends on @m1st/core</li>
-              <li>• <strong>@m1st/web-components</strong>: Depends on @m1st/core</li>
+              <li>• <strong>m1st-design-components</strong>: Contains the actual component library, design tokens, and distributable packages</li>
+              <li>• <strong>m1st-design-system</strong>: Documentation site that imports and showcases the components from the library</li>
+              <li>• <strong>Clear separation</strong>: Documentation site imports components as a consumer would, ensuring real-world testing</li>
+              <li>• <strong>Independent deployment</strong>: Component library can be published to npm independently of documentation updates</li>
             </ul>
           </CardBody>
         </Card>
@@ -205,7 +214,7 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
             </h2>
             
             <p className="mb-6" style={{ color: 'var(--page-text-secondary)' }}>
-              All design decisions are centralized in the @m1st/core package using CSS custom properties and semantic token naming:
+              All design decisions are centralized in the @m1st/design-components package using CSS custom properties and semantic token naming:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -255,9 +264,9 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 rounded-lg" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
-                    <h4 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>Nx Monorepo</h4>
+                    <h4 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>Multi-Repository Strategy</h4>
                     <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>
-                      Advanced monorepo management with intelligent builds, caching, and dependency graph visualization.
+                      Separate repositories for component library and documentation ensure clear separation of concerns and independent deployment cycles.
                     </p>
                   </div>
                   <div className="p-4 rounded-lg" style={{ backgroundColor: 'var(--page-surface-sunken)', borderColor: 'var(--page-border)' }}>
@@ -314,16 +323,16 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
                   1
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>
-                    Phase 1: Foundation & Core Package (Completed)
+                    Phase 1: Foundation & Core Package (In Progress)
                   </h3>
                   <ul className="text-sm space-y-1" style={{ color: 'var(--page-text-secondary)' }}>
-                    <li>• Set up Nx monorepo structure</li>
-                    <li>• Create @m1st/core with design tokens</li>
+                    <li>• Set up component library repository structure</li>
+                    <li>• Create design token system with CSS custom properties</li>
                     <li>• Establish build and release pipeline</li>
                     <li>• Document token system and guidelines</li>
                   </ul>
@@ -339,9 +348,9 @@ import '@m1st/web-components/dist/m1st-ui/m1st-ui.css';`,
                     Phase 2: React Implementation (Current)
                   </h3>
                   <ul className="text-sm space-y-1" style={{ color: 'var(--page-text-secondary)' }}>
-                    <li>• Migrate existing React components to @m1st/react-ui</li>
+                    <li>• Migrate existing React components to @m1st/design-components</li>
                     <li>• Implement comprehensive testing suite</li>
-                    <li>• Create Storybook documentation</li>
+                    <li>• Create component playground and documentation</li>
                     <li>• Establish component API standards</li>
                   </ul>
                 </div>

@@ -1,5 +1,6 @@
 export { default as ComponentsPage } from './ComponentsPage';
 export { default as GetStartedPage } from './GetStartedPage';
+export { default as RoadmapPage } from './RoadmapPage';
 export { default as ButtonComponentPage } from './ButtonComponentPage';
 export { default as LoadingSpinnerComponentPage } from './LoadingSpinnerComponentPage';
 export { default as ModalComponentPage } from './ModalComponentPage';

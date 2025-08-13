@@ -56,6 +56,8 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
       breadcrumbItems.push({ label: 'Design Tokens', isActive: true });
     } else if (path === '/get-started') {
       breadcrumbItems.push({ label: 'Get Started', isActive: true });
+    } else if (path === '/roadmap') {
+      breadcrumbItems.push({ label: 'Roadmap', isActive: true });
     } else if (path.startsWith('/component/')) {
       breadcrumbItems.push({ label: 'Components', href: '/components' });
       
