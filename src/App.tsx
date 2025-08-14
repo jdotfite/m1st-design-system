@@ -12,6 +12,7 @@ import {
   ModalComponentPage,
   TabsPage,
   FoundationPage,
+  TypographyPage,
   HomePage,
   GetStartedPage,
   RoadmapPage,
@@ -38,6 +39,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<><HomePage /><Footer /></>} />
                   <Route path="/foundation" element={<FoundationPage />} />
+                  <Route path="/foundation/typography" element={<TypographyPage />} />
                   <Route path="/colors" element={<ColorSystemPage />} />
                   <Route path="/get-started" element={<GetStartedPage />} />
                   <Route path="/roadmap" element={<RoadmapPage />} />

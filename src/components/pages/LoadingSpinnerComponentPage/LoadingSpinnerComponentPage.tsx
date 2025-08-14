@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { ComponentPageTemplate } from '../../layout';
 import { Card, CardBody, LoadingSpinner } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 
 export const LoadingSpinnerComponentPage: React.FC = () => {
   const [activeFramework, setActiveFramework] = useState<'react' | 'angular'>('react');
+
+  // Set the document title
+  useDocumentTitle('Loading Spinner');
 
   const spinnerSizes = [
     { size: 'sm' as const, name: 'Small', description: '64px - For inline loading indicators' },

@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { FoundationPageTemplate } from '../../layout';
 import { Button, Card, CardBody, ThemeSwitch } from '../../ui';
 import { useTheme } from '../../../contexts';
+import { useDocumentTitle } from '../../../utils';
 
 export const FoundationPage: React.FC = () => {
   const { theme } = useTheme();
   const [selectedToken, setSelectedToken] = useState<string | null>(null);
+
+  // Set the document title
+  useDocumentTitle('Foundation');
 
   const tokenLayers = [
     {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout/PageTemplate';
 import { Modal, Tooltip } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 import './ColorSystemPage.css';
 
 interface ColorToken {
@@ -21,6 +22,9 @@ interface ColorPalette {
 export const ColorSystemPage: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<ColorToken | null>(null);
   const [activeTab, setActiveTab] = useState<'brand' | 'neutral' | 'semantic' | 'component'>('brand');
+
+  // Set the document title
+  useDocumentTitle('Colors');
 
   // Color palettes organized by category
   const colorPalettes: Record<string, ColorPalette[]> = {

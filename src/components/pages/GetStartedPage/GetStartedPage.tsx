@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout';
 import { Button, Card, CardBody } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 
 const GetStartedPage: React.FC = () => {
   const [activeFramework, setActiveFramework] = useState<'react' | 'angular' | 'vue' | 'stencil'>('react');
+
+  // Set the document title
+  useDocumentTitle('Get Started');
 
   const frameworkPackages = [
     {

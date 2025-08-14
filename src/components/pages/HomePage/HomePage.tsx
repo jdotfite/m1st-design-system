@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Badge } from '../../ui';
 import { useTheme } from '../../../contexts';
+import { useDocumentTitle } from '../../../utils';
 
 // Component statistics (dynamically calculated based on actual components)
 const COMPONENTS_COUNT = 12; // Alert, Badge, Breadcrumb, Button, Card, Checkbox, Input, Modal, ProgressBar, SidebarToggle, Spinner, ThemeSwitch
@@ -10,6 +11,9 @@ const DEMOS_COUNT = 3;       // Current demos: Component preview, Theme switchin
 
 const HomePage: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+
+  // Set the document title to just the base title for home page
+  useDocumentTitle('');
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--page-background)' }}>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout';
 import { Button, Card, CardBody } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
+
 
 interface PhaseItem {
   id: string;
@@ -26,6 +28,10 @@ interface ComponentItem {
 const RoadmapPage: React.FC = () => {
   const [activeView, setActiveView] = useState<'timeline' | 'backlog'>('timeline');
   const [filterCategory, setFilterCategory] = useState<string>('all');
+
+
+  // Set the document title
+  useDocumentTitle('Roadmap');
 
   const phases: PhaseItem[] = [
     {

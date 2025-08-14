@@ -151,6 +151,49 @@ MIGRATION GUIDE:
   --color-accent-purple: #7C3AED;                /* rich purple accent */
   
   /* ==========================================================================
+     TYPOGRAPHY SCALE (Foundation Layer 1)
+     ========================================================================== */
+  
+  /* Font Families */
+  --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-mono: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Liberation Mono', 'Courier New', monospace;
+  
+  /* Font Size Scale - Based on Major Third (1.25) ratio */
+  --font-heading-display-size: 4rem;             /* 64px - Hero/Display text */
+  --font-heading-xl-size: 3rem;                  /* 48px - Large page titles */
+  --font-heading-l-size: 2.25rem;                /* 36px - Section headers */
+  --font-heading-m-size: 1.5rem;                 /* 24px - Content headings */
+  --font-heading-s-size: 1.125rem;               /* 18px - Small headings */
+  --font-heading-xs-size: 1rem;                  /* 16px - Minimal headings */
+  
+  /* Body Text Scale */
+  --font-body-l-size: 1.125rem;                  /* 18px - Large comfortable reading */
+  --font-body-m-size: 1rem;                      /* 16px - Standard body text */
+  --font-body-s-size: 0.875rem;                  /* 14px - Compact text */
+  --font-body-xs-size: 0.75rem;                  /* 12px - Captions/metadata */
+  
+  /* Specialized Text Sizes */
+  --font-button-size: 0.875rem;                  /* 14px - Button text */
+  --font-code-size: 0.875rem;                    /* 14px - Code text */
+  
+  /* Line Height Scale */
+  --line-height-tight: 1.1;                      /* Tight spacing for large text */
+  --line-height-normal: 1.4;                     /* Normal spacing */
+  --line-height-relaxed: 1.6;                    /* Relaxed spacing for reading */
+  
+  /* Font Weight Scale */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Letter Spacing Scale */
+  --letter-spacing-tight: -0.02em;               /* For large headings */
+  --letter-spacing-normal: 0;                    /* Default */
+  --letter-spacing-wide: 0.025em;                /* For small text/caps */
+  
+  /* ==========================================================================
      SEMANTIC COLOR PALETTE - M1ST LIGHT THEME (Using Extended Neutrals)
      ========================================================================== */
   

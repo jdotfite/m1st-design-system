@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentPageTemplate } from '../../layout';
 import { Card, CardBody } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 // Import both tab implementations
 import { Tabs as TabsAdvanced } from '../../ui/Tabs/Tabs';
 import { Tabs as TabsSimple } from '../../ui/Tabs/TabsSimple';
@@ -8,6 +9,9 @@ import { Tabs as TabsSimple } from '../../ui/Tabs/TabsSimple';
 export const TabsPage: React.FC = () => {
   const [activeAdvancedTab, setActiveAdvancedTab] = useState('tab1');
   const [activeSimpleTab, setActiveSimpleTab] = useState('home');
+
+  // Set the document title
+  useDocumentTitle('Tabs');
 
   // Sample data for advanced tabs
   const advancedTabItems = [
