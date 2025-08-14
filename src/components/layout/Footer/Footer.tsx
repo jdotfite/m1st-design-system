@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="border-t border-neutral-200 pt-12 pb-8 mt-auto">
-      <div className="max-w-content mx-auto px-3">
+      <div className="max-w-content mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-10">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-6">

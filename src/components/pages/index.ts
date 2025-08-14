@@ -6,6 +6,7 @@ export { default as LoadingSpinnerComponentPage } from './LoadingSpinnerComponen
 export { default as ModalComponentPage } from './ModalComponentPage';
 export { TabsPage } from './TabsPage';
 export { FoundationPage } from './FoundationPage';
+export { TypographyPage } from './TypographyPage';
 export { default as HomePage } from './HomePage';
 export { default as TokenVisualizerPage } from './TokenVisualizerPage';
 export { default as ColorSystemPage } from './ColorSystemPage';
