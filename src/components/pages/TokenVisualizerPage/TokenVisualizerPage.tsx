@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageTemplate } from '../../layout';
 import { BreadcrumbItem } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 import './TokenVisualizerPage.css';
 
 // Token data structure
@@ -25,6 +26,9 @@ const TokenVisualizerPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<'visualizer' | 'architecture' | 'usage'>('visualizer');
+
+  // Set the document title
+  useDocumentTitle('Design Tokens');
 
   // Parse CSS tokens from your index.css
   useEffect(() => {

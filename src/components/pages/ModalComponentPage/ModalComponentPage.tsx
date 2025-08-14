@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentPageTemplate } from '../../layout';
 import { Button, Card, CardBody, Modal, Input } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 
 export const ModalComponentPage: React.FC = () => {
   const [basicModalOpen, setBasicModalOpen] = useState(false);
@@ -8,6 +9,9 @@ export const ModalComponentPage: React.FC = () => {
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [loadingModalOpen, setLoadingModalOpen] = useState(false);
   const [centeredModalOpen, setCenteredModalOpen] = useState(false);
+
+  // Set the document title
+  useDocumentTitle('Modal');
   const [customModalOpen, setCustomModalOpen] = useState(false);
   const [activeFramework, setActiveFramework] = useState<'react' | 'angular'>('react');
   const [isLoading, setIsLoading] = useState(false);

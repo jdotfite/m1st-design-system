@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageTemplate } from '../../layout';
 import { BreadcrumbItem } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 import '../../components.css';
 
 interface Component {
@@ -59,6 +60,9 @@ const ComponentsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
+
+  // Set the document title
+  useDocumentTitle('Components');
 
   const breadcrumbs: BreadcrumbItem[] = [
     { label: 'M1st Design System', href: '/' },

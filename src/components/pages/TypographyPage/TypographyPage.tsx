@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout/PageTemplate';
 import { Modal, Tooltip } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 import './TypographyPage.css';
 
 interface TypographyToken {
@@ -24,6 +25,9 @@ interface TypographyScale {
 export const TypographyPage: React.FC = () => {
   const [selectedToken, setSelectedToken] = useState<TypographyToken | null>(null);
   const [activeTab, setActiveTab] = useState<'headings' | 'body' | 'tokens' | 'guidelines'>('headings');
+
+  // Set the document title
+  useDocumentTitle('Typography');
 
   const typographyScales: Record<string, TypographyScale[]> = {
     headings: [

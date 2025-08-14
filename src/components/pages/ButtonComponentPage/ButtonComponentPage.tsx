@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { ComponentPageTemplate } from '../../layout';
 import { Button, Card, CardBody } from '../../ui';
+import { useDocumentTitle } from '../../../utils';
 
 export const ButtonComponentPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  // Set the document title
+  useDocumentTitle('Button');
 
   const buttonVariants = [
     {
