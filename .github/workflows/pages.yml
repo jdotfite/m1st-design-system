@@ -30,6 +30,14 @@ jobs:
           if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi
       - name: Build
         run: npm run build
+      - name: Add 404 fallback for SPA
+        run: cp build/index.html build/404.html
+      - name: Show build output
+        run: |
+          echo "Commit: $GITHUB_SHA"
+          ls -la build
+          ls -la build/static/js || true
+          echo "asset-manifest.json:" && cat build/asset-manifest.json
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
