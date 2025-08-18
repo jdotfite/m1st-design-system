@@ -79,3 +79,8 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           timeout: 600000
+      - name: Trigger cache invalidation
+        run: |
+          echo "Deployment completed at $(date)"
+          echo "Page URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "Build completed with hash: $GITHUB_SHA"
