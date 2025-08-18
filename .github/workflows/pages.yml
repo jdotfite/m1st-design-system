@@ -36,8 +36,18 @@ jobs:
           GENERATE_SOURCEMAP: false
           CI: false
           BUILD_PATH: build
-          PUBLIC_URL: "."
           REACT_APP_BUILD_TIME: ${{ github.run_number }}-${{ github.sha }}
+      - name: Fix asset paths for GitHub Pages
+        run: |
+          # Fix paths in HTML files
+          find build -name "*.html" -type f -exec sed -i 's|"/m1st-design-system/|"./|g' {} \;
+          # Fix paths in asset-manifest.json
+          sed -i 's|"/m1st-design-system/|"./|g' build/asset-manifest.json
+          # Fix paths in manifest.json if it exists
+          if [ -f build/manifest.json ]; then
+            sed -i 's|"/m1st-design-system/|"./|g' build/manifest.json
+          fi
+          echo "Fixed asset paths to be relative"
       - name: Add cache-busting timestamp
         run: |
           timestamp=$(date +%s)
