@@ -36,6 +36,7 @@ jobs:
           GENERATE_SOURCEMAP: false
           CI: false
           BUILD_PATH: build
+          PUBLIC_URL: "."
           REACT_APP_BUILD_TIME: ${{ github.run_number }}-${{ github.sha }}
       - name: Add cache-busting timestamp
         run: |
