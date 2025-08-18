@@ -132,7 +132,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
       
       if (!lastThemeChange || parseInt(lastThemeChange) < oneWeekAgo) {
-        console.log('Saved theme is outdated or conflicts with system, defaulting to system');
+        // console.log('Saved theme is outdated or conflicts with system, defaulting to system');
         initialTheme = 'system';
       }
     }
@@ -148,14 +148,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       applyTheme(resolvedInitialTheme);
     }
     
-    // Debug logging
-    console.log('ThemeProvider initialization:', {
-      currentSystemTheme,
-      savedTheme,
-      initialTheme,
-      resolvedInitialTheme,
-      currentDataTheme
-    });
+    // Debug logging - comment out for production
+    // console.log('ThemeProvider initialization:', {
+    //   currentSystemTheme,
+    //   savedTheme,
+    //   initialTheme,
+    //   resolvedInitialTheme,
+    //   currentDataTheme
+    // });
   }, [mounted, defaultTheme, storageKey, applyTheme]);
 
   const setTheme = (newTheme: Theme) => {

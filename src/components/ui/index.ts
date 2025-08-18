@@ -13,12 +13,13 @@ export { ThemeSwitch, type ThemeSwitchProps } from './ThemeSwitch';
 export { SidebarToggle } from './SidebarToggle';
 export { Tabs, type TabsProps, type TabItem } from './Tabs';
 
-// TODO: Add more components as they are implemented
-// export { Accordion, type AccordionProps } from './Accordion';
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './Breadcrumb';
+export { Tooltip, type TooltipProps } from './Tooltip';
+
+// Future components to be implemented:
+// export { Accordion, type AccordionProps } from './Accordion';
 // export { Dropdown, type DropdownProps } from './Dropdown';
 // export { Navigation, type NavigationProps } from './Navigation';
 // export { RadioButton, type RadioButtonProps } from './RadioButton';
 // export { Slider, type SliderProps } from './Slider';
 // export { Table, type TableProps } from './Table';
-export { Tooltip, type TooltipProps } from './Tooltip';

@@ -252,7 +252,7 @@ export const ModalComponentPage: React.FC = () => {
                 <Button 
                   variant="primary"
                   onClick={() => {
-                    console.log('Form submitted:', formData);
+                    // console.log('Form submitted:', formData);
                     setFormModalOpen(false);
                   }}
                 >

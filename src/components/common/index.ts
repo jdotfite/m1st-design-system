@@ -1,3 +1,2 @@
 // Common components exports
-// Currently empty - PageNavigation has been migrated to Tabs in ui/
-export {};
+// Currently empty - components have been migrated to their appropriate modules

@@ -210,7 +210,7 @@ export const ColorSystemPage: React.FC = () => {
                 }}
                 onClick={() => copyToClipboard(color.cssVar)}
                 onMouseEnter={(e) => {
-                  console.log('CSS var field hover');
+                  // console.log('CSS var field hover');
                   e.currentTarget.style.backgroundColor = 'var(--page-surface)';
                 }}
                 onMouseLeave={(e) => {

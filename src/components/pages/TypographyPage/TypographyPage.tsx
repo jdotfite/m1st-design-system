@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout/PageTemplate';
-import { Modal, Tooltip } from '../../ui';
+import { Modal } from '../../ui';
 import { useDocumentTitle } from '../../../utils';
 import './TypographyPage.css';
 
