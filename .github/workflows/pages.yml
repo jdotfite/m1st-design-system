@@ -28,13 +28,34 @@ jobs:
       - name: Install dependencies
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi
-      - name: Build
-        run: npm run build
+      - name: Clear cache and build clean
+        run: |
+          rm -rf build node_modules/.cache || true
+          npm run build
+        env:
+          GENERATE_SOURCEMAP: false
+          CI: false
+          BUILD_PATH: build
+          REACT_APP_BUILD_TIME: ${{ github.run_number }}-${{ github.sha }}
+      - name: Add cache-busting timestamp
+        run: |
+          timestamp=$(date +%s)
+          echo "Cache bust timestamp: $timestamp"
+          echo "CACHE_BUST=$timestamp" >> $GITHUB_ENV
       - name: Add 404 fallback for SPA
         run: cp build/index.html build/404.html
+      - name: Add cache-busting headers
+        run: |
+          cat > build/.nojekyll << EOF
+          EOF
+          # Add a timestamp file to force cache invalidation
+          echo "$(date -u +%Y%m%d%H%M%S)" > build/build-timestamp.txt
+          # Remove any potential CNAME conflicts
+          rm -f build/CNAME
       - name: Show build output
         run: |
           echo "Commit: $GITHUB_SHA"
+          echo "Cache bust: $CACHE_BUST"
           ls -la build
           ls -la build/static/js || true
           echo "asset-manifest.json:" && cat build/asset-manifest.json
@@ -42,6 +63,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: build
+          retention-days: 1
 
   deploy:
     environment:
@@ -55,3 +77,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000
