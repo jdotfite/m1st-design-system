@@ -1,4 +1,51 @@
-# M1st Design System - Typography Reference
+# M1st Design System - T---
+
+## 🎯 Typography Scale (Visual Hierarchy)
+
+**IMPORTANT:** Typography classes are **visual sizes**, not semantic HTML elements. Choose the class based on visual importance and context, not HTML tag.
+
+### Heading Hierarchy
+
+| Element | Size | Weight | Line Height | CSS Variable | Use Case |
+|---------|------|--------|-------------|--------------|----------|
+| **Heading XXL** | 64px (4rem) | Bold (700) | 1.1 | `--font-heading-xxl-size` | Hero sections, marketing headlines |
+| **Heading XL** | 48px (3rem) | SemiBold (600) | 1.15 | `--font-heading-xl-size` | Main page titles, major sections |
+| **Heading L** | 36px (2.25rem) | SemiBold (600) | 1.2 | `--font-heading-l-size` | Subsection titles, content headers |
+| **Heading M** | 24px (1.5rem) | SemiBold (600) | 1.25 | `--font-heading-m-size` | Standard content headings |
+| **Heading S** | 18px (1.125rem) | SemiBold (600) | 1.3 | `--font-heading-s-size` | Small headings, form sections |
+| **Heading XS** | 16px (1rem) | SemiBold (600) | 1.4 | `--font-heading-xs-size` | Labels, table headers |
+
+### 🔗 Semantic vs Visual Examples
+
+```tsx
+// ✅ Choose size based on VISUAL importance
+<h1 className="text-heading-xxl">Hero: Welcome to M1st Bank</h1>
+<h1 className="text-heading-xl">Page: Account Dashboard</h1>  
+<h1 className="text-heading-l">Modal: Transfer Funds</h1>
+
+<h2 className="text-heading-xl">Major Section: Investment Options</h2>
+<h2 className="text-heading-m">Standard Section: Recent Transactions</h2>
+<h2 className="text-heading-s">Small Section: Security Settings</h2>
+
+// ❌ Don't tie size to HTML tag
+<h1 className="text-heading-xl">Page Title</h1>
+<h2 className="text-heading-l">Section</h2>
+<h3 className="text-heading-m">Subsection</h3>
+```
+
+### 📐 Size Selection Guidelines
+
+| Context | Recommended Size | HTML Tag | Example |
+|---------|-----------------|----------|---------|
+| **Hero sections** | XXL or XL | `<h1>` | Landing page headlines |
+| **Page titles** | XL or L | `<h1>` | Dashboard, Account pages |
+| **Modal titles** | L or M | `<h1>` | Transfer funds, Settings |
+| **Card titles** | M or S | `<h2>` or `<h3>` | Account cards, Feature cards |
+| **Section headers** | M or S | `<h2>` | Recent activity, Quick actions |
+| **Form sections** | S or XS | `<h3>` | Personal info, Security |
+| **Table headers** | XS | `<th>` | Data tables |
+
+### Body Text Hierarchynce
 
 > **For UX Designers & Developers**: Complete typography system documentation with sizes, weights, and usage guidelines.
 

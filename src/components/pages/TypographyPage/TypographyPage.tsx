@@ -645,6 +645,78 @@ export const TypographyPage: React.FC = () => {
                 </div>
               </section>
             ))
+          ) : activeTab === 'scales' ? (
+            <div>
+              {/* Semantic vs Visual Explanation */}
+              <section className="mb-12">
+                <div 
+                  className="p-6 rounded-lg border-l-4"
+                  style={{
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    borderLeftColor: 'var(--color-primary)',
+                    borderRightColor: 'var(--page-border)',
+                    borderTopColor: 'var(--page-border)',
+                    borderBottomColor: 'var(--page-border)'
+                  }}
+                >
+                  <h2 className="text-xl font-semibold mb-3" style={{ color: 'var(--page-text-primary)' }}>
+                    🎯 Important: Visual vs Semantic Hierarchy
+                  </h2>
+                  <p className="text-base mb-4" style={{ color: 'var(--page-text-secondary)' }}>
+                    Typography classes represent <strong>visual sizes</strong>, not HTML elements. Choose the class based on visual importance and context, not HTML tag.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-semibold text-sm mb-2" style={{ color: 'var(--color-success)' }}>✅ Correct Usage</h3>
+                      <div className="p-3 rounded text-sm font-mono" style={{ backgroundColor: 'var(--page-surface-sunken)', color: 'var(--page-text-primary)' }}>
+{`<h1 className="text-heading-xxl">Hero Title</h1>
+<h1 className="text-heading-xl">Page Title</h1>  
+<h1 className="text-heading-l">Modal Title</h1>
+
+<h2 className="text-heading-xl">Major Section</h2>
+<h2 className="text-heading-m">Standard Section</h2>`}
+                      </div>
+                      <p className="text-xs mt-2" style={{ color: 'var(--page-text-muted)' }}>
+                        Choose size based on visual importance and context
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-sm mb-2" style={{ color: 'var(--color-danger)' }}>❌ Avoid This</h3>
+                      <div className="p-3 rounded text-sm font-mono" style={{ backgroundColor: 'var(--page-surface-sunken)', color: 'var(--page-text-primary)' }}>
+{`<h1 className="text-heading-xxl">Always</h1>
+<h2 className="text-heading-xl">Using</h2>
+<h3 className="text-heading-l">Same</h3>
+<h4 className="text-heading-m">Pattern</h4>
+<h5 className="text-heading-s">For</h5>
+<h6 className="text-heading-xs">Every Tag</h6>`}
+                      </div>
+                      <p className="text-xs mt-2" style={{ color: 'var(--page-text-muted)' }}>
+                        Don't tie typography size to HTML tag level
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Typography Scales */}
+              {typographyScales[activeTab]?.map((scale, index) => (
+              <section key={index} className="mb-16">
+                <div className="mb-8">
+                  <h1 className="text-2xl font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>
+                    {scale.name}
+                  </h1>
+                  <p className="text-lg max-w-2xl" style={{ color: 'var(--page-text-secondary)' }}>
+                    {scale.description}
+                  </p>
+                </div>
+                <div className="grid gap-6">
+                  {scale.tokens.map(renderTypographyExample)}
+                </div>
+              </section>
+            ))}
+            </div>
           ) : (
             typographyScales[activeTab]?.map((scale, index) => (
               <section key={index} className="mb-16">
