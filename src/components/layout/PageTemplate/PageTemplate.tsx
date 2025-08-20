@@ -136,7 +136,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
         <div 
           className="transition-all duration-300 ease-in-out"
           style={{ 
-            marginLeft: showSidebar ? '356px' : '0' // 100px main nav + 256px sidebar
+            marginLeft: showSidebar ? '256px' : '0' // Match content margin
           }}
         >
           <Footer />

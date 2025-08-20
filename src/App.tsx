@@ -11,7 +11,6 @@ import {
   LoadingSpinnerComponentPage,
   ModalComponentPage,
   TabsPage,
-  FoundationPage,
   TypographyPage,
   HomePage,
   GetStartedPage,

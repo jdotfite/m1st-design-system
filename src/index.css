@@ -165,7 +165,7 @@ MIGRATION GUIDE:
   --font-family-din-narrow: "DIN-2014-Narrow", "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   
   /* Font Size Scale - Based on Major Third (1.25) ratio */
-  --font-heading-display-size: 4rem;             /* 64px - Hero/Display text */
+  --font-heading-xxl-size: 4rem;                 /* 64px - Hero/Display text */
   --font-heading-xl-size: 3rem;                  /* 48px - Large page titles */
   --font-heading-l-size: 2.25rem;                /* 36px - Section headers */
   --font-heading-m-size: 1.5rem;                 /* 24px - Content headings */
@@ -229,7 +229,7 @@ MIGRATION GUIDE:
      
      HEADING HIERARCHY & USAGE:
      
-     Display (4rem/64px):      Hero sections, marketing headlines
+     Heading XXL (4rem/64px):  Hero sections, marketing headlines
        └── Font: DIN-2014 Bold (700), Uppercase, Tight line height (1.1)
        └── Usage: Landing pages, major announcements (max 1 per page)
      
@@ -303,7 +303,7 @@ MIGRATION GUIDE:
      
      Element          | Size     | Weight | Line Height | Use Case
      -----------------|----------|--------|-------------|------------------
-     Display          | 64px     | 700    | 1.1         | Hero text
+     Heading XXL      | 64px     | 700    | 1.1         | Hero text
      Heading XL       | 48px     | 600    | 1.15        | Page titles  
      Heading L        | 36px     | 600    | 1.2         | Section headers
      Heading M        | 24px     | 600    | 1.25        | Content headings
@@ -778,7 +778,7 @@ button, input, textarea, select,
   --button-warning-border: var(--page-warning);
   
   /* Button Base Styles */
-  --button-border-radius: 0.125rem;
+  --button-border-radius: 9999px;
   --button-font-weight-base: 500;
   --button-font-weight-emphasis: 600;
   --button-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -940,4 +940,97 @@ button, input, textarea, select,
 .heading-normal-case {
   text-transform: var(--text-transform-none) !important;
   letter-spacing: var(--letter-spacing-normal) !important;
+}
+
+/* =============================================================================
+   HEADING SIZE UTILITIES (with automatic uppercase)
+   ============================================================================= */
+
+/* These classes apply both font size AND heading styling (DIN-2014, uppercase, letter-spacing) */
+.text-heading-xxl {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xxl-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-heading-xl {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xl-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-l {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-l-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-m {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-m-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-s {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-s-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-xs {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xs-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* =============================================================================
+   BODY TEXT UTILITIES
+   ============================================================================= */
+
+.text-body-l {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-l-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+}
+
+.text-body-m, 
+.text-body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-m-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+.text-body-s {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-s-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4;
+}
+
+.text-body-xs, 
+.text-caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-xs-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.3;
 }

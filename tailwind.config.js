@@ -109,6 +109,7 @@ module.exports = {
         'xxxl': 'var(--space-xxxl)',
       },
       fontSize: {
+        'heading-xxl': 'var(--font-heading-xxl-size)',
         'heading-xl': 'var(--font-heading-xl-size)',
         'heading-l': 'var(--font-heading-l-size)',
         'heading-m': 'var(--font-heading-m-size)',

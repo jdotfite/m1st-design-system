@@ -5,7 +5,6 @@ export { default as ButtonComponentPage } from './ButtonComponentPage';
 export { default as LoadingSpinnerComponentPage } from './LoadingSpinnerComponentPage';
 export { default as ModalComponentPage } from './ModalComponentPage';
 export { TabsPage } from './TabsPage';
-export { FoundationPage } from './FoundationPage';
 export { TypographyPage } from './TypographyPage';
 export { default as HomePage } from './HomePage';
 export { default as TokenVisualizerPage } from './TokenVisualizerPage';

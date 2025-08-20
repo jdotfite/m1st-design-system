@@ -14,7 +14,4 @@ export * from './common';
 export * from './demo';
 
 // Other Components
-export { default as Hero } from './Hero';
-export { default as Overview } from './Overview';
-export { default as GetStarted } from './GetStarted';
-export { default as Demos } from './Demos';
+// Legacy components removed - functionality integrated into page components

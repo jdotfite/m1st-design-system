@@ -187,32 +187,6 @@
   transform: scale(1.02);
 }
 
-/* Tab Navigation Enhancements */
-.token-visualizer-page nav button {
-  position: relative;
-  overflow: hidden;
-}
-
-.token-visualizer-page nav button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.token-visualizer-page nav button:hover::before {
-  left: 100%;
-}
-
 /* Architecture Flow Animation */
 .token-visualizer-page .gradient-flow {
   background: linear-gradient(
@@ -296,8 +270,9 @@
 
 /* Quick Reference Card */
 .token-visualizer-page .quick-ref-card {
-  background-color: var(--page-text-primary);
-  color: var(--page-text-inverse);
+  background-color: var(--page-surface-elevated);
+  color: var(--page-text-primary);
+  border: 1px solid var(--page-border);
   position: relative;
   overflow: hidden;
 }
@@ -340,8 +315,9 @@
 }
 
 .token-visualizer-page .quick-ref-card .pro-tip {
-  background-color: var(--layer-3-text);
-  color: var(--page-text-inverse);
+  background-color: var(--page-surface);
+  color: var(--page-text-primary);
+  border: 1px solid var(--page-border);
 }
 
 /* Responsive Adjustments */

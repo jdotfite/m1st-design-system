@@ -2,12 +2,6 @@
    TYPOGRAPHY PAGE STYLES
    ============================================================================= */
 
-/* Typography example hover effects */
-.text-sample {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
 /* Modal styles */
 .token-details-modal {
   padding: var(--space-l, 1.5rem);

@@ -30,7 +30,7 @@
 
 | Element | Size | Weight | Line Height | CSS Variable | Use Case |
 |---------|------|--------|-------------|--------------|----------|
-| **Display** | 64px (4rem) | Bold (700) | 1.1 | `--font-heading-display-size` | Hero sections, marketing headlines |
+| **Heading XXL** | 64px (4rem) | Bold (700) | 1.1 | `--font-heading-xxl-size` | Hero sections, marketing headlines |
 | **Heading XL** | 48px (3rem) | SemiBold (600) | 1.15 | `--font-heading-xl-size` | Main page titles, major sections |
 | **Heading L** | 36px (2.25rem) | SemiBold (600) | 1.2 | `--font-heading-l-size` | Subsection titles, content headers |
 | **Heading M** | 24px (1.5rem) | SemiBold (600) | 1.25 | `--font-heading-m-size` | Standard content headings |

@@ -160,7 +160,7 @@ MIGRATION GUIDE:
   --font-family-mono: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Liberation Mono', 'Courier New', monospace;
   
   /* Font Size Scale - Based on Major Third (1.25) ratio */
-  --font-heading-display-size: 4rem;             /* 64px - Hero/Display text */
+  --font-heading-xxl-size: 4rem;                 /* 64px - Hero/Display text */
   --font-heading-xl-size: 3rem;                  /* 48px - Large page titles */
   --font-heading-l-size: 2.25rem;                /* 36px - Section headers */
   --font-heading-m-size: 1.5rem;                 /* 24px - Content headings */
@@ -649,7 +649,7 @@ button, input, textarea, select,
   --button-warning-border: var(--page-warning);
   
   /* Button Base Styles */
-  --button-border-radius: 0.125rem;
+  --button-border-radius: 9999px;
   --button-font-weight-base: 500;
   --button-font-weight-emphasis: 600;
   --button-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);

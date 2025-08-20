@@ -227,15 +227,24 @@ export const TypographyPage: React.FC = () => {
   };
 
   const renderTypographyExample = (token: TypographyToken) => {
-    const style = {
-      fontSize: token.size,
-      lineHeight: token.lineHeight,
-      fontWeight: token.fontWeight,
-      letterSpacing: token.letterSpacing || 'normal',
-      fontFamily: token.category === 'heading' ? 'var(--font-family-heading)' : 
-                  token.category === 'code' ? 'var(--font-family-mono)' : 
-                  'var(--font-family-body)'
+    // Map token names to utility classes that use CSS variables
+    const getUtilityClass = (token: TypographyToken) => {
+      const classMap: Record<string, string> = {
+        'Heading XXL': 'text-heading-xxl',
+        'Heading XL': 'text-heading-xl',
+        'Heading L': 'text-heading-l',
+        'Heading M': 'text-heading-m',
+        'Heading S': 'text-heading-s',
+        'Heading XS': 'text-heading-xs',
+        'Body Large': 'text-body-l',
+        'Body Medium': 'text-body-m',
+        'Body Small': 'text-body-s',
+        'Caption': 'text-body-xs'
+      };
+      return classMap[token.name] || 'text-body-m';
     };
+
+    const utilityClass = getUtilityClass(token);
 
     return (
       <div 
@@ -250,9 +259,8 @@ export const TypographyPage: React.FC = () => {
         {/* Typography Sample */}
         <div className="mb-6">
           <div 
-            className="text-sample mb-2 break-words"
+            className={`mb-2 break-words ${utilityClass}`}
             style={{
-              ...style,
               color: 'var(--page-text-primary)'
             }}
           >
@@ -276,23 +284,23 @@ export const TypographyPage: React.FC = () => {
           
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>Size:</span>
-              <span className="ml-1" style={{ color: 'var(--page-text-secondary)' }}>{token.size}</span>
+              <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>Class:</span>
+              <code className="ml-1 px-1 rounded text-xs" style={{ 
+                color: 'var(--page-text-primary)', 
+                backgroundColor: 'var(--page-surface-sunken)' 
+              }}>
+                .{utilityClass}
+              </code>
             </div>
             <div>
-              <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>Weight:</span>
-              <span className="ml-1" style={{ color: 'var(--page-text-secondary)' }}>{token.fontWeight}</span>
+              <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>CSS Variable:</span>
+              <code className="ml-1 px-1 rounded text-xs" style={{ 
+                color: 'var(--page-text-primary)', 
+                backgroundColor: 'var(--page-surface-sunken)' 
+              }}>
+                {token.cssVar}
+              </code>
             </div>
-            <div>
-              <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>Line Height:</span>
-              <span className="ml-1" style={{ color: 'var(--page-text-secondary)' }}>{token.lineHeight}</span>
-            </div>
-            {token.letterSpacing && (
-              <div>
-                <span className="font-medium" style={{ color: 'var(--page-text-primary)' }}>Spacing:</span>
-                <span className="ml-1" style={{ color: 'var(--page-text-secondary)' }}>{token.letterSpacing}</span>
-              </div>
-            )}
           </div>
 
           <div 
@@ -316,7 +324,7 @@ export const TypographyPage: React.FC = () => {
   const getSampleText = (category: string, name: string) => {
     const samples: Record<string, Record<string, string>> = {
       heading: {
-        'Display': 'Outstanding Typography',
+        'Heading XXL': 'Hero Text',
         'Heading XL': 'Create Beautiful Interfaces',
         'Heading L': 'Design System Excellence',
         'Heading M': 'Typography Guidelines',
