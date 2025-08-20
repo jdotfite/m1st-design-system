@@ -58,7 +58,6 @@ const fetchCSSContent = async (): Promise<string> => {
        ========================================================================== */
     
     --color-brand-primary: #EE3831;                /* M1st brand red - matches M logo */
-    --color-brand-primary-hover: #dc2626;          /* red-600 */
     
     /* ==========================================================================
        SEMANTIC COLOR PALETTE - LIGHT THEME (Using Extended Neutrals)

@@ -35,7 +35,7 @@ const COMPONENTS: Component[] = [
   },
   {
     name: 'Tabs',
-    description: 'Flexible tab navigation component with multiple variants (default, underline, pills, card) and advanced features like editable tabs, animations, and content panels.',
+    description: 'Clean and accessible tab navigation component with multiple variants (default, underline, pills, card) and size options for flexible interface organization.',
     category: 'Navigation',
     status: 'stable'
   }

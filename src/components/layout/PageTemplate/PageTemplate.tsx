@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { ComponentsSidebar } from '../ComponentsSidebar';
+import { FoundationSidebar } from '../FoundationSidebar';
 import Footer from '../Footer/Footer';
 import { Breadcrumb, type BreadcrumbItem } from '../../ui';
 
@@ -44,10 +45,10 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
       return [];
     }
 
-    if (path === '/foundation') {
-      breadcrumbItems.push({ label: 'Foundation', isActive: true });
-    } else if (path === '/components') {
+    if (path === '/components') {
       breadcrumbItems.push({ label: 'Components', isActive: true });
+    } else if (path === '/typography') {
+      breadcrumbItems.push({ label: 'Typography', isActive: true });
     } else if (path === '/colors') {
       breadcrumbItems.push({ label: 'Colors', isActive: true });
     } else if (path === '/patterns') {
@@ -83,13 +84,14 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
     <div className="flex flex-1 flex-col">
       <div className="flex flex-1">
         {(showSidebar && sidebarType === 'components') && <ComponentsSidebar />}
+        {(showSidebar && sidebarType === 'foundation') && <FoundationSidebar />}
         
         {/* Main Content - adjusted for fixed sidebar */}
         <div 
-          className={`flex-1 min-w-0 transition-all duration-300 ease-in-out ${
-            (showSidebar && sidebarType === 'components') ? 'md:ml-64' : ''
-          } ${className}`}
-          style={{ marginLeft: (showSidebar && sidebarType === 'components') ? undefined : '0' }}
+          className={`flex-1 min-w-0 transition-all duration-300 ease-in-out ${className}`}
+          style={{ 
+            marginLeft: showSidebar ? '256px' : '0' // Width of sidebar (w-64)
+          }}
         >
           <div className="px-8 py-6 min-h-full flex flex-col">
             {/* Auto-generated Breadcrumbs */}
@@ -132,9 +134,10 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
       {/* Footer - adjusted for fixed sidebar */}
       {showFooter && (
         <div 
-          className={`transition-all duration-300 ease-in-out ${
-            (showSidebar && sidebarType === 'components') ? 'md:ml-64' : ''
-          }`}
+          className="transition-all duration-300 ease-in-out"
+          style={{ 
+            marginLeft: showSidebar ? '356px' : '0' // 100px main nav + 256px sidebar
+          }}
         >
           <Footer />
         </div>

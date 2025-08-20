@@ -10,3 +10,5 @@ export { TypographyPage } from './TypographyPage';
 export { default as HomePage } from './HomePage';
 export { default as TokenVisualizerPage } from './TokenVisualizerPage';
 export { default as ColorSystemPage } from './ColorSystemPage';
+export { GuidelinesPage } from './GuidelinesPage';
+export { PatternsPage } from './PatternsPage';

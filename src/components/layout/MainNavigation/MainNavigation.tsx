@@ -9,10 +9,11 @@ const MainNavigation: React.FC = () => {
   const isDarkMode = theme === 'dark';
 
   const navigationItems = [
-    { path: '/foundation', label: 'Foundation', shortLabel: 'Foundation' },
+    { path: '/typography', label: 'Typography', shortLabel: 'Typography' },
     { path: '/colors', label: 'Colors', shortLabel: 'Colors' },
     { path: '/components', label: 'Components', shortLabel: 'Components' },
     { path: '/patterns', label: 'Patterns', shortLabel: 'Patterns' },
+    { path: '/guidelines', label: 'Guidelines', shortLabel: 'Guidelines' },
     { path: '/get-started', label: 'Get Started', shortLabel: 'Get Started' },
     { path: '/roadmap', label: 'Roadmap', shortLabel: 'Roadmap' },
     { path: '/token-visualizer', label: 'Design Tokens', shortLabel: 'Design Tokens' }
@@ -30,12 +31,12 @@ const MainNavigation: React.FC = () => {
     };
 
     switch (path) {
-      case '/foundation':
+      case '/typography':
         return (
           <svg style={iconStyle} viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <path d="M9 9h6v6H9z"/>
-            <path d="M3 15h6M15 3v6M15 15h6M9 3v6"/>
+            <polyline points="4 7 4 4 20 4 20 7"/>
+            <line x1="9" y1="20" x2="15" y2="20"/>
+            <line x1="12" y1="4" x2="12" y2="20"/>
           </svg>
         );
       case '/colors':
@@ -67,6 +68,16 @@ const MainNavigation: React.FC = () => {
         return (
           <svg style={iconStyle} viewBox="0 0 24 24">
             <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        );
+      case '/guidelines':
+        return (
+          <svg style={iconStyle} viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <line x1="12" y1="9" x2="8" y2="9"/>
           </svg>
         );
       case '/roadmap':

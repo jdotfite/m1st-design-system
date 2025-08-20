@@ -17,7 +17,9 @@ import {
   GetStartedPage,
   RoadmapPage,
   TokenVisualizerPage,
-  ColorSystemPage
+  ColorSystemPage,
+  GuidelinesPage,
+  PatternsPage
 } from './components';
 
 function App() {
@@ -38,12 +40,13 @@ function App() {
               >
                 <Routes>
                   <Route path="/" element={<><HomePage /><Footer /></>} />
-                  <Route path="/foundation" element={<FoundationPage />} />
-                  <Route path="/foundation/typography" element={<TypographyPage />} />
+                  <Route path="/typography" element={<TypographyPage />} />
                   <Route path="/colors" element={<ColorSystemPage />} />
                   <Route path="/get-started" element={<GetStartedPage />} />
                   <Route path="/roadmap" element={<RoadmapPage />} />
                   <Route path="/components" element={<ComponentsPage />} />
+                  <Route path="/patterns" element={<PatternsPage />} />
+                  <Route path="/guidelines" element={<GuidelinesPage />} />
                   <Route path="/component/button" element={<ButtonComponentPage />} />
                   <Route path="/component/loading-spinner" element={<LoadingSpinnerComponentPage />} />
                   <Route path="/component/modal" element={<ModalComponentPage />} />

@@ -26,27 +26,27 @@ const Header: React.FC = () => {
             <ul className="flex flex-col md:flex-row list-none gap-0 md:gap-6 m-0 p-6 md:p-0">
               <li>
                 <Link 
-                  to="/foundation" 
+                  to="/typography" 
                   className={`block md:inline-block py-4 md:py-2 px-0 md:px-4 no-underline font-medium transition-colors duration-200 rounded md:rounded-none ${
-                    location.pathname === '/foundation' ? 'text-neutral-900' : 'text-neutral-700'
+                    location.pathname === '/typography' ? 'text-neutral-900' : 'text-neutral-700'
                   }`}
                   style={{
-                    backgroundColor: location.pathname === '/foundation' 
+                    backgroundColor: location.pathname === '/typography' 
                       ? 'var(--page-header-nav-bg)' 
                       : 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    if (location.pathname !== '/foundation') {
+                    if (location.pathname !== '/typography') {
                       e.currentTarget.style.backgroundColor = 'var(--page-header-nav-bg)';
                     }
                   }}
                   onMouseLeave={(e) => {
-                    if (location.pathname !== '/foundation') {
+                    if (location.pathname !== '/typography') {
                       e.currentTarget.style.backgroundColor = 'transparent';
                     }
                   }}
                 >
-                  Foundation
+                  Typography
                 </Link>
               </li>
               <li>

@@ -101,7 +101,6 @@
 .tabs-simple__link:focus,
 .tabs-simple__button:focus {
   outline: none;
-  box-shadow: var(--tabs-focus-shadow);
 }
 
 /* Active state */

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageTemplate } from '../../layout/PageTemplate';
-import { Modal, Tooltip } from '../../ui';
+import { Modal, Tooltip, Tabs } from '../../ui';
 import { useDocumentTitle } from '../../../utils';
 import './ColorSystemPage.css';
 
@@ -33,31 +33,30 @@ export const ColorSystemPage: React.FC = () => {
         name: "Brand Primary",
         description: "Core M1st brand colors derived from the logo",
         colors: [
-          { name: "Brand Primary", lightValue: "#EE3831", darkValue: "#EE3831", cssVar: "--color-brand-primary", description: "M1st brand red - matches M logo", category: "brand" },
-          { name: "Brand Hover", lightValue: "#d32f2f", darkValue: "#d32f2f", cssVar: "--color-brand-primary-hover", description: "Darker red for hover states", category: "brand" },
-          { name: "Brand Active", lightValue: "#b71c1c", darkValue: "#b71c1c", cssVar: "--color-brand-primary-active", description: "Darkest red for active states", category: "brand" }
+          { name: "Brand Primary", lightValue: "#EE3831", darkValue: "#EE3831", cssVar: "--color-brand-primary", description: "M1st brand red - matches M logo", category: "brand" }
         ]
       },
       {
         name: "Accent Colors - Warm",
         description: "Warm accent colors for highlights, illustrations, and visual interest",
         colors: [
-          { name: "Accent Red", lightValue: "#DC2626", darkValue: "#DC2626", cssVar: "--color-accent-red", description: "Vibrant red accent", category: "accent" },
-          { name: "Accent Magenta", lightValue: "#C2185B", darkValue: "#C2185B", cssVar: "--color-accent-magenta", description: "Bold magenta accent", category: "accent" },
-          { name: "Accent Orange", lightValue: "#EA580C", darkValue: "#EA580C", cssVar: "--color-accent-orange", description: "Energetic orange accent", category: "accent" },
-          { name: "Accent Yellow", lightValue: "#CA8A04", darkValue: "#CA8A04", cssVar: "--color-accent-yellow", description: "Warm yellow accent", category: "accent" }
+          { name: "Accent Red", lightValue: "#E71C23", darkValue: "#E71C23", cssVar: "--color-accent-red", description: "Vibrant red accent", category: "accent" },
+          { name: "Accent Green", lightValue: "#55A444", darkValue: "#55A444", cssVar: "--color-accent-green", description: "Fresh green accent", category: "accent" },
+          { name: "Accent Blue", lightValue: "#0090C4", darkValue: "#0090C4", cssVar: "--color-accent-blue", description: "Blue accent", category: "accent" },
+          { name: "Accent Orange", lightValue: "#F15C22", darkValue: "#F15C22", cssVar: "--color-accent-orange", description: "Energetic orange accent", category: "accent" },
+          { name: "Accent Yellow", lightValue: "#FAA61A", darkValue: "#FAA61A", cssVar: "--color-accent-yellow", description: "Warm yellow accent", category: "accent" }
         ]
       },
       {
         name: "Accent Colors - Cool",
         description: "Cool accent colors for balance, trust, and professional highlights",
         colors: [
-          { name: "Accent Green", lightValue: "#16A34A", darkValue: "#16A34A", cssVar: "--color-accent-green", description: "Fresh green accent", category: "accent" },
-          { name: "Accent Teal", lightValue: "#0F766E", darkValue: "#0F766E", cssVar: "--color-accent-teal", description: "Sophisticated teal accent", category: "accent" },
-          { name: "Accent Blue Light", lightValue: "#0284C7", darkValue: "#0284C7", cssVar: "--color-accent-blue-light", description: "Light blue accent", category: "accent" },
-          { name: "Accent Blue", lightValue: "#2563EB", darkValue: "#2563EB", cssVar: "--color-accent-blue", description: "Primary blue accent", category: "accent" },
-          { name: "Accent Blue Dark", lightValue: "#1E40AF", darkValue: "#1E40AF", cssVar: "--color-accent-blue-dark", description: "Deep blue accent", category: "accent" },
-          { name: "Accent Purple", lightValue: "#7C3AED", darkValue: "#7C3AED", cssVar: "--color-accent-purple", description: "Rich purple accent", category: "accent" }
+          { name: "Accent Teal", lightValue: "#006068", darkValue: "#006068", cssVar: "--color-accent-teal", description: "Sophisticated teal accent", category: "accent" },
+          { name: "Accent Blue Light", lightValue: "#0071999", darkValue: "#0071999", cssVar: "--color-accent-blue-light", description: "Light blue accent", category: "accent" },
+          { name: "Accent Blue Dark", lightValue: "#133156", darkValue: "#133156", cssVar: "--color-accent-blue-dark", description: "Deep blue accent", category: "accent" },
+          { name: "Accent Purple", lightValue: "#7C2984", darkValue: "#7C2984", cssVar: "--color-accent-purple", description: "Rich purple accent", category: "accent" },
+          { name: "Accent Magenta", lightValue: "#AD1F63", darkValue: "#AD1F63", cssVar: "--color-accent-magenta", description: "Bold magenta accent", category: "accent" },
+          { name: "Accent Dark Red", lightValue: "#BF0000", darkValue: "#BF0000", cssVar: "--color-accent-dark-red", description: "Dark red accent", category: "accent" }
         ]
       }
     ],
@@ -151,6 +150,30 @@ export const ColorSystemPage: React.FC = () => {
       }
     ]
   };
+
+  // Tab configuration for the Tabs component
+  const tabItems = [
+    { 
+      id: 'brand', 
+      label: 'Brand Colors', 
+      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.brand.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+    },
+    { 
+      id: 'neutral', 
+      label: 'Neutral Scale', 
+      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.neutral.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+    },
+    { 
+      id: 'semantic', 
+      label: 'Semantic Colors', 
+      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.semantic.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+    },
+    { 
+      id: 'component', 
+      label: 'Component Tokens', 
+      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.component.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+    }
+  ];
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -303,33 +326,14 @@ export const ColorSystemPage: React.FC = () => {
       <div className="color-system-page">
         {/* Navigation Tabs */}
         <div className="mb-8">
-          <nav className="flex space-x-8 border-b border-neutral-200">
-            {[
-              { id: 'brand', label: 'Brand Colors', count: colorPalettes.brand.reduce((acc, p) => acc + p.colors.length, 0) },
-              { id: 'neutral', label: 'Neutral Scale', count: colorPalettes.neutral.reduce((acc, p) => acc + p.colors.length, 0) },
-              { id: 'semantic', label: 'Semantic Colors', count: colorPalettes.semantic.reduce((acc, p) => acc + p.colors.length, 0) },
-              { id: 'component', label: 'Component Tokens', count: colorPalettes.component.reduce((acc, p) => acc + p.colors.length, 0) }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-2 text-sm font-medium border-b-2 transition-all duration-200 rounded-md ${
-                  activeTab === tab.id
-                    ? 'border-neutral-300 text-neutral-900'
-                    : 'border-transparent text-neutral-600 hover:text-neutral-300 hover:border-neutral-300'
-                }`}
-                style={{
-                  backgroundColor: activeTab === tab.id 
-                    ? 'var(--page-header-nav-bg)' 
-                    : 'transparent',
-                  borderRadius: activeTab === tab.id ? '6px' : '0'
-                }}
-              >
-                {tab.label}
-                <span className="ml-1 text-xs text-neutral-400">({tab.count})</span>
-              </button>
-            ))}
-          </nav>
+          <Tabs
+            items={tabItems}
+            activeItem={activeTab}
+            onItemClick={(item) => setActiveTab(item.id as any)}
+            variant="underline"
+            size="medium"
+            position="left"
+          />
         </div>
 
         {/* Color Content */}
@@ -439,24 +443,24 @@ export const ColorSystemPage: React.FC = () => {
           <h3 className="text-lg font-semibold text-neutral-900 mb-4">Usage Guidelines</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-medium text-neutral-800 mb-2">Color Accessibility</h4>
-              <ul className="text-sm text-neutral-600 space-y-1">
+              <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>Color Accessibility</h4>
+              <ul className="text-sm space-y-1" style={{ color: 'var(--page-text-secondary)' }}>
                 <li>• All color combinations meet WCAG AA contrast requirements</li>
                 <li>• Use semantic tokens for consistent theming</li>
                 <li>• Test with color blindness simulators</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-neutral-800 mb-2">Implementation</h4>
-              <ul className="text-sm text-neutral-600 space-y-1">
+              <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>Implementation</h4>
+              <ul className="text-sm space-y-1" style={{ color: 'var(--page-text-secondary)' }}>
                 <li>• Use CSS variables for all color references</li>
                 <li>• Prefer page-level tokens for components</li>
                 <li>• Always use semantic tokens over raw values</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-neutral-800 mb-2">Theme System</h4>
-              <ul className="text-sm text-neutral-600 space-y-1">
+              <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>Theme System</h4>
+              <ul className="text-sm space-y-1" style={{ color: 'var(--page-text-secondary)' }}>
                 <li>• Neutral scale inverts between light/dark themes</li>
                 <li>• Brand colors remain consistent across themes</li>
                 <li>• Status colors adapt for better contrast</li>
@@ -464,10 +468,19 @@ export const ColorSystemPage: React.FC = () => {
             </div>
           </div>
           
-          <div className="mt-6 p-4 bg-blue-50 rounded border-l-4 border-blue-400">
-            <h4 className="font-medium text-blue-900 mb-2">🎯 Theme-Aware Development</h4>
-            <p className="text-sm text-blue-800">
-              The M1st design system uses an inverted neutral scale where <code className="bg-blue-100 px-1 rounded">--neutral-0</code> is white in light theme 
+          <div 
+            className="mt-6 p-4 rounded border-l-4"
+            style={{ 
+              backgroundColor: 'var(--page-info-subtle)', 
+              borderLeftColor: 'var(--color-info)' 
+            }}
+          >
+            <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>🎯 Theme-Aware Development</h4>
+            <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>
+              The M1st design system uses an inverted neutral scale where <code 
+                className="px-1 rounded"
+                style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+              >--neutral-0</code> is white in light theme 
               but black in dark theme. This ensures consistent semantic meaning while providing optimal contrast in both themes.
             </p>
           </div>
@@ -475,10 +488,10 @@ export const ColorSystemPage: React.FC = () => {
 
         {/* 4-Layer CSS System Explanation for UX Team */}
         <div className="mt-12 space-y-8">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-            🏗️ M1st 4-Layer CSS Architecture
+          <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--page-text-primary)' }}>
+            M1st 4-Layer CSS Architecture
           </h2>
-          <p className="text-lg text-neutral-700 mb-8">
+          <p className="text-lg mb-8" style={{ color: 'var(--page-text-secondary)' }}>
             Our design system follows industry-standard 4-layer token architecture used by Adobe Spectrum, 
             Microsoft Fluent, Google Material Design 3, and Shopify Polaris. This ensures scalability, 
             maintainability, and future-proofing.
@@ -487,136 +500,238 @@ export const ColorSystemPage: React.FC = () => {
           {/* Layer Overview Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Layer 1: Foundation */}
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <div 
+              className="rounded-lg p-6 border"
+              style={{ 
+                backgroundColor: 'var(--page-danger-subtle)', 
+                borderColor: 'var(--page-border)' 
+              }}
+            >
               <div className="text-center mb-4">
-                <div className="w-12 h-12 mx-auto bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">
+                <div 
+                  className="w-12 h-12 mx-auto text-white rounded-full flex items-center justify-center font-bold text-lg mb-2"
+                  style={{ backgroundColor: 'var(--color-danger)' }}
+                >
                   1
                 </div>
-                <h3 className="font-bold text-red-900">Foundation</h3>
-                <p className="text-sm text-red-700">Raw Values</p>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Foundation</h3>
+                <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Raw Values</p>
               </div>
               <div className="space-y-2 text-sm">
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --neutral-100: #f5f5f5
                 </div>
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --red-500: #EE3831
                 </div>
               </div>
-              <div className="mt-3 text-xs text-red-600">
+              <div className="mt-3 text-xs" style={{ color: 'var(--page-text-secondary)' }}>
                 <strong>Usage:</strong> Never use directly in components
               </div>
             </div>
 
             {/* Layer 2: Semantic */}
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+            <div 
+              className="rounded-lg p-6 border"
+              style={{ 
+                backgroundColor: 'var(--page-warning-subtle)', 
+                borderColor: 'var(--page-border)' 
+              }}
+            >
               <div className="text-center mb-4">
-                <div className="w-12 h-12 mx-auto bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">
+                <div 
+                  className="w-12 h-12 mx-auto text-white rounded-full flex items-center justify-center font-bold text-lg mb-2"
+                  style={{ backgroundColor: 'var(--color-warning)' }}
+                >
                   2
                 </div>
-                <h3 className="font-bold text-orange-900">Semantic</h3>
-                <p className="text-sm text-orange-700">Intent-Based</p>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Semantic</h3>
+                <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Intent-Based</p>
               </div>
               <div className="space-y-2 text-sm">
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --color-text-primary: var(--neutral-900)
                 </div>
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --color-background-primary: var(--neutral-0)
                 </div>
               </div>
-              <div className="mt-3 text-xs text-orange-600">
+              <div className="mt-3 text-xs" style={{ color: 'var(--page-text-secondary)' }}>
                 <strong>Usage:</strong> For building higher-level tokens
               </div>
             </div>
 
             {/* Layer 3: Page-Level */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <div 
+              className="rounded-lg p-6 border"
+              style={{ 
+                backgroundColor: 'var(--page-info-subtle)', 
+                borderColor: 'var(--page-border)' 
+              }}
+            >
               <div className="text-center mb-4">
-                <div className="w-12 h-12 mx-auto bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">
+                <div 
+                  className="w-12 h-12 mx-auto text-white rounded-full flex items-center justify-center font-bold text-lg mb-2"
+                  style={{ backgroundColor: 'var(--color-info)' }}
+                >
                   3
                 </div>
-                <h3 className="font-bold text-blue-900">Page-Level</h3>
-                <p className="text-sm text-blue-700">Context-Specific</p>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Page-Level</h3>
+                <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Context-Specific</p>
               </div>
               <div className="space-y-2 text-sm">
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --page-background: var(--color-background-primary)
                 </div>
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --page-text-primary: var(--color-text-primary)
                 </div>
               </div>
-              <div className="mt-3 text-xs text-blue-600">
+              <div className="mt-3 text-xs" style={{ color: 'var(--page-text-secondary)' }}>
                 <strong>Usage:</strong> Ideal for layouts and sections
               </div>
             </div>
 
             {/* Layer 4: Component */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+            <div 
+              className="rounded-lg p-6 border"
+              style={{ 
+                backgroundColor: 'var(--page-success-subtle)', 
+                borderColor: 'var(--page-border)' 
+              }}
+            >
               <div className="text-center mb-4">
-                <div className="w-12 h-12 mx-auto bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-2">
+                <div 
+                  className="w-12 h-12 mx-auto text-white rounded-full flex items-center justify-center font-bold text-lg mb-2"
+                  style={{ backgroundColor: 'var(--color-success)' }}
+                >
                   4
                 </div>
-                <h3 className="font-bold text-green-900">Component</h3>
-                <p className="text-sm text-green-700">Specialized</p>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Component</h3>
+                <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Specialized</p>
               </div>
               <div className="space-y-2 text-sm">
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --button-primary-bg: var(--page-accent-primary)
                 </div>
-                <div className="bg-white p-2 rounded font-mono text-xs">
+                <div 
+                  className="p-2 rounded font-mono text-xs"
+                  style={{ 
+                    backgroundColor: 'var(--page-surface-elevated)',
+                    color: 'var(--page-text-primary)' 
+                  }}
+                >
                   --card-shadow: 0 1px 3px rgba(0,0,0,0.1)
                 </div>
               </div>
-              <div className="mt-3 text-xs text-green-600">
+              <div className="mt-3 text-xs" style={{ color: 'var(--page-text-secondary)' }}>
                 <strong>Usage:</strong> Only when specialized styling needed
               </div>
             </div>
           </div>
 
           {/* Industry Standards */}
-          <div className="bg-white border border-neutral-200 rounded-lg p-6">
-            <h3 className="text-xl font-bold text-neutral-900 mb-4">
+          <div 
+            className="border rounded-lg p-6"
+            style={{ 
+              backgroundColor: 'var(--page-surface-elevated)', 
+              borderColor: 'var(--page-border)' 
+            }}
+          >
+            <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--page-text-primary)' }}>
               🏭 Industry Standard Architecture
             </h3>
-            <p className="text-neutral-700 mb-6">
+            <p className="mb-6" style={{ color: 'var(--page-text-secondary)' }}>
               This 4-layer approach is the gold standard used by all major tech companies and design systems:
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-neutral-800 mb-3">Major Design Systems</h4>
+                <h4 className="font-semibold mb-3" style={{ color: 'var(--page-text-primary)' }}>Major Design Systems</h4>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-danger)' }}
+                    >
                       <span className="text-white text-xs font-bold">A</span>
                     </div>
-                    <div>
+                    <div style={{ color: 'var(--page-text-primary)' }}>
                       <strong>Adobe Spectrum:</strong> Global → Alias → Component → Scale
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-info)' }}
+                    >
                       <span className="text-white text-xs font-bold">M</span>
                     </div>
-                    <div>
+                    <div style={{ color: 'var(--page-text-primary)' }}>
                       <strong>Microsoft Fluent:</strong> Global → Alias → Component → Pattern
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-success)' }}
+                    >
                       <span className="text-white text-xs font-bold">G</span>
                     </div>
-                    <div>
+                    <div style={{ color: 'var(--page-text-primary)' }}>
                       <strong>Google Material:</strong> Reference → System → Component → Custom
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-accent-purple)' }}
+                    >
                       <span className="text-white text-xs font-bold">S</span>
                     </div>
-                    <div>
+                    <div style={{ color: 'var(--page-text-primary)' }}>
                       <strong>Shopify Polaris:</strong> Base → Semantic → Component → Pattern
                     </div>
                   </div>
@@ -624,26 +739,26 @@ export const ColorSystemPage: React.FC = () => {
               </div>
               
               <div>
-                <h4 className="font-semibold text-neutral-800 mb-3">Benefits for UX Teams</h4>
-                <ul className="space-y-2 text-sm text-neutral-600">
+                <h4 className="font-semibold mb-3" style={{ color: 'var(--page-text-primary)' }}>Benefits for UX Teams</h4>
+                <ul className="space-y-2 text-sm" style={{ color: 'var(--page-text-secondary)' }}>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">✓</span>
                     <span><strong>Consistency:</strong> All colors automatically adapt across themes</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">✓</span>
                     <span><strong>Scalability:</strong> Easy to add new components without breaking existing ones</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">✓</span>
                     <span><strong>Maintenance:</strong> Change foundation colors once, updates everywhere</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">✓</span>
                     <span><strong>Theming:</strong> Light/dark themes work automatically</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">✓</span>
                     <span><strong>Future-Proof:</strong> Industry standard ensures longevity</span>
                   </li>
                 </ul>
@@ -652,55 +767,118 @@ export const ColorSystemPage: React.FC = () => {
           </div>
 
           {/* Practical Examples */}
-          <div className="bg-white border border-neutral-200 rounded-lg p-6">
-            <h3 className="text-xl font-bold text-neutral-900 mb-4">
+          <div 
+            className="border rounded-lg p-6"
+            style={{ 
+              backgroundColor: 'var(--page-surface-elevated)', 
+              borderColor: 'var(--page-border)' 
+            }}
+          >
+            <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--page-text-primary)' }}>
               🎯 Practical UX Workflow
             </h3>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
-                <h4 className="font-semibold text-green-600 mb-3">✅ What UX Teams Should Do</h4>
+                <h4 className="font-semibold mb-3" style={{ color: 'var(--color-success)' }}>✅ What UX Teams Should Do</h4>
                 <div className="space-y-3">
-                  <div className="bg-green-50 p-4 rounded border-l-4 border-green-400">
-                    <h5 className="font-medium text-green-800 mb-1">For Page Layouts</h5>
-                    <p className="text-sm text-green-700">Use Layer 3 (Page-level) tokens:</p>
-                    <code className="text-xs bg-green-100 px-2 py-1 rounded">--page-background</code>
-                    <code className="text-xs bg-green-100 px-2 py-1 rounded ml-2">--page-text-primary</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-success-subtle)', 
+                      borderLeftColor: 'var(--color-success)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>For Page Layouts</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Use Layer 3 (Page-level) tokens:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >--page-background</code>
+                    <code 
+                      className="text-xs px-2 py-1 rounded ml-2"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >--page-text-primary</code>
                   </div>
                   
-                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-400">
-                    <h5 className="font-medium text-blue-800 mb-1">For Components</h5>
-                    <p className="text-sm text-blue-700">Use existing UI components or Layer 2 (Semantic) tokens:</p>
-                    <code className="text-xs bg-blue-100 px-2 py-1 rounded">{'<Button variant="primary">'}</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-info-subtle)', 
+                      borderLeftColor: 'var(--color-info)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>For Components</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Use existing UI components or Layer 2 (Semantic) tokens:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >{'<Button variant="primary">'}</code>
                   </div>
                   
-                  <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-400">
-                    <h5 className="font-medium text-purple-800 mb-1">For Brand Requirements</h5>
-                    <p className="text-sm text-purple-700">Reference Layer 1 values in design specs:</p>
-                    <code className="text-xs bg-purple-100 px-2 py-1 rounded">#EE3831 (M1st brand red)</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-surface)', 
+                      borderLeftColor: 'var(--color-accent-purple)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>For Brand Requirements</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Reference Layer 1 values in design specs:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >#EE3831 (M1st brand red)</code>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold text-red-600 mb-3">❌ What to Avoid</h4>
+                <h4 className="font-semibold mb-3" style={{ color: 'var(--color-danger)' }}>❌ What to Avoid</h4>
                 <div className="space-y-3">
-                  <div className="bg-red-50 p-4 rounded border-l-4 border-red-400">
-                    <h5 className="font-medium text-red-800 mb-1">Don't Use Raw Values</h5>
-                    <p className="text-sm text-red-700">Never use hex codes or raw values directly:</p>
-                    <code className="text-xs bg-red-100 px-2 py-1 rounded">color: #171717 ❌</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-danger-subtle)', 
+                      borderLeftColor: 'var(--color-danger)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>Don't Use Raw Values</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Never use hex codes or raw values directly:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >color: #171717 ❌</code>
                   </div>
                   
-                  <div className="bg-orange-50 p-4 rounded border-l-4 border-orange-400">
-                    <h5 className="font-medium text-orange-800 mb-1">Don't Skip Layers</h5>
-                    <p className="text-sm text-orange-700">Don't use foundation tokens in components:</p>
-                    <code className="text-xs bg-orange-100 px-2 py-1 rounded">var(--neutral-900) ❌</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-warning-subtle)', 
+                      borderLeftColor: 'var(--color-warning)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>Don't Skip Layers</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Don't use foundation tokens in components:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >var(--neutral-900) ❌</code>
                   </div>
                   
-                  <div className="bg-yellow-50 p-4 rounded border-l-4 border-yellow-400">
-                    <h5 className="font-medium text-yellow-800 mb-1">Don't Create One-Off Tokens</h5>
-                    <p className="text-sm text-yellow-700">Avoid component tokens for single-use values:</p>
-                    <code className="text-xs bg-yellow-100 px-2 py-1 rounded">--my-special-button-color ❌</code>
+                  <div 
+                    className="p-4 rounded border-l-4"
+                    style={{ 
+                      backgroundColor: 'var(--page-warning-subtle)', 
+                      borderLeftColor: 'var(--color-warning)' 
+                    }}
+                  >
+                    <h5 className="font-medium mb-1" style={{ color: 'var(--page-text-primary)' }}>Don't Create One-Off Tokens</h5>
+                    <p className="text-sm mb-2" style={{ color: 'var(--page-text-secondary)' }}>Avoid component tokens for single-use values:</p>
+                    <code 
+                      className="text-xs px-2 py-1 rounded"
+                      style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
+                    >--my-special-button-color ❌</code>
                   </div>
                 </div>
               </div>
@@ -708,13 +886,19 @@ export const ColorSystemPage: React.FC = () => {
           </div>
 
           {/* Quick Reference */}
-          <div className="bg-neutral-900 text-white rounded-lg p-6">
-            <h3 className="text-xl font-bold mb-4">🚀 Quick Reference for UX Teams</h3>
+          <div 
+            className="rounded-lg p-6"
+            style={{ 
+              backgroundColor: 'var(--page-surface-elevated)', 
+              color: 'var(--page-text-primary)' 
+            }}
+          >
+            <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--page-text-primary)' }}>🚀 Quick Reference for UX Teams</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h4 className="font-semibold text-blue-400 mb-2">Most Common Tokens</h4>
-                <div className="space-y-1 text-sm font-mono">
+                <h4 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>Most Common Tokens</h4>
+                <div className="space-y-1 text-sm font-mono" style={{ color: 'var(--page-text-secondary)' }}>
                   <div>--page-background</div>
                   <div>--page-text-primary</div>
                   <div>--page-text-secondary</div>
@@ -724,8 +908,8 @@ export const ColorSystemPage: React.FC = () => {
               </div>
               
               <div>
-                <h4 className="font-semibold text-green-400 mb-2">Status Colors</h4>
-                <div className="space-y-1 text-sm font-mono">
+                <h4 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>Status Colors</h4>
+                <div className="space-y-1 text-sm font-mono" style={{ color: 'var(--page-text-secondary)' }}>
                   <div>--color-success</div>
                   <div>--color-warning</div>
                   <div>--color-danger</div>
@@ -734,8 +918,8 @@ export const ColorSystemPage: React.FC = () => {
               </div>
               
               <div>
-                <h4 className="font-semibold text-purple-400 mb-2">Interactive States</h4>
-                <div className="space-y-1 text-sm font-mono">
+                <h4 className="font-semibold mb-2" style={{ color: 'var(--page-text-primary)' }}>Interactive States</h4>
+                <div className="space-y-1 text-sm font-mono" style={{ color: 'var(--page-text-secondary)' }}>
                   <div>--page-hover</div>
                   <div>--page-active</div>
                   <div>--page-focus</div>
@@ -744,9 +928,15 @@ export const ColorSystemPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 p-4 bg-blue-900 rounded">
-              <h4 className="font-medium text-blue-200 mb-2">💡 Pro Tip for UX Teams</h4>
-              <p className="text-sm text-blue-100">
+            <div 
+              className="mt-6 p-4 rounded"
+              style={{ 
+                backgroundColor: 'var(--page-surface)', 
+                color: 'var(--page-text-primary)' 
+              }}
+            >
+              <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>💡 Pro Tip for UX Teams</h4>
+              <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>
                 When designing, think in terms of <strong>semantic meaning</strong> rather than specific colors. 
                 Instead of "make this red", think "this should indicate danger" or "this should be the primary action".
                 This approach ensures your designs work perfectly across all themes and future brand updates.

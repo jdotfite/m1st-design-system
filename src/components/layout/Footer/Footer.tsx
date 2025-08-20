@@ -33,8 +33,8 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="border-t border-neutral-200 pt-12 pb-8 mt-auto">
-      <div className="max-w-content mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-10">
+      <div className="max-w-content mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-10  px-8">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-6">
               <div className="mb-4">
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-neutral-200">
-          <div className="flex flex-col md:flex-row justify-between items-center flex-wrap gap-4 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center flex-wrap gap-4 text-center md:text-left  px-8">
             <p className="text-neutral-600 text-sm m-0 opacity-80">
               © {currentYear} M1ST Design System. All rights reserved.
             </p>

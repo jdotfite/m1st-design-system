@@ -4,6 +4,7 @@ export { MainNavigation } from './MainNavigation';
 export { Sidebar } from './Sidebar';
 export { ComponentLayout } from './ComponentLayout';
 export { ComponentsSidebar } from './ComponentsSidebar';
+export { FoundationSidebar } from './FoundationSidebar';
 export { PageLayout } from './PageLayout';
 export { PageTemplate } from './PageTemplate';
 export { ComponentPageTemplate } from './ComponentPageTemplate';

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
-import './Tabs.css';
+import './TabsAdvanced.css';
 
 // =============================================================================
 // Tab Item Interface

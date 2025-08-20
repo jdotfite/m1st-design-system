@@ -1,4 +1,4 @@
-# 🏗️ M1st Design System: 4-Layer CSS Architecture Guide for UX Teams
+# M1st Design System: 4-Layer CSS Architecture Guide for UX Teams
 
 ## Overview
 

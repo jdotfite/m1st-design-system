@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageTemplate } from '../../layout';
-import { BreadcrumbItem } from '../../ui';
+import { BreadcrumbItem, Tabs } from '../../ui';
 import { useDocumentTitle } from '../../../utils';
 import './TokenVisualizerPage.css';
 
@@ -94,14 +94,6 @@ const TokenVisualizerPage: React.FC = () => {
           layer: 1,
           description: 'M1st brand red - matches M logo',
           usage: 'Use for primary brand moments and key actions'
-        },
-        {
-          name: '--color-brand-primary-hover',
-          value: '#d32f2f',
-          category: 'Brand Colors',
-          layer: 1,
-          description: 'Darker red for hover states',
-          usage: 'Interactive states of brand elements'
         },
         // Accent Colors
         {
@@ -512,35 +504,29 @@ const TokenVisualizerPage: React.FC = () => {
       <div className="token-visualizer-page">
         {/* Navigation Tabs */}
         <div className="mb-8">
-          <nav className="flex space-x-8 border-b" style={{ borderColor: 'var(--page-border)' }}>
-            {[
-              { id: 'visualizer', label: 'Token Explorer', count: Object.values(tokens).flat().length },
-              { id: 'architecture', label: 'Architecture Guide', count: 4 },
-              { id: 'usage', label: 'UX Guidelines', count: null }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-2 text-sm font-medium border-b-2 transition-all duration-200 rounded-md ${
-                  activeTab === tab.id
-                    ? 'border-neutral-300'
-                    : 'border-transparent hover:border-neutral-300'
-                }`}
-                style={{
-                  color: activeTab === tab.id 
-                    ? 'var(--page-text-primary)' 
-                    : 'var(--page-text-secondary)',
-                  backgroundColor: activeTab === tab.id 
-                    ? 'var(--page-header-nav-bg)' 
-                    : 'transparent',
-                  borderRadius: activeTab === tab.id ? '6px' : '0'
-                }}
-              >
-                {tab.label}
-                {tab.count && <span className="ml-1 text-xs" style={{ color: 'var(--page-text-muted)' }}>({tab.count})</span>}
-              </button>
-            ))}
-          </nav>
+          <Tabs
+            items={[
+              { 
+                id: 'visualizer', 
+                label: 'Token Explorer', 
+                extra: <span className="ml-1 text-xs opacity-60">({Object.values(tokens).flat().length})</span>
+              },
+              { 
+                id: 'architecture', 
+                label: 'Architecture Guide', 
+                extra: <span className="ml-1 text-xs opacity-60">(4)</span>
+              },
+              { 
+                id: 'usage', 
+                label: 'UX Guidelines'
+              }
+            ]}
+            activeItem={activeTab}
+            onItemClick={(item) => setActiveTab(item.id as any)}
+            variant="underline"
+            size="medium"
+            position="left"
+          />
         </div>
 
         {/* Token Explorer Tab */}
@@ -658,7 +644,7 @@ const TokenVisualizerPage: React.FC = () => {
         {activeTab === 'architecture' && (
           <div className="space-y-8">
             <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--page-text-primary)' }}>
-              🏗️ M1st 4-Layer Token Architecture
+              M1st 4-Layer Token Architecture
             </h2>
             <p className="text-lg mb-8" style={{ color: 'var(--page-text-secondary)' }}>
               Our design system follows industry-standard 4-layer token architecture used by Adobe Spectrum, 

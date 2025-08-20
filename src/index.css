@@ -133,22 +133,21 @@ MIGRATION GUIDE:
   
   /* Brand Colors (from M1st logo) */
   --color-brand-primary: #EE3831;                /* M1st brand red - matches M logo */
-  --color-brand-primary-hover: #d32f2f;          /* darker red for hover */
-  --color-brand-primary-active: #b71c1c;         /* darker red for active */
   
   /* Accent Colors - Warm */
-  --color-accent-red: #DC2626;                   /* vibrant red accent */
-  --color-accent-magenta: #C2185B;               /* bold magenta accent */
-  --color-accent-orange: #EA580C;                /* energetic orange accent */
-  --color-accent-yellow: #CA8A04;                /* warm yellow accent */
+  --color-accent-red: #E71C23;                   /* vibrant red accent */
+  --color-accent-green: #55A444;                 /* fresh green accent */
+  --color-accent-blue: #0090C4;                  /* blue accent */
+  --color-accent-orange: #F15C22;                /* energetic orange accent */
+  --color-accent-yellow: #FAA61A;                /* warm yellow accent */
   
   /* Accent Colors - Cool */
-  --color-accent-green: #16A34A;                 /* fresh green accent */
-  --color-accent-teal: #0F766E;                  /* sophisticated teal accent */
-  --color-accent-blue-light: #0284C7;            /* light blue accent */
-  --color-accent-blue: #2563EB;                  /* primary blue accent */
-  --color-accent-blue-dark: #1E40AF;             /* deep blue accent */
-  --color-accent-purple: #7C3AED;                /* rich purple accent */
+  --color-accent-teal: #006068;                  /* sophisticated teal accent */
+  --color-accent-blue-light: #007199;            /* light blue accent */
+  --color-accent-blue-dark: #133156;             /* deep blue accent */
+  --color-accent-purple: #7C2984;                /* rich purple accent */
+  --color-accent-magenta: #AD1F63;               /* bold magenta accent */
+  --color-accent-dark-red: #BF0000;              /* dark red accent */
   
   /* ==========================================================================
      TYPOGRAPHY SCALE (Foundation Layer 1)
@@ -156,7 +155,14 @@ MIGRATION GUIDE:
   
   /* Font Families */
   --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-heading: "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   --font-family-mono: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Liberation Mono', 'Courier New', monospace;
+  
+  /* DIN-2014 Font Families */
+  --font-family-din: "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-din-condensed: "DIN-2014-Condensed", "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-din-narrow: "DIN-2014-Narrow", "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   
   /* Font Size Scale - Based on Major Third (1.25) ratio */
   --font-heading-display-size: 4rem;             /* 64px - Hero/Display text */
@@ -192,6 +198,128 @@ MIGRATION GUIDE:
   --letter-spacing-tight: -0.02em;               /* For large headings */
   --letter-spacing-normal: 0;                    /* Default */
   --letter-spacing-wide: 0.025em;                /* For small text/caps */
+  
+  /* Text Transform Scale */
+  --text-transform-none: none;                   /* Default text */
+  --text-transform-uppercase: uppercase;         /* Headings and emphasis */
+  --text-transform-lowercase: lowercase;         /* Utility */
+  --text-transform-capitalize: capitalize;       /* Title case */
+
+  /* ==========================================================================
+     TYPOGRAPHY DESIGN TOKENS - COMPLETE REFERENCE
+     ========================================================================== 
+     
+     This section provides a complete reference for UX designers and developers
+     showing how our typography system is constructed and should be applied.
+     
+     FONT FAMILY ARCHITECTURE:
+     
+     🎯 HEADINGS (DIN-2014 Family):
+     --font-family-heading: "DIN-2014" + fallbacks
+       ├── Regular DIN-2014 (var(--font-family-din))
+       ├── Condensed variant (var(--font-family-din-condensed)) 
+       └── Narrow variant (var(--font-family-din-narrow))
+     
+     📖 BODY TEXT (Inter Family):
+     --font-family-body: "Inter" + fallbacks
+       └── Optimized for readability and screen rendering
+     
+     💻 CODE/MONOSPACE:
+     --font-family-mono: System monospace fonts
+     
+     HEADING HIERARCHY & USAGE:
+     
+     Display (4rem/64px):      Hero sections, marketing headlines
+       └── Font: DIN-2014 Bold (700), Uppercase, Tight line height (1.1)
+       └── Usage: Landing pages, major announcements (max 1 per page)
+     
+     Heading XL (3rem/48px):   Main page titles, section headers
+       └── Font: DIN-2014 SemiBold (600), Uppercase, Line height (1.15)
+       └── Usage: Page titles, major section dividers
+     
+     Heading L (2.25rem/36px): Subsection titles, content headers
+       └── Font: DIN-2014 SemiBold (600), Uppercase, Line height (1.2)
+       └── Usage: Article titles, card headers, modal titles
+     
+     Heading M (1.5rem/24px):  Standard content headings
+       └── Font: DIN-2014 SemiBold (600), Uppercase, Line height (1.25)
+       └── Usage: Article sections, component titles, content blocks
+     
+     Heading S (1.125rem/18px): Small headings and labels
+       └── Font: DIN-2014 SemiBold (600), Uppercase, Line height (1.3)
+       └── Usage: Sidebar headings, form sections, widget headers
+     
+     Heading XS (1rem/16px):   Minimal headings and strong labels
+       └── Font: DIN-2014 SemiBold (600), Uppercase, Line height (1.4)
+       └── Usage: List headers, table headers, small card titles
+     
+     BODY TEXT HIERARCHY & USAGE:
+     
+     Body Large (1.125rem/18px): Large, comfortable reading text
+       └── Font: Inter Regular (400), Line height (1.6)
+       └── Usage: Article introductions, important descriptions
+     
+     Body Medium (1rem/16px):   Standard body text (DEFAULT)
+       └── Font: Inter Regular (400), Line height (1.5)
+       └── Usage: Paragraphs, list items, general content
+     
+     Body Small (0.875rem/14px): Compact text for secondary content
+       └── Font: Inter Regular (400), Line height (1.4)
+       └── Usage: Help text, secondary descriptions, dense interfaces
+     
+     Caption (0.75rem/12px):    Small text for metadata
+       └── Font: Inter Regular (400), Line height (1.4)
+       └── Usage: Timestamps, legal text, image captions, status text
+     
+     SPECIALIZED TEXT:
+     
+     Button Text (0.875rem/14px): Interactive element text
+       └── Font: Inter Medium (500), Line height (1.2)
+       └── Usage: Button labels, link text, tab labels
+     
+     Code (0.875rem/14px):      Monospace technical content
+       └── Font: System Mono Regular (400), Line height (1.4)
+       └── Usage: Code blocks, technical values, file names
+     
+     TYPOGRAPHY PRINCIPLES:
+     
+     ✅ AUTOMATIC UPPERCASE: All headings display in uppercase automatically
+        with enhanced letter spacing for optimal readability
+     
+     ✅ WEIGHT HIERARCHY: Uses font weights to establish clear information hierarchy
+        - Display/XL/L/M/S/XS: SemiBold to Bold (600-700)
+        - Body text: Regular (400)
+        - Buttons: Medium (500)
+     
+     ✅ LINE HEIGHT SCALE: Optimized for readability
+        - Large headings: Tight (1.1-1.2) for impact
+        - Small headings: Normal (1.25-1.4) for readability
+        - Body text: Relaxed (1.4-1.6) for comfortable reading
+     
+     ✅ RESPONSIVE SCALING: All sizes use rem units for accessibility
+        and proper scaling with user font size preferences
+     
+     QUICK REFERENCE TABLE FOR DESIGNERS:
+     
+     Element          | Size     | Weight | Line Height | Use Case
+     -----------------|----------|--------|-------------|------------------
+     Display          | 64px     | 700    | 1.1         | Hero text
+     Heading XL       | 48px     | 600    | 1.15        | Page titles  
+     Heading L        | 36px     | 600    | 1.2         | Section headers
+     Heading M        | 24px     | 600    | 1.25        | Content headings
+     Heading S        | 18px     | 600    | 1.3         | Small headings
+     Heading XS       | 16px     | 600    | 1.4         | Labels
+     Body Large       | 18px     | 400    | 1.6         | Introductions
+     Body Medium      | 16px     | 400    | 1.5         | Standard text
+     Body Small       | 14px     | 400    | 1.4         | Secondary text
+     Caption          | 12px     | 400    | 1.4         | Metadata
+     Button           | 14px     | 500    | 1.2         | Interactive text
+     Code             | 14px     | 400    | 1.4         | Technical content
+     
+     Note: All headings are automatically displayed in UPPERCASE with 
+           enhanced letter spacing (0.025em) for optimal readability.
+     
+     ========================================================================== */
   
   /* ==========================================================================
      SEMANTIC COLOR PALETTE - M1ST LIGHT THEME (Using Extended Neutrals)
@@ -241,7 +369,7 @@ MIGRATION GUIDE:
   --color-warning-emphasis: #b45309;             /* amber-700 */
   --color-warning-subtle: #fef3c7;               /* amber-100 */
   --color-danger: var(--color-brand-primary);    /* use brand red for danger */
-  --color-danger-emphasis: var(--color-brand-primary-hover);
+  --color-danger-emphasis: #d32f2f;              /* darker red for danger emphasis */
   --color-danger-subtle: #fee2e2;                /* red-100 */
   --color-info: #0891b2;                         /* cyan-600 - professional blue */
   --color-info-emphasis: #0e7490;                /* cyan-700 */
@@ -547,10 +675,27 @@ html {
 
 /* Body with design system tokens */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-family: var(--font-family-body);
   color: var(--color-text-primary);
   background-color: var(--color-background-canvas);
   min-height: 100vh;
+}
+
+/* Headings use DIN-2014 and are displayed in uppercase */
+h1, h2, h3, h4, h5, h6,
+.heading,
+.text-heading {
+  font-family: var(--font-family-heading);
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Ensure body elements use Inter */
+p, span, div, article, section, 
+button, input, textarea, select,
+.text-body,
+.font-body {
+  font-family: var(--font-family-body);
 }
 
 /* =============================================================================
@@ -777,3 +922,22 @@ body {
 .border-neutral-950 { border-color: var(--neutral-950); }
 .border-neutral-975 { border-color: var(--neutral-975); }
 .border-neutral-1000 { border-color: var(--neutral-1000); }
+
+/* =============================================================================
+   TEXT TRANSFORM UTILITIES
+   ============================================================================= */
+
+/* Text transform utility classes for special cases */
+.text-uppercase { 
+  text-transform: var(--text-transform-uppercase); 
+  letter-spacing: var(--letter-spacing-wide);
+}
+.text-lowercase { text-transform: var(--text-transform-lowercase); }
+.text-capitalize { text-transform: var(--text-transform-capitalize); }
+.text-normal-case { text-transform: var(--text-transform-none); }
+
+/* Override utility for when you need normal case headings */
+.heading-normal-case {
+  text-transform: var(--text-transform-none) !important;
+  letter-spacing: var(--letter-spacing-normal) !important;
+}
