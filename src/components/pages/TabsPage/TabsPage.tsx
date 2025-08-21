@@ -1,226 +1,266 @@
 import React, { useState } from 'react';
-import { ComponentPageTemplate } from '../../layout';
-import { Card, CardBody } from '../../ui';
+import { PageTemplate } from '../../layout/PageTemplate';
+import { Card, CardBody, DistributionTest } from '../../ui';
 import { useDocumentTitle } from '../../../utils';
+
 // Import the main tabs component (simplified)
 import { Tabs } from '../../ui/Tabs';
 
 export const TabsPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('overview');
+  const [activeUsageTab, setActiveUsageTab] = useState('components');
 
   // Set the document title
   useDocumentTitle('Tabs');
 
-  // Sample data for tabs
   const tabItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'services', label: 'Services' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'overview', label: 'Overview' },
+    { id: 'features', label: 'Features' },
+    { id: 'guidelines', label: 'Guidelines' },
+    { id: 'examples', label: 'Examples' }
   ];
 
-  const tabVariants = [
-    { variant: 'default' as const, name: 'Default', description: 'Standard tab style with bottom border' },
-    { variant: 'underline' as const, name: 'Underline', description: 'Clean underline style with animated indicator' },
-    { variant: 'pills' as const, name: 'Pills', description: 'Rounded pill-style tabs' },
-    { variant: 'card' as const, name: 'Card', description: 'Card-style tabs with borders' },
-    { variant: 'fullWidth' as const, name: 'Full Width', description: 'Tabs that span the full width' }
+  const usageTabItems = [
+    { id: 'components', label: 'Components' },
+    { id: 'patterns', label: 'Patterns' },
+    { id: 'best-practices', label: 'Best Practices' }
   ];
 
-  const tabSizes = [
-    { size: 'small' as const, name: 'Small' },
-    { size: 'medium' as const, name: 'Medium' },
-    { size: 'large' as const, name: 'Large' }
+  const codeExamples = [
+    {
+      title: 'Basic React Component Usage',
+      code: `import { Tabs } from '@m1st/design-system';
+
+const items = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'features', label: 'Features' },
+  { id: 'guidelines', label: 'Guidelines' }
+];
+
+<Tabs
+  items={items}
+  activeItem={activeTab}
+  onItemClick={(item) => setActiveTab(item.id)}
+/>`
+    },
+    {
+      title: 'Basic HTML Usage',
+      code: `<div class="tabs">
+  <ul class="tabs__list">
+    <li class="tabs__item">
+      <button class="tabs__button tabs__button--active">Overview</button>
+    </li>
+    <li class="tabs__item">
+      <button class="tabs__button">Features</button>
+    </li>
+    <li class="tabs__item">
+      <button class="tabs__button">Guidelines</button>
+    </li>
+  </ul>
+</div>`
+    }
   ];
 
   return (
-    <ComponentPageTemplate 
-      componentName="Tabs"
-      description="A flexible tab navigation component with multiple variants and size options. Perfect for navigation menus, content switching, and interface organization."
+    <PageTemplate
+      title="Tabs"
+      description="Simple, accessible tab navigation for organizing content into logical sections. Features clean underline styling and consistent interaction patterns."
+      showSidebar={false}
+      sidebarType="none"
     >
-      {/* Overview Section */}
-      <section className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Overview</h2>
-          <p className="text-neutral-700 mb-6">
-            The Tabs component provides clean and accessible tab navigation with multiple visual styles. 
-            Choose from different variants and sizes to match your design needs.
-          </p>
-        </div>
+      <div className="space-y-12">
 
         {/* Basic Example */}
-        <Card>
-          <CardBody>
-            <h3 className="text-lg font-semibold mb-4">Basic Tabs</h3>
-            <Tabs
-              items={tabItems}
-              activeItem={activeTab}
-              onItemClick={(item) => setActiveTab(item.id)}
-              variant="underline"
-            />
-            <div className="mt-4 p-4 bg-neutral-50 rounded">
-              <p>Active tab: <strong>{activeTab}</strong></p>
-            </div>
-          </CardBody>
-        </Card>
-      </section>
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Basic Usage</h2>
+            <p className="text-neutral-700 mb-6">
+              Clean, accessible tabs with underline indicator for active state.
+            </p>
+          </div>
 
-      {/* Variants Section */}
-      <section className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Variants</h2>
-          <p className="text-neutral-700 mb-6">
-            Choose from different visual styles to match your design needs.
-          </p>
-        </div>
+          <Card>
+            <CardBody>
+              <h3 className="text-lg font-semibold mb-4">Interactive Example</h3>
+              <Tabs
+                items={tabItems}
+                activeItem={activeTab}
+                onItemClick={(item) => setActiveTab(item.id)}
+              />
+              <div className="mt-4 p-4 bg-neutral-50 rounded">
+                <p>Active tab: <strong>{activeTab}</strong></p>
+                <p className="text-sm text-neutral-600 mt-1">
+                  Click any tab above to see the active state change.
+                </p>
+              </div>
+            </CardBody>
+          </Card>
+        </section>
 
-        <div className="grid gap-6">
-          {tabVariants.map(({ variant, name, description }) => (
-            <Card key={variant}>
-              <CardBody>
-                <h3 className="text-lg font-semibold mb-2">{name}</h3>
-                <p className="text-neutral-600 mb-4">{description}</p>
-                <Tabs
-                  items={tabItems.slice(0, 3)}
-                  activeItem={tabItems[0].id}
-                  onItemClick={() => {}}
-                  variant={variant}
-                />
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      </section>
+        {/* Distribution Testing */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Distribution Testing</h2>
+            <p className="text-neutral-700 mb-6">
+              Verify that tabs look identical across different CSS distribution methods.
+            </p>
+          </div>
 
-      {/* Sizes Section */}
-      <section className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Sizes</h2>
-          <p className="text-neutral-700 mb-6">
-            Available in three sizes to fit different layout requirements.
-          </p>
-        </div>
+          <DistributionTest
+            componentName="tabs"
+            htmlExample={`
+              <div class="tabs">
+                <ul class="tabs__list">
+                  <li class="tabs__item">
+                    <button class="tabs__button tabs__button--active">Overview</button>
+                  </li>
+                  <li class="tabs__item">
+                    <button class="tabs__button">Features</button>
+                  </li>
+                  <li class="tabs__item">
+                    <button class="tabs__button">Guidelines</button>
+                  </li>
+                </ul>
+              </div>
+            `}
+            description="Compare monolithic vs incremental CSS to ensure consistent rendering"
+          />
+        </section>
 
-        <div className="grid gap-6">
-          {tabSizes.map(({ size, name }) => (
-            <Card key={size}>
-              <CardBody>
-                <h3 className="text-lg font-semibold mb-4">{name} Size</h3>
-                <Tabs
-                  items={tabItems.slice(0, 3)}
-                  activeItem={tabItems[0].id}
-                  onItemClick={() => {}}
-                  variant="default"
-                  size={size}
-                />
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      </section>
+        {/* Usage Examples */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Usage Examples</h2>
+            <p className="text-neutral-700 mb-6">
+              See how tabs are used across different contexts in the design system.
+            </p>
+          </div>
 
-      {/* Position Section */}
-      <section className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Alignment</h2>
-          <p className="text-neutral-700 mb-6">
-            Tabs can be aligned to the left, center, or right to match your layout needs.
-          </p>
-        </div>
+          <Card>
+            <CardBody>
+              <h3 className="text-lg font-semibold mb-4">Content Organization</h3>
+              <Tabs
+                items={usageTabItems}
+                activeItem={activeUsageTab}
+                onItemClick={(item) => setActiveUsageTab(item.id)}
+              />
+              <div className="mt-6 p-6 bg-neutral-50 rounded">
+                {activeUsageTab === 'components' && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Component Library</h4>
+                    <p className="text-neutral-700">
+                      Tabs are used to organize component documentation, allowing users to 
+                      switch between examples, API documentation, and usage guidelines.
+                    </p>
+                  </div>
+                )}
+                {activeUsageTab === 'patterns' && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Design Patterns</h4>
+                    <p className="text-neutral-700">
+                      Common patterns include filtering content by category, organizing 
+                      form sections, and creating dashboard views.
+                    </p>
+                  </div>
+                )}
+                {activeUsageTab === 'best-practices' && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Best Practices</h4>
+                    <p className="text-neutral-700">
+                      Keep tab labels concise, use 2-7 tabs maximum, and ensure content 
+                      within tabs is related and of similar scope.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </CardBody>
+          </Card>
+        </section>
 
-        <div className="grid gap-6">
-          {['left', 'center', 'right'].map((position) => (
-            <Card key={position}>
-              <CardBody>
-                <h3 className="text-lg font-semibold mb-4">{position.charAt(0).toUpperCase() + position.slice(1)} Aligned</h3>
-                <Tabs
-                  items={tabItems.slice(0, 3)}
-                  activeItem={tabItems[0].id}
-                  onItemClick={() => {}}
-                  variant="underline"
-                  position={position as 'left' | 'center' | 'right'}
-                />
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      </section>
+        {/* Code Examples */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Code Examples</h2>
+            <p className="text-neutral-700 mb-6">
+              Implementation examples for both React components and HTML.
+            </p>
+          </div>
 
-      {/* Props Documentation */}
-      <section className="space-y-6">
-        <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Props</h2>
-        </div>
+          <div className="grid gap-6">
+            {codeExamples.map((example, index) => (
+              <Card key={index}>
+                <CardBody>
+                  <h3 className="text-lg font-semibold mb-4">{example.title}</h3>
+                  <pre className="bg-neutral-900 text-neutral-100 p-4 rounded overflow-x-auto">
+                    <code>{example.code}</code>
+                  </pre>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-        <Card>
-          <CardBody>
-            <h3 className="text-lg font-semibold mb-4">Tabs Props</h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full border border-neutral-200">
-                <thead className="bg-neutral-50">
-                  <tr>
-                    <th className="px-4 py-2 border-b text-left text-sm font-semibold">Prop</th>
-                    <th className="px-4 py-2 border-b text-left text-sm font-semibold">Type</th>
-                    <th className="px-4 py-2 border-b text-left text-sm font-semibold">Default</th>
-                    <th className="px-4 py-2 border-b text-left text-sm font-semibold">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">items</td>
-                    <td className="px-4 py-2 border-b">TabItem[]</td>
-                    <td className="px-4 py-2 border-b">[]</td>
-                    <td className="px-4 py-2 border-b">Array of tab items for navigation</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">activeItem</td>
-                    <td className="px-4 py-2 border-b">string</td>
-                    <td className="px-4 py-2 border-b">-</td>
-                    <td className="px-4 py-2 border-b">ID of the currently active tab</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">onItemClick</td>
-                    <td className="px-4 py-2 border-b">function</td>
-                    <td className="px-4 py-2 border-b">-</td>
-                    <td className="px-4 py-2 border-b">Callback when a tab is clicked</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">variant</td>
-                    <td className="px-4 py-2 border-b">'default' | 'underline' | 'pills' | 'card' | 'fullWidth'</td>
-                    <td className="px-4 py-2 border-b">'default'</td>
-                    <td className="px-4 py-2 border-b">Visual style variant</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">size</td>
-                    <td className="px-4 py-2 border-b">'small' | 'medium' | 'large'</td>
-                    <td className="px-4 py-2 border-b">'medium'</td>
-                    <td className="px-4 py-2 border-b">Size of the tabs</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">position</td>
-                    <td className="px-4 py-2 border-b">'left' | 'center' | 'right'</td>
-                    <td className="px-4 py-2 border-b">'left'</td>
-                    <td className="px-4 py-2 border-b">Horizontal alignment</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">disabled</td>
-                    <td className="px-4 py-2 border-b">boolean</td>
-                    <td className="px-4 py-2 border-b">false</td>
-                    <td className="px-4 py-2 border-b">Whether all tabs are disabled</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-2 border-b font-mono">className</td>
-                    <td className="px-4 py-2 border-b">string</td>
-                    <td className="px-4 py-2 border-b">-</td>
-                    <td className="px-4 py-2 border-b">Additional CSS classes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CardBody>
-        </Card>
-      </section>
-    </ComponentPageTemplate>
+        {/* Props Documentation */}
+        <section className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Props</h2>
+            <p className="text-neutral-700 mb-6">
+              Available props for the Tabs component.
+            </p>
+          </div>
+
+          <Card>
+            <CardBody>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 pr-4 font-semibold">Prop</th>
+                      <th className="py-2 pr-4 font-semibold">Type</th>
+                      <th className="py-2 pr-4 font-semibold">Default</th>
+                      <th className="py-2 font-semibold">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-sm">
+                    <tr className="border-b">
+                      <td className="py-2 pr-4 font-mono">items</td>
+                      <td className="py-2 pr-4">TabItem[]</td>
+                      <td className="py-2 pr-4">—</td>
+                      <td className="py-2">Array of tab items to display</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pr-4 font-mono">activeItem</td>
+                      <td className="py-2 pr-4">string</td>
+                      <td className="py-2 pr-4">—</td>
+                      <td className="py-2">ID of the currently active tab</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pr-4 font-mono">onItemClick</td>
+                      <td className="py-2 pr-4">function</td>
+                      <td className="py-2 pr-4">—</td>
+                      <td className="py-2">Callback fired when a tab is clicked</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 pr-4 font-mono">className</td>
+                      <td className="py-2 pr-4">string</td>
+                      <td className="py-2 pr-4">""</td>
+                      <td className="py-2">Additional CSS classes to apply</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 pr-4 font-mono">disabled</td>
+                      <td className="py-2 pr-4">boolean</td>
+                      <td className="py-2 pr-4">false</td>
+                      <td className="py-2">Whether all tabs are disabled</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardBody>
+          </Card>
+        </section>
+
+      </div>
+    </PageTemplate>
   );
 };
 
