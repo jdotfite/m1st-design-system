@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// Testing import from our new package!
-import { Tabs } from '@m1st/components';
-import type { TabItem } from '@m1st/components';
+// Using local component instead of external package
+import { Tabs, type TabItem } from '../ui/Tabs';
 
 export const PackageTestPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('test1');
@@ -15,21 +14,22 @@ export const PackageTestPage: React.FC = () => {
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
       <div style={{ 
-        background: '#e8f5e8', 
+        background: '#fff3cd', 
         padding: '1rem', 
         borderRadius: '8px', 
         marginBottom: '2rem',
         fontWeight: 'bold',
-        color: '#2e7d32'
+        color: '#856404',
+        border: '1px solid #ffeaa7'
       }}>
-        ✅ SUCCESS: This page imports Tabs from @m1st/components package!
+        ⚠️ UPDATED: This page now uses local Tabs component instead of external package
       </div>
       
       <h1>Package Test Page</h1>
-      <p>This page imports the Tabs component from our new <code>@m1st/components</code> package to verify it works.</p>
+      <p>This page imports the Tabs component from the local <code>src/components/ui/Tabs</code> module.</p>
       
       <div style={{ marginTop: '2rem' }}>
-        <h3>Tabs from @m1st/components:</h3>
+        <h3>Tabs from local components:</h3>
         <Tabs
           items={testItems}
           activeItem={activeTab}
@@ -39,7 +39,7 @@ export const PackageTestPage: React.FC = () => {
         <div style={{ marginTop: '1rem', padding: '1rem', background: '#f5f5f5', borderRadius: '4px' }}>
           <p>Active tab: <strong>{activeTab}</strong></p>
           <p style={{ fontSize: '0.875rem', color: '#666' }}>
-            This component is being imported from the external package, not from the local components!
+            This component is being imported from the local component library, not from an external package.
           </p>
         </div>
       </div>

@@ -198,27 +198,15 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
         className={`main-navigation ${isMobileMenuOpen ? 'mobile-open' : ''}`}
         data-collapsed="true"
         style={{
-          height: '100%',
+          height: '100vh',
           background: 'var(--page-background)',
           borderRight: '1px solid var(--page-border)',
-          transition: 'transform 0.3s ease, width 0.3s ease'
+          transition: 'transform 0.3s ease, width 0.3s ease',
+          display: 'flex',
+          flexDirection: 'column',
+          overflowY: 'auto'
         }}
       >
-        {/* Inner container with fixed 100vh height for consistent positioning */}
-        <div 
-          className="nav-inner-container"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            height: '100vh',
-            overflowY: 'auto',
-            position: 'sticky',
-            top: 0
-          }}
-        >
-          {/* Header Section */}
-          <div className="navigation-header" style={{ padding: '1rem 0.25rem' }}>
         {/* Mobile Close Button - removed since we have one in PageTemplate */}
         <div className="mobile-close-container" style={{ 
           justifyContent: 'center', 
@@ -240,8 +228,9 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
           <img src={logo} alt="M1st Design System" className="h-12 w-auto" />
         </Link>
 
-  {/* Navigation Items */}
-  <ul className="navigation-list" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+        {/* Navigation Items */}
+        <div style={{ flex: 1, overflow: 'auto' }}>
+          <ul className="navigation-list" style={{ listStyle: 'none', margin: 0, padding: '0 0.25rem' }}>
           {navigationItems.map((item) => (
             <li key={item.path} style={{ marginBottom: '0.5rem' }}>
               <Link
@@ -322,11 +311,11 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
               </Link>
             </li>
           ))}
-        </ul>
-          </div>
+          </ul>
+        </div>
 
-          {/* Footer Section */}
-          <div className="navigation-footer" style={{ padding: '1rem' }}>
+        {/* Footer Section */}
+        <div className="navigation-footer" style={{ padding: '1rem' }}>
             <div className="flex flex-col gap-4" style={{ alignItems: 'center' }}>
               {/* Theme Toggle */}
               <button 
@@ -352,7 +341,6 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
               </button>
             </div>
           </div>
-        </div>
       </nav>
   </>
 );

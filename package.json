@@ -4,7 +4,6 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@m1st/components": "file:../m1st-components",
     "@types/node": "^18.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
