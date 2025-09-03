@@ -330,9 +330,6 @@ export const ColorSystemPage: React.FC = () => {
             items={tabItems}
             activeItem={activeTab}
             onItemClick={(item) => setActiveTab(item.id as any)}
-            variant="underline"
-            size="medium"
-            position="left"
           />
         </div>
 

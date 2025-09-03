@@ -32,7 +32,10 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-neutral-200 pt-12 pb-8 mt-auto">
+    <footer 
+      className="pt-12 pb-8 mt-auto"
+      style={{ borderTop: '1px solid var(--page-border)' }}
+    >
       <div className="max-w-content mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-10  px-8">
           <div className="flex flex-col gap-8">
@@ -40,7 +43,10 @@ const Footer: React.FC = () => {
               <div className="mb-4">
                 <img src={logo} alt="M1ST Design System" className="h-10 w-auto block" />
               </div>
-              <p className="text-neutral-600 leading-relaxed m-0 max-w-sm">
+              <p 
+                className="leading-relaxed m-0 max-w-sm"
+                style={{ color: 'var(--page-text-secondary)' }}
+              >
                 M1st design system that provides everything our teams need to build consistent, 
                 accessible, and scalable user interfaces.
               </p>
@@ -50,13 +56,27 @@ const Footer: React.FC = () => {
           <div className="footer-links lg:col-span-2">
             {Object.entries(footerLinks).map(([section, links]) => (
               <div key={section}>
-                <h3 className="text-lg text-neutral-900 mb-4 font-semibold">{section}</h3>
+                <h3 
+                  className="text-lg mb-4 font-semibold"
+                  style={{ color: 'var(--page-text-primary)' }}
+                >
+                  {section}
+                </h3>
                 <ul className="list-none m-0 p-0">
                   {links.map((link) => (
                     <li key={link.label} className="mb-2">
                       <a
                         href={link.href}
-                        className="inline-flex items-center gap-1 text-neutral-600 no-underline text-sm py-1 transition-colors duration-200 hover:text-red-600"
+                        className="inline-flex items-center gap-1 no-underline text-sm py-1 transition-colors duration-200"
+                        style={{ 
+                          color: 'var(--page-text-secondary)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--page-text-primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--page-text-secondary)';
+                        }}
                         target={link.external ? '_blank' : undefined}
                         rel={link.external ? 'noopener noreferrer' : undefined}
                       >
@@ -75,19 +95,55 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-neutral-200">
+        <div 
+          className="pt-8"
+          style={{ borderTop: '1px solid var(--page-border)' }}
+        >
           <div className="flex flex-col md:flex-row justify-between items-center flex-wrap gap-4 text-center md:text-left  px-8">
-            <p className="text-neutral-600 text-sm m-0 opacity-80">
+            <p 
+              className="text-sm m-0 opacity-80"
+              style={{ color: 'var(--page-text-secondary)' }}
+            >
               © {currentYear} M1ST Design System. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="/privacy" className="text-neutral-600 no-underline text-sm transition-colors duration-200 hover:text-red-600">
+              <a 
+                href="/privacy" 
+                className="no-underline text-sm transition-colors duration-200"
+                style={{ color: 'var(--page-text-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-secondary)';
+                }}
+              >
                 Privacy Policy
               </a>
-              <a href="/terms" className="text-neutral-600 no-underline text-sm transition-colors duration-200 hover:text-red-600">
+              <a 
+                href="/terms" 
+                className="no-underline text-sm transition-colors duration-200"
+                style={{ color: 'var(--page-text-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-secondary)';
+                }}
+              >
                 Terms of Service
               </a>
-              <a href="/accessibility" className="text-neutral-600 no-underline text-sm transition-colors duration-200 hover:text-red-600">
+              <a 
+                href="/accessibility" 
+                className="no-underline text-sm transition-colors duration-200"
+                style={{ color: 'var(--page-text-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--page-text-secondary)';
+                }}
+              >
                 Accessibility
               </a>
             </div>

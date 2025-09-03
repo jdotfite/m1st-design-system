@@ -28,6 +28,27 @@ npm install @m1st/design-components
 
 Components are imported and used exactly as developers would in their applications:
 
+## Design Tokens Usage
+
+For consuming design tokens in your projects:
+
+```json
+{
+  "dependencies": {
+    "m1st-design-tokens": "github:jdotfite/m1st-design-tokens#v2.2.0"
+  }
+}
+```
+
+Then import the CSS:
+
+```css
+@import "m1st-design-tokens/css";
+@import "m1st-design-tokens/typography"; /* optional */
+```
+
+See [DESIGN-TOKENS-USAGE.md](./DESIGN-TOKENS-USAGE.md) for complete implementation guide.
+
 ```jsx
 import { Button, Modal, LoadingSpinner } from '@m1st/design-components';
 import '@m1st/design-components/styles';

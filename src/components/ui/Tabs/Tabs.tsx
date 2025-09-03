@@ -1,5 +1,5 @@
 import React from 'react';
-import './TabsSimple.css';
+import './Tabs.css';
 
 // =============================================================================
 // Tab Item Interface
@@ -27,12 +27,6 @@ export interface TabsProps {
   activeItem: string;
   /** Callback fired when a tab is clicked */
   onItemClick?: (item: TabItem) => void;
-  /** Visual style variant of the tabs */
-  variant?: 'default' | 'underline' | 'pills' | 'card' | 'fullWidth';
-  /** Size of the tabs */
-  size?: 'small' | 'medium' | 'large';
-  /** Horizontal alignment of the tabs */
-  position?: 'left' | 'center' | 'right';
   /** Additional CSS classes to apply */
   className?: string;
   /** Whether all tabs are disabled */
@@ -40,15 +34,12 @@ export interface TabsProps {
 }
 
 // =============================================================================
-// Tabs Component
+// Tabs Component - Simple Underline Style Only
 // =============================================================================
 export const Tabs: React.FC<TabsProps> = ({
   items,
   activeItem,
   onItemClick,
-  variant = 'default',
-  size = 'medium',
-  position = 'left',
   className = '',
   disabled = false
 }) => {
@@ -61,25 +52,22 @@ export const Tabs: React.FC<TabsProps> = ({
   };
 
   const tabsClasses = [
-    'tabs-simple',
-    `tabs-simple--${variant}`,
-    `tabs-simple--${size}`,
-    `tabs-simple--${position}`,
-    disabled ? 'tabs-simple--disabled' : '',
+    'tabs',
+    disabled ? 'tabs--disabled' : '',
     className
   ].filter(Boolean).join(' ');
 
   return (
     <nav className={tabsClasses} role="tablist">
-      <ul className="tabs-simple__list">
+      <ul className="tabs__list">
         {items.map((item) => (
-          <li key={item.id} className="tabs-simple__item" role="presentation">
+          <li key={item.id} className="tabs__item" role="presentation">
             {item.href ? (
               <a
                 href={item.href}
-                className={`tabs-simple__link ${
-                  activeItem === item.id ? 'tabs-simple__link--active' : ''
-                } ${item.disabled ? 'tabs-simple__link--disabled' : ''}`}
+                className={`tabs__button ${
+                  activeItem === item.id ? 'tabs__button--active' : ''
+                }`}
                 role="tab"
                 aria-selected={activeItem === item.id}
                 aria-disabled={item.disabled}
@@ -91,22 +79,22 @@ export const Tabs: React.FC<TabsProps> = ({
                   handleItemClick(item);
                 }}
               >
-                <span className="tabs-simple__label">{item.label}</span>
-                {item.extra && <span className="tabs-simple__extra">{item.extra}</span>}
+                <span className="tabs__label">{item.label}</span>
+                {item.extra && <span className="tabs__extra">{item.extra}</span>}
               </a>
             ) : (
               <button
                 type="button"
-                className={`tabs-simple__button ${
-                  activeItem === item.id ? 'tabs-simple__button--active' : ''
-                } ${item.disabled ? 'tabs-simple__button--disabled' : ''}`}
+                className={`tabs__button ${
+                  activeItem === item.id ? 'tabs__button--active' : ''
+                }`}
                 role="tab"
                 aria-selected={activeItem === item.id}
                 disabled={item.disabled || disabled}
                 onClick={() => handleItemClick(item)}
               >
-                <span className="tabs-simple__label">{item.label}</span>
-                {item.extra && <span className="tabs-simple__extra">{item.extra}</span>}
+                <span className="tabs__label">{item.label}</span>
+                {item.extra && <span className="tabs__extra">{item.extra}</span>}
               </button>
             )}
           </li>

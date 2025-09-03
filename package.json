@@ -4,10 +4,12 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@types/node": "^16.18.126",
+    "@m1st/components": "file:../m1st-components",
+    "@types/node": "^18.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
+    "m1st-design-tokens": "github:jdotfite/m1st-design-tokens",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
@@ -20,7 +22,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "tokens:check": "npm list m1st-design-tokens",
+    "postinstall": "node scripts/ensure-design-tokens-built.js"
   },
   "eslintConfig": {
     "extends": [

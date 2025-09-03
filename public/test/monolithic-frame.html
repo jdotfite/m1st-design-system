@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monolithic Distribution Test</title>
+    <link rel="stylesheet" href="/dist/monolithic-clean.css">
+    <style>
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            padding: 1rem; 
+            margin: 0; 
+            background: white; 
+        }
+        .test-label {
+            background: #e8f5e8; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: 3px; 
+            font-weight: 600; 
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-label">Monolithic</div>
+    <div id="component-container">
+        <!-- Component will be inserted here by parent -->
+    </div>
+    
+    <script>
+        // Listen for messages from parent window
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'setComponent') {
+                document.getElementById('component-container').innerHTML = event.data.html;
+            }
+            if (event.data.type === 'setTheme') {
+                document.documentElement.setAttribute('data-theme', event.data.theme);
+            }
+        });
+        
+        // Tell parent we're ready
+        window.parent.postMessage({type: 'ready', distribution: 'monolithic'}, '*');
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1st Design System - Incremental Distribution Test</title>
+    <!-- Import ONLY the Tabs component with its dependencies -->
+    <link rel="stylesheet" href="dist/incremental/components/tabs.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--page-background);
+            color: var(--page-text-primary);
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--page-border);
+            border-radius: 0.5rem;
+            background-color: var(--page-background-secondary);
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--page-text-primary);
+        }
+        
+        .demo-description {
+            margin-bottom: 2rem;
+            color: var(--page-text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>M1st Design System - Incremental Distribution Test</h1>
+    <p style="color: var(--page-text-secondary); margin-bottom: 2rem;">
+        This page demonstrates how a banking team can import ONLY the Tabs component 
+        without bringing in the entire design system.
+    </p>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Simple Underline Tabs</h2>
+        <p class="demo-description">Basic tab implementation matching the typography page style.</p>
+        
+        <div class="tabs">
+            <ul class="tabs__list">
+                <li class="tabs__item">
+                    <button class="tabs__button tabs__button--active">Typography Scale</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Font Families</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Principles</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Usage Guidelines</button>
+                </li>
+            </ul>
+            <div class="tabs__content">
+                <p style="color: var(--tabs-text);">Content for the active tab would go here...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">What's Included</h2>
+        <p class="demo-description">
+            This test page imports only:
+        </p>
+        <ul style="color: var(--page-text-secondary); line-height: 1.8;">
+            <li><strong>Foundation tokens</strong> - Essential colors, typography, spacing</li>
+            <li><strong>Tabs component tokens</strong> - Component-specific design decisions</li>
+            <li><strong>Tabs component styles</strong> - All visual styling for tabs</li>
+        </ul>
+        <p style="color: var(--page-text-secondary); margin-top: 1rem;">
+            <strong>Total CSS footprint:</strong> Much smaller than the full design system!
+        </p>
+    </div>
+
+    <script>
+        // Add some interactivity to demonstrate functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const allTabs = document.querySelectorAll('.tabs-simple');
+            
+            allTabs.forEach(tabContainer => {
+                const buttons = tabContainer.querySelectorAll('.tabs-simple__button:not([disabled])');
+                
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons in this container
+                        buttons.forEach(btn => btn.classList.remove('tabs-simple__button--active'));
+                        // Add active class to clicked button
+                        this.classList.add('tabs-simple__button--active');
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

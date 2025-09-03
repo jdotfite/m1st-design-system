@@ -4,14 +4,15 @@
 /* App-specific styles and Tailwind component classes */
 @tailwind components;
 
-/* App layout - using only utility classes */
+/* App layout - using CSS Grid from PageTemplate */
 .App {
   min-height: 100vh;
-  display: flex;
+  /* Removed old flex layout - now using CSS Grid in PageTemplate */
 }
 
+/* Remove legacy margin-left rule since nav is positioned by CSS Grid */
 .main-content {
-  margin-left: 100px; /* Fixed compact navigation width */
+  /* margin-left: 100px; <- removed - now using CSS Grid */
   transition: margin-left 0.3s ease;
 }
 
@@ -43,32 +44,49 @@ For layout, use Tailwind utilities:
 - .btn/.btn-primary → Use <Button> component from design system
 */
 
-/* Typography using page-level tokens (Layer 3) */
+/* Typography using design tokens with proper semantic styling */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold leading-tight mb-4;
+  font-family: var(--font-family-heading);
   color: var(--page-text-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 h1 {
-  @apply mb-6;
-  font-size: var(--font-size-6xl);
+  font-size: var(--font-size-heading-xxl, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
 h2 {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-heading-xl, 3rem);
 }
 
 h3 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-heading-l, 2.25rem);
 }
 
 h4 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-heading-xs, 1rem);
+}
+
+h5 {
+  font-size: var(--font-size-heading-s, 1.125rem);
+}
+
+h6 {
+  font-size: var(--font-size-heading-xs, 1rem);
 }
 
 p {
-  @apply mb-4;
+  font-family: var(--font-family-body);
   color: var(--page-text-body);
+  font-size: var(--font-size-body-m, 1rem);
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 /* Utility classes using page-level tokens */

@@ -1,0 +1,90 @@
+/* =============================================================================
+   TABS COMPONENT - Simple Underline Style Only
+   ============================================================================= */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+.tabs__item {
+  margin: 0;
+}
+
+.tabs__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--tabs-text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tabs__button:hover {
+  color: var(--tabs-text-hover);
+}
+
+.tabs__button:focus {
+  outline: none;
+  color: var(--tabs-text-hover);
+}
+
+.tabs__button--active {
+  color: var(--tabs-text-active);
+  font-weight: 600;
+}
+
+.tabs__button--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--tabs-indicator);
+  border-radius: 1px;
+}
+
+.tabs__button:disabled {
+  color: var(--neutral-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tabs__button:disabled:hover {
+  color: var(--neutral-300);
+}
+
+.tabs__content {
+  padding-top: 2rem;
+}
+
+.tabs__label {
+  flex: 1;
+}
+
+.tabs__extra {
+  margin-left: 0.25rem;
+  font-size: 0.875em;
+}

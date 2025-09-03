@@ -1,0 +1,22 @@
+#!/bin/bash
+# Font Migration - Next Steps Checklist
+
+echo "✅ COMPLETED: Fonts copied to token repo"
+echo "📁 Location: C:\_websites\m1st-design-tokens\fonts\"
+echo ""
+echo "🔄 TODO in your token repo (C:\_websites\m1st-design-tokens):"
+echo ""
+echo "1. Update style-dictionary.config.js to:"
+echo "   - Include font copying in build process"
+echo "   - Generate @font-face declarations in CSS"
+echo ""
+echo "2. Update package.json to export fonts:"
+echo "   \"./fonts/*\": \"./dist/fonts/*\""
+echo ""
+echo "3. Test the build:"
+echo "   npm run build"
+echo ""
+echo "4. Return here and run:"
+echo "   npm run tokens:update"
+echo ""
+echo "📖 See FONT-MIGRATION-GUIDE.md for detailed steps"

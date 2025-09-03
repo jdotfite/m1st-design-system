@@ -12,6 +12,7 @@ export { ProgressBar, type ProgressBarProps } from './ProgressBar';
 export { ThemeSwitch, type ThemeSwitchProps } from './ThemeSwitch';
 export { SidebarToggle } from './SidebarToggle';
 export { Tabs, type TabsProps, type TabItem } from './Tabs';
+export { DistributionTest } from './DistributionTest';
 
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './Breadcrumb';
 export { Tooltip, type TooltipProps } from './Tooltip';

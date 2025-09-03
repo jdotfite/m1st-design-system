@@ -523,9 +523,6 @@ const TokenVisualizerPage: React.FC = () => {
             ]}
             activeItem={activeTab}
             onItemClick={(item) => setActiveTab(item.id as any)}
-            variant="underline"
-            size="medium"
-            position="left"
           />
         </div>
 

@@ -63,13 +63,14 @@ export const ComponentsSidebar: React.FC = () => {
     <aside 
       className="
         components-sidebar
-        hidden md:block border-r border-neutral-200
+        hidden md:block
         transition-all duration-300 ease-in-out
         fixed top-0 h-screen z-40
         w-64
       "
       style={{ 
         backgroundColor: 'var(--page-background)',
+        borderRight: '1px solid var(--page-border)',
         left: '100px', // Fixed main nav width
         transition: 'left 0.3s ease'
       }}
@@ -77,7 +78,12 @@ export const ComponentsSidebar: React.FC = () => {
       <div className="h-full overflow-y-auto overflow-x-hidden">
         <nav className="py-8 px-4">
           <div className="mb-6">
-            <h2 className="text-lg font-semibold text-neutral-900 mb-3">Components</h2>
+            <h2 
+              className="text-lg font-semibold mb-3"
+              style={{ color: 'var(--page-text-primary)' }}
+            >
+              Components
+            </h2>
           </div>
           
           <ul className="space-y-1">
@@ -85,20 +91,25 @@ export const ComponentsSidebar: React.FC = () => {
               <li key={comp.name}>
                 <button
                   onClick={() => handleComponentClick(comp.name)}
-                  className={`block w-full text-left px-3 py-2 rounded text-sm transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 ${
-                    ((comp.name === 'Button' && location.pathname === '/component/button') ||
+                  className={`block w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1`}
+                  style={{
+                    color: ((comp.name === 'Button' && location.pathname === '/component/button') ||
                      (comp.name === 'LoadingSpinner' && location.pathname === '/component/loading-spinner') ||
                      (comp.name === 'Modal' && location.pathname === '/component/modal') ||
                      (comp.name === 'Tabs' && location.pathname === '/component/tabs'))
-                      ? 'text-neutral-900 font-medium'
-                      : 'text-neutral-700'
-                  }`}
-                  style={{
+                      ? 'var(--page-text-primary)'
+                      : 'var(--page-text-secondary)',
+                    fontWeight: ((comp.name === 'Button' && location.pathname === '/component/button') ||
+                     (comp.name === 'LoadingSpinner' && location.pathname === '/component/loading-spinner') ||
+                     (comp.name === 'Modal' && location.pathname === '/component/modal') ||
+                     (comp.name === 'Tabs' && location.pathname === '/component/tabs'))
+                      ? '500'
+                      : '400',
                     backgroundColor: ((comp.name === 'Button' && location.pathname === '/component/button') ||
                      (comp.name === 'LoadingSpinner' && location.pathname === '/component/loading-spinner') ||
                      (comp.name === 'Modal' && location.pathname === '/component/modal') ||
                      (comp.name === 'Tabs' && location.pathname === '/component/tabs'))
-                      ? 'var(--page-sidebar-menu-bg)' 
+                      ? 'var(--page-hover)' 
                       : 'transparent'
                   }}
                   onMouseEnter={(e) => {
@@ -107,7 +118,8 @@ export const ComponentsSidebar: React.FC = () => {
                      (comp.name === 'Modal' && location.pathname === '/component/modal') ||
                      (comp.name === 'Tabs' && location.pathname === '/component/tabs'));
                     if (!isActive) {
-                      e.currentTarget.style.backgroundColor = 'var(--page-sidebar-menu-bg)';
+                      e.currentTarget.style.backgroundColor = 'var(--page-hover)';
+                      e.currentTarget.style.color = 'var(--page-text-primary)';
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -117,6 +129,7 @@ export const ComponentsSidebar: React.FC = () => {
                      (comp.name === 'Tabs' && location.pathname === '/component/tabs'));
                     if (!isActive) {
                       e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--page-text-secondary)';
                     }
                   }}
                 >

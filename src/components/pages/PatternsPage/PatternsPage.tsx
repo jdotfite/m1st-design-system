@@ -243,9 +243,6 @@ export const PatternsPage: React.FC = () => {
             }))}
             activeItem={activeCategory}
             onItemClick={(item) => setActiveCategory(item.id)}
-            variant="underline"
-            size="medium"
-            position="left"
           />
         </div>
 

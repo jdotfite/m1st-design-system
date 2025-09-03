@@ -1,0 +1,138 @@
+/* =============================================================================
+   M1ST DESIGN SYSTEM - INCREMENTAL DISTRIBUTION - TABS COMPONENT
+   Complete standalone CSS for simple underline tabs
+   ============================================================================= */
+
+:root {
+  /* Essential Foundation Colors - Light Theme */
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-600: #525252;
+  --neutral-900: #171717;
+  --neutral-925: #0c0c0c;
+
+  /* Brand Colors */
+  --color-brand-primary: #EE3831;
+  
+  /* Essential Tabs Tokens - Light Theme Defaults */
+  --tabs-text: var(--neutral-600);         /* secondary text */
+  --tabs-text-active: var(--neutral-900);  /* primary text */
+  --tabs-text-hover: var(--neutral-900);   /* primary text */
+  --tabs-border: var(--neutral-200);       /* light border */
+  --tabs-indicator: var(--neutral-925);    /* subtle dark gray */
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  /* Essential Foundation Colors - Dark Theme */
+  --neutral-200: #262626;
+  --neutral-300: #404040;
+  --neutral-400: #525252;
+  --neutral-600: #a3a3a3;
+  --neutral-900: #f5f5f5;
+  --neutral-925: #ffffff;
+
+  /* Essential Tabs Tokens - Dark Theme Overrides */
+  --tabs-text: var(--neutral-600);         /* secondary text (lighter in dark) */
+  --tabs-text-active: var(--neutral-900);  /* primary text (lighter in dark) */
+  --tabs-text-hover: var(--neutral-900);   /* primary text (lighter in dark) */
+  --tabs-border: var(--neutral-200);       /* light border (darker in dark) */
+  --tabs-indicator: var(--neutral-925);    /* subtle light gray in dark */
+}
+
+/* Simple Tabs Container */
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tab List */
+.tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+/* Individual Tab */
+.tabs__item {
+  margin: 0;
+}
+
+/* Tab Button */
+.tabs__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--tabs-text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tabs__button:hover {
+  color: var(--tabs-text-hover);
+}
+
+.tabs__button:focus {
+  outline: none;
+  color: var(--tabs-text-hover);
+}
+
+/* Active State with Underline */
+.tabs__button--active {
+  color: var(--tabs-text-active);
+  font-weight: 600;
+}
+
+.tabs__button--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--tabs-indicator);
+  border-radius: 1px;
+}
+
+/* Disabled State */
+.tabs__button:disabled {
+  color: var(--neutral-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tabs__button:disabled:hover {
+  color: var(--neutral-300);
+}
+
+/* Tab Content Area */
+.tabs__content {
+  padding-top: 2rem;
+}
+
+/* Tab Label */
+.tabs__label {
+  flex: 1;
+}
+
+/* Extra Content */
+.tabs__extra {
+  margin-left: 0.25rem;
+  font-size: 0.875em;
+}

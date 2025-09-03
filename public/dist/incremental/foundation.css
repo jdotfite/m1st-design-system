@@ -1,0 +1,84 @@
+/* =============================================================================
+   M1ST DESIGN SYSTEM - INCREMENTAL DISTRIBUTION
+   Foundation CSS - Core Tokens Only
+   ============================================================================= */
+
+/* This file contains ONLY the essential tokens needed for individual components.
+   Perfect for teams that want to adopt components incrementally. */
+
+:root {
+  /* ==========================================================================
+     LAYER 1: FOUNDATION TOKENS (Design Primitives)
+     ========================================================================== */
+  
+  /* Extended Neutral Colors - Based on Tailwind's true neutral palette */
+  --neutral-0: #ffffff;
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+  --neutral-1000: #000000;
+
+  /* Brand Colors */
+  --color-brand-primary: #EE3831;
+  
+  /* ==========================================================================
+     LAYER 2: SEMANTIC TOKENS (Contextual Meaning)
+     ========================================================================== */
+  
+  /* Background Colors */
+  --color-background-primary: var(--neutral-0);
+  --color-background-secondary: var(--neutral-50);
+  --color-background-tertiary: var(--neutral-100);
+  
+  /* Text Colors */
+  --color-text-primary: var(--neutral-900);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-tertiary: var(--neutral-500);
+  --color-text-inverse: var(--neutral-0);
+  --color-text-placeholder: var(--neutral-400);
+  --color-text-disabled: var(--neutral-300);
+  
+  /* Border Colors */
+  --color-border-primary: var(--neutral-200);
+  --color-border-secondary: var(--neutral-100);
+  --color-border-focus: var(--color-brand-primary);
+  
+  /* Interactive Colors */
+  --color-interactive-primary: var(--color-brand-primary);
+  --color-interactive-hover: #d32f28;
+  --color-interactive-active: #b8291f;
+  
+  /* ==========================================================================
+     LAYER 3: PAGE-LEVEL TOKENS (Page Context)
+     ========================================================================== */
+  
+  /* Page Background */
+  --page-background: var(--color-background-primary);
+  --page-background-secondary: var(--color-background-secondary);
+  
+  /* Page Text */
+  --page-text-primary: var(--color-text-primary);
+  --page-text-secondary: var(--color-text-secondary);
+  --page-text-inverse: var(--color-text-inverse);
+  
+  /* Page Borders */
+  --page-border: var(--color-border-primary);
+  
+  /* Page Interactive States */
+  --page-accent-primary: var(--color-interactive-primary);
+  --page-accent-hover: var(--color-interactive-hover);
+  --page-accent-primary-hover: var(--color-interactive-hover);
+  --page-accent-primary-active: var(--color-interactive-active);
+  
+  /* Page State Colors */
+  --page-hover: rgba(0, 0, 0, 0.05);
+  --page-active: rgba(0, 0, 0, 0.1);
+}

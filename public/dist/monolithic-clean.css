@@ -1,0 +1,762 @@
+/* =============================================================================
+   M1ST DESIGN SYSTEM - MONOLITHIC DISTRIBUTION (CLEAN VERSION)
+   Complete Design System for Full Adoption - Browser Ready
+   ============================================================================= */
+
+/*
+================================================================================
+M1st DESIGN SYSTEM - TOKEN ARCHITECTURE DOCUMENTATION
+================================================================================
+
+This design system uses a 4-layer token architecture for maximum scalability and maintainability:
+
+LAYER 1: FOUNDATION TOKENS (Variables)
+- Raw color values and base design decisions
+- Examples: --neutral-100, --neutral-900, --red-600
+- Usage: Never use directly in components, only for building semantic tokens
+
+LAYER 2: SEMANTIC TOKENS (Color Intentions)
+- Map foundation tokens to semantic meanings
+- Examples: --color-background-primary, --color-text-primary, --color-border-primary
+- Usage: Used by designers and for building higher-level tokens
+
+LAYER 3: PAGE-LEVEL TOKENS (Page Context) **NEW LAYER**
+- Map semantic tokens to specific page usage contexts
+- Examples: --page-background, --page-text-primary, --page-surface
+- Usage: Perfect for pages, sections, and layout components
+- Benefits: Easy theme switching, consistent page-level styling
+
+LAYER 4: COMPONENT TOKENS (Component-Specific)
+- Component-specific design decisions (when needed)
+- Examples: --button-padding, --card-shadow, --input-border-radius
+- Usage: Only when components need specialized styling beyond semantic tokens
+
+BEST PRACTICES:
+1. Components should primarily use page-level tokens (Layer 3)
+2. Use semantic tokens (Layer 2) for component-specific needs
+3. Never use foundation tokens (Layer 1) directly in components
+4. Page-level tokens provide the best balance of flexibility and consistency
+
+======================================================================================
+*/
+
+/* M1st Design System Foundation Tokens */
+:root {
+  /* ==========================================================================
+     EXTENDED NEUTRAL SCALE (Tailwind Neutral + Calculated Middle Values)
+     ========================================================================== */
+  
+  /* Extended Neutral Colors - Based on Tailwind's true neutral palette + calculated middle values */
+  --neutral-0: #ffffff;        /* white */
+  --neutral-25: #fefefd;       /* middle between white and neutral-50 */
+  --neutral-50: #fafafa;       /* neutral-50 */
+  --neutral-75: #f7f7f7;       /* middle between neutral-50 and neutral-100 */
+  --neutral-100: #f5f5f5;      /* neutral-100 */
+  --neutral-150: #ececec;      /* middle between neutral-100 and neutral-200 */
+  --neutral-200: #e5e5e5;      /* neutral-200 */
+  --neutral-250: #d9d9d9;      /* middle between neutral-200 and neutral-300 */
+  --neutral-300: #d4d4d4;      /* neutral-300 */
+  --neutral-350: #b8b8b8;      /* middle between neutral-300 and neutral-400 */
+  --neutral-400: #a3a3a3;      /* neutral-400 */
+  --neutral-450: #8b8b8b;      /* middle between neutral-400 and neutral-500 */
+  --neutral-500: #737373;      /* neutral-500 */
+  --neutral-550: #646464;      /* middle between neutral-500 and neutral-600 */
+  --neutral-600: #525252;      /* neutral-600 */
+  --neutral-650: #434343;      /* middle between neutral-600 and neutral-700 */
+  --neutral-700: #404040;      /* neutral-700 */
+  --neutral-750: #2b2b2b;      /* middle between neutral-700 and neutral-800 */
+  --neutral-800: #262626;      /* neutral-800 */
+  --neutral-850: #1e1e1e;      /* middle between neutral-800 and neutral-900 */
+  --neutral-900: #171717;      /* neutral-900 */
+  --neutral-925: #0f0f0f;      /* middle between neutral-900 and neutral-950 */
+  --neutral-950: #0a0a0a;      /* neutral-950 */
+  --neutral-975: #050505;      /* middle between neutral-950 and black */
+  --neutral-1000: #000000;     /* black */
+
+  /* ==========================================================================
+     BRAND COLORS
+     ========================================================================== */
+  
+  /* Brand Colors (from M1st logo) */
+  --color-brand-primary: #EE3831;                /* M1st brand red - matches M logo */
+  
+  /* Accent Colors - Warm */
+  --color-accent-red: #E71C23;                   /* vibrant red accent */
+  --color-accent-green: #55A444;                 /* fresh green accent */
+  --color-accent-blue: #0090C4;                  /* blue accent */
+  --color-accent-orange: #F15C22;                /* energetic orange accent */
+  --color-accent-yellow: #FAA61A;                /* warm yellow accent */
+  
+  /* Accent Colors - Cool */
+  --color-accent-teal: #006068;                  /* sophisticated teal accent */
+  --color-accent-blue-light: #007199;            /* light blue accent */
+  --color-accent-blue-dark: #133156;             /* deep blue accent */
+  --color-accent-purple: #7C2984;                /* rich purple accent */
+  --color-accent-magenta: #AD1F63;               /* bold magenta accent */
+  --color-accent-dark-red: #BF0000;              /* dark red accent */
+
+  /* ==========================================================================
+     TYPOGRAPHY TOKENS
+     ========================================================================== */
+  
+  /* Font Families */
+  --font-family-heading: "DIN-2014", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-family-mono: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Liberation Mono', 'Courier New', monospace;
+  
+  /* Font Size Scale - Based on Major Third (1.25) ratio */
+  --font-heading-xxl-size: 4rem;                 /* 64px - Hero/Display text */
+  --font-heading-xl-size: 3rem;                  /* 48px - Large page titles */
+  --font-heading-l-size: 2.25rem;                /* 36px - Section headers */
+  --font-heading-m-size: 1.5rem;                 /* 24px - Content headings */
+  --font-heading-s-size: 1.125rem;               /* 18px - Small headings */
+  --font-heading-xs-size: 1rem;                  /* 16px - Minimal headings */
+  
+  /* Body Text Scale */
+  --font-body-l-size: 1.125rem;                  /* 18px - Large comfortable reading */
+  --font-body-m-size: 1rem;                      /* 16px - Standard body text */
+  --font-body-s-size: 0.875rem;                  /* 14px - Compact text */
+  --font-body-xs-size: 0.75rem;                  /* 12px - Captions/metadata */
+  
+  /* Font Weight Scale */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Height Scale */
+  --line-height-tight: 1.1;                      /* Tight spacing for large text */
+  --line-height-normal: 1.4;                     /* Normal spacing */
+  --line-height-relaxed: 1.6;                    /* Relaxed spacing for reading */
+  
+  /* Letter Spacing Scale */
+  --letter-spacing-tight: -0.02em;               /* For large headings */
+  --letter-spacing-normal: 0;                    /* Default */
+  --letter-spacing-wide: 0.025em;                /* For small text/caps */
+  
+  /* Text Transform */
+  --text-transform-uppercase: uppercase;
+  --text-transform-none: none;
+
+  /* ==========================================================================
+     SEMANTIC COLOR PALETTE - M1ST LIGHT THEME (Default)
+     ========================================================================== */
+  
+  /* Background Colors - M1st Light Theme */
+  --color-background-primary: var(--neutral-0);              /* white background */
+  --color-background-secondary: var(--neutral-50);           /* light gray background */
+  --color-background-tertiary: var(--neutral-100);           /* slightly darker gray background */
+  
+  /* Surface Colors (elevated elements) */
+  --color-surface-primary: var(--neutral-75);        /* neutral-75 - slightly darker for subtle contrast */
+  --color-surface-secondary: var(--neutral-100);             /* neutral-100 for secondary surfaces */
+  --color-surface-tertiary: var(--neutral-150);              /* neutral-150 for tertiary surfaces */
+  --color-surface-elevated: var(--neutral-25);               /* neutral-25 for elevated elements (cards, modals) */
+  --color-surface-sunken: var(--neutral-100);                /* neutral-100 for sunken elements */
+  
+  /* Text Colors */
+  --color-text-primary: var(--neutral-900);          /* primary text color */
+  --color-text-secondary: var(--neutral-600);        /* secondary text color */
+  --color-text-tertiary: var(--neutral-500);         /* tertiary text color */
+  --color-text-muted: var(--neutral-400);            /* muted text color */
+  --color-text-inverse: var(--neutral-0);            /* text on dark backgrounds */
+  --color-text-placeholder: var(--neutral-400);      /* placeholder text */
+  --color-text-disabled: var(--neutral-300);         /* disabled text */
+  
+  /* Border Colors */
+  --color-border-primary: var(--neutral-200);        /* primary border color */
+  --color-border-secondary: var(--neutral-150);      /* secondary border color */
+  --color-border-tertiary: var(--neutral-100);       /* tertiary border color */
+  --color-border-focus: var(--color-brand-primary);  /* focus border color */
+  --color-border-disabled: var(--neutral-150);       /* disabled border color */
+  
+  /* Interactive Colors (brand-aligned) */
+  --color-accent-primary: var(--neutral-925);                    /* neutral-925 - dark gray */
+  --color-accent-primary-hover: var(--neutral-975);              /* neutral-975 - darker for hover */
+  --color-accent-primary-active: var(--neutral-950);             /* neutral-950 - darker for active */
+  --color-interactive-primary: var(--color-brand-primary);       /* primary interactive color */
+  --color-interactive-hover: #d32f28;                            /* slightly darker red for hover */
+  --color-interactive-active: #b8291f;                           /* darker red for active states */
+  
+  /* State Colors */
+  --color-success: #55A444;                          /* success color (green) */
+  --color-success-emphasis: #4a9138;                 /* darker green for emphasis */
+  --color-warning: #FAA61A;                          /* warning color (yellow/orange) */
+  --color-warning-emphasis: #e6941a;                 /* darker orange for emphasis */
+  --color-danger: #E71C23;                           /* danger/error color (red) */
+  --color-danger-emphasis: #d32f2f;                  /* darker red for danger emphasis */
+  --color-info: #0090C4;                             /* info color (blue) */
+  --color-info-emphasis: #007da8;                    /* darker blue for info emphasis */
+
+  /* ==========================================================================
+     LAYER 3: PAGE-LEVEL TOKENS (Page Context)
+     ========================================================================== */
+  
+  /* Page Background */
+  --page-background: var(--color-background-primary);           /* main page background (white in light, neutral-75 in dark) */
+  --page-background-secondary: var(--color-background-secondary); /* secondary page areas */
+  --page-background-tertiary: var(--color-background-tertiary); /* tertiary page areas */
+  
+  /* Page Surfaces (elevated content) */
+  --page-surface: var(--color-surface-primary);                 /* main surface color for cards, panels */
+  --page-surface-secondary: var(--color-surface-secondary);     /* secondary surface color */
+  --page-surface-elevated: var(--color-surface-elevated);       /* elevated surfaces (modals, dropdowns) */
+  --page-surface-sunken: var(--color-surface-sunken);           /* sunken surfaces (input fields) */
+  
+  /* Page Text */
+  --page-text-primary: var(--color-text-primary);               /* primary page text */
+  --page-text-secondary: var(--color-text-secondary);           /* secondary page text */
+  --page-text-tertiary: var(--color-text-tertiary);             /* tertiary page text */
+  --page-text-muted: var(--color-text-muted);                   /* muted page text */
+  --page-text-inverse: var(--color-text-inverse);               /* inverse text (on dark backgrounds) */
+  --page-text-placeholder: var(--color-text-placeholder);       /* placeholder text */
+  --page-text-disabled: var(--color-text-disabled);             /* disabled text */
+  
+  /* Page Borders */
+  --page-border: var(--color-border-primary);                   /* primary page borders */
+  --page-border-secondary: var(--color-border-secondary);       /* secondary page borders */
+  --page-border-focus: var(--color-border-focus);               /* focus borders */
+  
+  /* Page Interactive Elements */
+  --page-accent-primary: var(--neutral-925);                    /* primary page accent (subtle gray) */
+  --page-accent-hover: var(--color-interactive-hover);          /* accent hover state */
+  --page-accent-primary-hover: var(--color-interactive-hover);  /* primary accent hover */
+  --page-accent-primary-active: var(--color-interactive-active); /* primary accent active */
+  
+  /* Page States */
+  --page-hover: rgba(0, 0, 0, 0.05);                            /* generic hover overlay */
+  --page-active: rgba(0, 0, 0, 0.1);                            /* generic active overlay */
+  --page-focus: var(--color-border-focus);                      /* focus color */
+  --page-success: var(--color-success);                         /* page success color */
+  --page-success-emphasis: var(--color-success-emphasis);       /* page success emphasis */
+  --page-warning: var(--color-warning);                         /* page warning color */
+  --page-warning-emphasis: var(--color-warning-emphasis);       /* page warning emphasis */
+  --page-danger: var(--color-danger);                           /* page danger color */
+  --page-danger-emphasis: var(--color-danger-emphasis);         /* page danger emphasis */
+  --page-info: var(--color-info);                               /* page info color */
+  --page-info-emphasis: var(--color-info-emphasis);             /* page info emphasis */
+  
+  /* Page Layout */
+  --page-container-background: var(--color-background-primary);     /* main container background */
+  --page-header-background: var(--color-surface-primary);          /* header background */
+  --page-sidebar-background: var(--color-surface-primary);         /* sidebar background */
+  --page-footer-background: var(--color-background-secondary);     /* footer background */
+  --page-main-nav-background: var(--color-surface-secondary);      /* main navigation background */
+  
+  /* ==========================================================================
+     BUTTON COMPONENT TOKENS (Layer 4 - Component Tokens)
+     ========================================================================== */
+  
+  /* Primary Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-primary-bg: var(--page-accent-primary);
+  --button-primary-bg-hover: var(--page-accent-primary-hover);
+  --button-primary-bg-active: var(--page-accent-primary-active);
+  --button-primary-text: var(--page-text-inverse);              /* uses page-level token for proper inversion */
+  --button-primary-border: var(--page-accent-primary);
+  --button-primary-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --button-primary-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  /* Secondary Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-secondary-bg: transparent;
+  --button-secondary-bg-hover: var(--page-hover);
+  --button-secondary-bg-active: var(--page-active);
+  --button-secondary-text: var(--page-accent-primary);
+  --button-secondary-border: var(--neutral-925);
+  
+  /* Ghost Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-ghost-bg: transparent;
+  --button-ghost-bg-hover: var(--page-hover);
+  --button-ghost-bg-active: var(--page-active);
+  --button-ghost-text: var(--page-text-primary);
+  --button-ghost-border: transparent;
+  
+  /* Danger Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-danger-bg: var(--page-danger);
+  --button-danger-bg-hover: var(--page-danger-emphasis);
+  --button-danger-text: var(--page-text-inverse);
+  --button-danger-border: var(--page-danger);
+  
+  /* Info Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-info-bg: var(--page-info);
+  --button-info-bg-hover: var(--page-info-emphasis);
+  --button-info-text: var(--page-text-inverse);
+  --button-info-border: var(--page-info);
+  
+  /* Success Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-success-bg: var(--page-success);
+  --button-success-bg-hover: var(--page-success-emphasis);
+  --button-success-text: var(--page-text-inverse);
+  --button-success-border: var(--page-success);
+  
+  /* Warning Button - Uses Layer 3 (Page-Level Tokens) */
+  --button-warning-bg: var(--page-warning);
+  --button-warning-bg-hover: var(--page-warning-emphasis);
+  --button-warning-text: var(--page-text-inverse);
+  --button-warning-border: var(--page-warning);
+  
+  /* Button Base Styles */
+  --button-border-radius: 9999px;
+  --button-font-weight-base: 500;
+  --button-font-weight-emphasis: 600;
+  --button-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --button-focus-ring: 0 0 0 3px rgba(238, 56, 49, 0.12);
+  --button-disabled-opacity: 0.5;
+  
+  /* ==========================================================================
+     TABS COMPONENT TOKENS (Layer 4 - Component Tokens)
+     ========================================================================== */
+  
+  /* Essential tabs tokens only */
+  --tabs-border: var(--page-border);
+  --tabs-text: var(--page-text-secondary);
+  --tabs-text-active: var(--page-text-primary);
+  --tabs-text-hover: var(--page-text-primary);
+  --tabs-indicator: var(--page-accent-primary);
+}
+
+/* =============================================================================
+   TABS COMPONENT - Simple Underline Style Only
+   ============================================================================= */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs__list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+.tabs__item {
+  margin: 0;
+}
+
+.tabs__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--tabs-text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tabs__button:hover {
+  color: var(--tabs-text-hover);
+}
+
+.tabs__button:focus {
+  outline: none;
+  color: var(--tabs-text-hover);
+}
+
+.tabs__button--active {
+  color: var(--tabs-text-active);
+  font-weight: 600;
+}
+
+.tabs__button--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--tabs-indicator);
+  border-radius: 1px;
+}
+
+.tabs__button:disabled {
+  color: var(--neutral-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tabs__button:disabled:hover {
+  color: var(--neutral-300);
+}
+
+.tabs__content {
+  padding-top: 2rem;
+}
+
+.tabs__label {
+  flex: 1;
+}
+
+.tabs__extra {
+  margin-left: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* =============================================================================
+   BUTTON COMPONENT STYLES
+   ============================================================================= */
+
+/* Base button class with common styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: var(--button-border-radius);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Primary button variant - Uses Layer 4 (Component Tokens) */
+.btn-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: 1px solid var(--button-primary-border);
+  box-shadow: var(--button-primary-shadow);
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--button-primary-bg-hover);
+  border-color: var(--button-primary-bg-hover);
+  box-shadow: var(--button-primary-shadow-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: var(--button-primary-bg-active);
+  border-color: var(--button-primary-bg-active);
+}
+
+.btn-primary:focus:not(:disabled) {
+  outline: none;
+  box-shadow: var(--button-primary-shadow), 0 0 0 3px rgba(238, 56, 49, 0.12);
+}
+
+/* Secondary button variant - Uses Layer 4 (Component Tokens) */
+.btn-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--button-secondary-border);
+  font-weight: 600;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--button-secondary-bg-hover);
+}
+
+.btn-secondary:active:not(:disabled) {
+  background-color: var(--button-secondary-bg-active);
+}
+
+.btn-secondary:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 56, 49, 0.12);
+}
+
+/* Ghost button variant - Uses Layer 4 (Component Tokens) */
+.btn-ghost {
+  background-color: var(--button-ghost-bg);
+  color: var(--button-ghost-text);
+  border: 2px solid var(--button-ghost-border);
+  font-weight: 500;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: var(--button-ghost-bg-hover);
+}
+
+.btn-ghost:active:not(:disabled) {
+  background-color: var(--button-ghost-bg-active);
+}
+
+.btn-ghost:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 56, 49, 0.12);
+}
+
+/* Danger button variant - Uses Layer 4 (Component Tokens) */
+.btn-danger {
+  background-color: var(--button-danger-bg);
+  color: var(--button-danger-text);
+  border: 2px solid var(--button-danger-border);
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--button-danger-bg-hover);
+  border-color: var(--button-danger-bg-hover);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-danger:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(238, 56, 49, 0.20);
+}
+
+/* Success button variant - Uses Layer 4 (Component Tokens) */
+.btn-success {
+  background-color: var(--button-success-bg);
+  color: var(--button-success-text);
+  border: 2px solid var(--button-success-border);
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: var(--button-success-bg-hover);
+  border-color: var(--button-success-bg-hover);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-success:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+/* Warning button variant - Uses Layer 4 (Component Tokens) */
+.btn-warning {
+  background-color: var(--button-warning-bg);
+  color: var(--button-warning-text);
+  border: 2px solid var(--button-warning-border);
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--button-warning-bg-hover);
+  border-color: var(--button-warning-bg-hover);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-warning:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+/* Info button variant - Example of new variant using Layer 4 tokens */
+.btn-info {
+  background-color: var(--button-info-bg);
+  color: var(--button-info-text);
+  border: 2px solid var(--button-info-border);
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: var(--button-info-bg-hover);
+  border-color: var(--button-info-bg-hover);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-info:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* Size variants */
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  min-height: 2rem;
+}
+
+.btn-md {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  min-height: 2.5rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  min-height: 3rem;
+}
+
+/* Utility modifiers */
+.btn-full-width {
+  width: 100%;
+}
+
+.btn-loading {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading spinner animation */
+.btn-loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================================= */
+
+/* Heading Size Utilities (with automatic uppercase) */
+.text-heading-xxl {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xxl-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-heading-xl {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xl-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-l {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-l-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-m {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-m-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-s {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-s-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-heading-xs {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-xs-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
+  text-transform: var(--text-transform-uppercase);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Body Text Utilities */
+.text-body-l,
+.text-body-lg {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-l-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+}
+
+.text-body-m, 
+.text-body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-m-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+.text-body-s,
+.text-body-sm {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-s-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4;
+}
+
+.text-body-xs, 
+.text-caption {
+  font-family: var(--font-family-body);
+  font-size: var(--font-body-xs-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.3;
+}
+
+/* =============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================= */
+
+[data-theme="dark"] {
+  /* Inverted Neutral Scale for Dark Theme */
+  --neutral-0: #000000;
+  --neutral-25: #050505;
+  --neutral-50: #0a0a0a;
+  --neutral-75: #0f0f0f;
+  --neutral-100: #171717;
+  --neutral-150: #1e1e1e;
+  --neutral-200: #262626;
+  --neutral-250: #2b2b2b;
+  --neutral-300: #404040;
+  --neutral-350: #434343;
+  --neutral-400: #525252;
+  --neutral-450: #646464;
+  --neutral-500: #737373;
+  --neutral-550: #8b8b8b;
+  --neutral-600: #a3a3a3;
+  --neutral-650: #b8b8b8;
+  --neutral-700: #d4d4d4;
+  --neutral-750: #d9d9d9;
+  --neutral-800: #e5e5e5;
+  --neutral-850: #ececec;
+  --neutral-900: #f5f5f5;
+  --neutral-925: #ffffff;
+  --neutral-950: #ffffff;
+
+  /* Page-level token overrides will inherit the inverted neutrals */
+  --page-background: var(--neutral-100);
+  --page-surface: var(--neutral-200);
+  --page-text-primary: var(--neutral-900);
+  --page-text-secondary: var(--neutral-600);
+  --page-border: var(--neutral-300);
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1st Design System - Monolithic Distribution Test</title>
+    <!-- Import the COMPLETE design system (clean version without auto dark mode) -->
+    <link rel="stylesheet" href="dist/monolithic-clean.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--page-background);
+            color: var(--page-text-primary);
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--page-border);
+            border-radius: 0.5rem;
+            background-color: var(--page-background-secondary);
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--page-text-primary);
+        }
+        
+        .demo-description {
+            margin-bottom: 2rem;
+            color: var(--page-text-secondary);
+            line-height: 1.6;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>M1st Design System - Monolithic Distribution Test</h1>
+    <p style="color: var(--page-text-secondary); margin-bottom: 2rem;">
+        This page demonstrates how a marketing team can import the COMPLETE design system 
+        and have access to all components and utilities.
+    </p>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Simple Underline Tabs (Same as Incremental)</h2>
+        <p class="demo-description">The exact same tabs component, but loaded via the complete design system.</p>
+        
+        <div class="tabs">
+            <ul class="tabs__list">
+                <li class="tabs__item">
+                    <button class="tabs__button tabs__button--active">Typography Scale</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Font Families</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Principles</button>
+                </li>
+                <li class="tabs__item">
+                    <button class="tabs__button">Usage Guidelines</button>
+                </li>
+            </ul>
+            <div class="tabs__content">
+                <p style="color: var(--tabs-text);">Content for the active tab would go here...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Additional Components Available</h2>
+        <p class="demo-description">
+            With the monolithic distribution, you get access to ALL components in the design system.
+        </p>
+        
+        <div class="component-grid">
+            <!-- Button Examples -->
+            <div>
+                <h3>Buttons</h3>
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-ghost">Ghost</button>
+            </div>
+            
+            <!-- Typography Examples -->
+            <div>
+                <h3>Typography Utilities</h3>
+                <div class="text-heading-xxl">Heading XXL</div>
+                <div class="text-heading-xl">Heading XL</div>
+                <div class="text-body-lg">Body Large</div>
+                <div class="text-body-sm">Body Small</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Complete Token System</h2>
+        <p class="demo-description">
+            All design tokens from all 4 layers are available:
+        </p>
+        <ul style="color: var(--page-text-secondary); line-height: 1.8;">
+            <li><strong>Layer 1:</strong> Foundation tokens (colors, typography, spacing)</li>
+            <li><strong>Layer 2:</strong> Semantic tokens (contextual meanings)</li>
+            <li><strong>Layer 3:</strong> Page-level tokens (page-specific contexts)</li>
+            <li><strong>Layer 4:</strong> Component tokens (all components)</li>
+        </ul>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background-color: var(--page-surface-elevated); border-radius: 0.5rem;">
+            <h4>Token Examples:</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-family: monospace; font-size: 0.875rem;">
+                <div>--page-accent-primary</div>
+                <div>--button-primary-bg</div>
+                <div>--tabs-indicator</div>
+                <div>--input-border-focus</div>
+                <div>--modal-overlay</div>
+                <div>--card-shadow</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Distribution Comparison</h2>
+        <p class="demo-description">Choose the right distribution strategy for your team:</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+            <div style="padding: 1.5rem; border: 2px solid var(--page-accent-primary); border-radius: 0.5rem;">
+                <h3 style="color: var(--page-accent-primary);">Incremental Distribution</h3>
+                <ul style="color: var(--page-text-secondary); line-height: 1.6;">
+                    <li>Import only what you need</li>
+                    <li>Smaller CSS footprint</li>
+                    <li>Perfect for gradual adoption</li>
+                    <li>Banking teams</li>
+                </ul>
+            </div>
+            
+            <div style="padding: 1.5rem; border: 2px solid var(--page-success); border-radius: 0.5rem;">
+                <h3 style="color: var(--page-success);">Monolithic Distribution</h3>
+                <ul style="color: var(--page-text-secondary); line-height: 1.6;">
+                    <li>Complete design system</li>
+                    <li>All components available</li>
+                    <li>Maximum consistency</li>
+                    <li>Marketing teams</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const allTabs = document.querySelectorAll('.tabs-simple');
+            
+            allTabs.forEach(tabContainer => {
+                const buttons = tabContainer.querySelectorAll('.tabs-simple__button:not([disabled])');
+                
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(btn => btn.classList.remove('tabs-simple__button--active'));
+                        this.classList.add('tabs-simple__button--active');
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

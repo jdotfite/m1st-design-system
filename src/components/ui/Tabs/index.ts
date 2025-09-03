@@ -1,3 +1,3 @@
-// Export the main tabs implementation (simplified design)
-export * from './TabsSimple';
-export { default } from './TabsSimple';
+// Export the main tabs implementation
+export * from './Tabs';
+export { default } from './Tabs';

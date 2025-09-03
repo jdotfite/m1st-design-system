@@ -1,0 +1,324 @@
+/* =============================================================================
+   MAIN NAVIGATION RESPONSIVE STYLES
+   ============================================================================= */
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInStagger {
+  from { 
+    opacity: 0; 
+    transform: translateX(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* Desktop Styles (default) */
+.main-navigation {
+  /* Remove fixed positioning to work with CSS Grid */
+  width: 100px;
+  height: 100vh;
+  background: var(--page-background);
+  border-right: 1px solid var(--page-border);
+  /* Grid positioning replaces fixed positioning */
+  /* position: fixed; <- removed */
+  /* top: 0; <- removed */
+  /* left: 0; <- removed */
+  /* z-index: 1000; <- removed */
+}
+
+@media (min-width: 769px) {
+  .main-navigation {
+    /* On desktop, use auto height to fit grid area */
+    height: 100vh;
+    min-height: 100vh;
+    position: static; /* Ensure it's positioned by grid, not fixed */
+  }
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+.mobile-menu-overlay {
+  display: none;
+}
+
+.mobile-close-container {
+  display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .main-navigation {
+    /* Fullscreen overlay for mobile */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: var(--page-background) !important;
+    z-index: 1001 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+    overflow-y: auto !important;
+    padding-top: 80px !important; /* Space for close button */
+    border-right: none !important;
+    /* Override any grid constraints */
+    grid-area: unset !important;
+    display: block !important;
+  }
+  
+  .main-navigation.mobile-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .mobile-menu-button {
+    display: flex !important;
+  }
+  
+  .mobile-menu-overlay {
+    display: none !important; /* Remove overlay since menu is fullscreen */
+  }
+
+  /* Hide mobile close button since we have one in PageTemplate */
+  .main-navigation .mobile-close-container {
+    display: none !important;
+  }
+
+  /* Mobile specific navigation content adjustments */
+  .main-navigation .navigation-header {
+    padding: 1rem 2rem 0.5rem 2rem !important;
+    text-align: left !important;
+  }
+
+  /* Left-align logo on mobile */
+  .main-navigation .navigation-header a {
+    justify-content: flex-start !important;
+    margin-bottom: 2rem !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .main-navigation.mobile-open .navigation-header a {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+  }
+
+  /* Left-align navigation items on mobile */
+  .main-navigation .navigation-list {
+    padding: 0 2rem !important;
+    text-align: left !important;
+    margin-top: 1rem !important;
+  }
+
+  .main-navigation .navigation-list li {
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid var(--page-border);
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .main-navigation .navigation-list li:last-child {
+    border-bottom: none;
+  }
+
+  .main-navigation .navigation-link {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    text-align: left !important;
+    padding: 1.25rem 0 !important;
+    font-size: 1.2rem !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    min-height: 60px !important;
+  }
+
+  .main-navigation .navigation-link svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Hide desktop text, show mobile text */
+  .main-navigation .nav-text {
+    display: none !important;
+  }
+
+  .main-navigation .nav-text-mobile {
+    display: block !important;
+  }
+
+  /* Icon adjustments for mobile */
+  .main-navigation .navigation-link span:first-child {
+    margin-bottom: 0 !important;
+    margin-right: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Enhance mobile menu animations */
+  .main-navigation .navigation-list li {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .main-navigation.mobile-open .navigation-list li {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  /* Stagger animation for nav items with longer delays */
+  .main-navigation.mobile-open .navigation-list li:nth-child(1) { transition-delay: 0.1s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(2) { transition-delay: 0.2s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(3) { transition-delay: 0.3s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(4) { transition-delay: 0.4s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(5) { transition-delay: 0.5s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(6) { transition-delay: 0.6s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(7) { transition-delay: 0.7s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(8) { transition-delay: 0.8s; }
+
+  /* Logo adjustments for mobile */
+  .main-navigation .navigation-header a {
+    justify-content: flex-start !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .main-navigation .navigation-header img {
+    height: 2.25rem !important;
+  }
+
+  /* Mobile navigation links - horizontal layout with left alignment */
+  .main-navigation .navigation-link {
+    padding: 0.75rem 1rem !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    margin-bottom: 0.125rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .main-navigation .navigation-link:hover {
+    transform: translateX(4px);
+    background-color: var(--page-sidebar-menu-bg) !important;
+  }
+
+  .main-navigation .navigation-link span:first-child {
+    width: 22px !important;
+    height: 22px !important;
+    margin-bottom: 0 !important;
+    margin-right: 0.75rem !important;
+    flex-shrink: 0;
+  }
+
+  .main-navigation .navigation-link span:last-child {
+    font-size: 0.95rem !important;
+    white-space: normal !important;
+    text-align: left !important;
+    line-height: 1.3 !important;
+    font-weight: 500 !important;
+  }
+
+  /* Mobile navigation list adjustments */
+  .main-navigation .navigation-list {
+    padding: 0 !important;
+  }
+
+  .main-navigation .navigation-list li {
+    margin-bottom: 0.125rem !important;
+  }
+
+  /* Add subtle stagger animation for navigation items */
+  .main-navigation.mobile-open .navigation-list li {
+    animation: slideInStagger 0.4s ease forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .main-navigation.mobile-open .navigation-list li:nth-child(1) { animation-delay: 0.1s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(2) { animation-delay: 0.15s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(3) { animation-delay: 0.2s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(4) { animation-delay: 0.25s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(5) { animation-delay: 0.3s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(6) { animation-delay: 0.35s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(7) { animation-delay: 0.4s; }
+  .main-navigation.mobile-open .navigation-list li:nth-child(8) { animation-delay: 0.45s; }
+
+  /* Footer adjustments for mobile */
+  .main-navigation .navigation-footer {
+    padding: 0.75rem 1rem !important;
+    border-top: 1px solid var(--page-border);
+    margin-top: auto;
+  }
+
+  .main-navigation .navigation-footer > div {
+    align-items: flex-start !important;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-navigation {
+    width: 80px;
+  }
+
+  /* Slightly smaller icons and text for tablet */
+  .main-navigation .navigation-link span:first-child {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .main-navigation .navigation-link span:last-child {
+    font-size: 0.7rem !important;
+  }
+
+  /* Desktop text visibility for tablet */
+  .main-navigation .nav-text {
+    display: block !important;
+  }
+
+  .main-navigation .nav-text-mobile {
+    display: none !important;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1025px) {
+  .main-navigation {
+    width: 100px;
+  }
+
+  /* Desktop text visibility for large desktop */
+  .main-navigation .nav-text {
+    display: block !important;
+  }
+
+  .main-navigation .nav-text-mobile {
+    display: none !important;
+  }
+}

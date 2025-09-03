@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../../contexts';
 import logo from '../../../assets/m1st-logo.svg';
+import './MainNavigation.css';
 
-const MainNavigation: React.FC = () => {
+interface MainNavigationProps {
+  isMobileMenuOpen?: boolean;
+  setIsMobileMenuOpen?: (open: boolean) => void;
+}
+
+const MainNavigation: React.FC<MainNavigationProps> = ({ 
+  isMobileMenuOpen: externalMobileMenuOpen,
+  setIsMobileMenuOpen: externalSetMobileMenuOpen
+}) => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const isDarkMode = theme === 'dark';
+  
+  // Use external state if provided, otherwise internal state
+  const [internalMobileMenuOpen, setInternalMobileMenuOpen] = useState(false);
+  const isMobileMenuOpen = externalMobileMenuOpen ?? internalMobileMenuOpen;
+  const setIsMobileMenuOpen = externalSetMobileMenuOpen ?? setInternalMobileMenuOpen;
 
   const navigationItems = [
     { path: '/typography', label: 'Typography', shortLabel: 'Typography' },
@@ -110,27 +124,110 @@ const MainNavigation: React.FC = () => {
   };
 
   return (
-    <nav 
-      className="main-navigation"
-      data-collapsed="true"
-      style={{
-        display: 'flex',
-        position: 'fixed',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100%',
-        background: 'var(--page-main-nav-background)',
-        overflowY: 'auto',
-        zIndex: 8,
-        width: '100px',
-        borderRight: '1px solid var(--page-border)',
-        left: 0,
-        top: 0,
-        transition: 'width 0.3s ease'
-      }}
-    >
-      {/* Header Section */}
-      <div className="navigation-header" style={{ padding: '1rem 0.25rem' }}>
+    <>
+      {/* Mobile Menu Button - only render if no external state is provided */}
+      {!externalMobileMenuOpen && !externalSetMobileMenuOpen && (
+        <button
+          className="mobile-menu-button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+          style={{
+            display: 'none',
+            position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            zIndex: 10,
+            width: '48px',
+            height: '48px',
+            backgroundColor: 'var(--page-background)',
+            border: '1px solid var(--page-border)',
+            borderRadius: '0.75rem',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '3px',
+            transition: 'all 0.2s ease',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          <span style={{
+            width: '20px',
+            height: '2px',
+            backgroundColor: 'var(--page-text-primary)',
+            transition: 'all 0.3s ease',
+            transform: isMobileMenuOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none'
+          }} />
+          <span style={{
+            width: '20px',
+            height: '2px',
+            backgroundColor: 'var(--page-text-primary)',
+            transition: 'all 0.3s ease',
+            opacity: isMobileMenuOpen ? 0 : 1
+          }} />
+          <span style={{
+            width: '20px',
+            height: '2px',
+            backgroundColor: 'var(--page-text-primary)',
+            transition: 'all 0.3s ease',
+            transform: isMobileMenuOpen ? 'rotate(-45deg) translate(8px, -8px)' : 'none'
+          }} />
+        </button>
+      )}
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            zIndex: 11,
+            backdropFilter: 'blur(2px)',
+            animation: 'fadeIn 0.3s ease'
+          }}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Desktop Navigation + Mobile Menu Panel */}
+      <nav 
+        className={`main-navigation ${isMobileMenuOpen ? 'mobile-open' : ''}`}
+        data-collapsed="true"
+        style={{
+          height: '100%',
+          background: 'var(--page-background)',
+          borderRight: '1px solid var(--page-border)',
+          transition: 'transform 0.3s ease, width 0.3s ease'
+        }}
+      >
+        {/* Inner container with fixed 100vh height for consistent positioning */}
+        <div 
+          className="nav-inner-container"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            height: '100vh',
+            overflowY: 'auto',
+            position: 'sticky',
+            top: 0
+          }}
+        >
+          {/* Header Section */}
+          <div className="navigation-header" style={{ padding: '1rem 0.25rem' }}>
+        {/* Mobile Close Button - removed since we have one in PageTemplate */}
+        <div className="mobile-close-container" style={{ 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          marginBottom: '1rem'
+        }}>
+          {/* Removed "Menu" text and close button */}
+        </div>
+
         <Link 
           to="/" 
           className="flex items-center text-neutral-900 font-semibold text-lg no-underline mb-8"
@@ -138,18 +235,20 @@ const MainNavigation: React.FC = () => {
             color: 'var(--page-text-primary)',
             justifyContent: 'center'
           }}
+          onClick={() => setIsMobileMenuOpen(false)}
         >
           <img src={logo} alt="M1st Design System" className="h-12 w-auto" />
         </Link>
 
-        {/* Navigation Items */}
-        <ul className="navigation-list" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+  {/* Navigation Items */}
+  <ul className="navigation-list" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
           {navigationItems.map((item) => (
             <li key={item.path} style={{ marginBottom: '0.5rem' }}>
               <Link
                 to={item.path}
                 className="navigation-link"
                 title={item.label}
+                onClick={() => setIsMobileMenuOpen(false)}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -195,51 +294,68 @@ const MainNavigation: React.FC = () => {
                 }}>
                   {getItemIcon(item.path)}
                 </span>
-                {/* Text */}
-                <span style={{
-                  fontSize: '0.75rem',
-                  fontWeight: '400',
-                  whiteSpace: 'nowrap' as const,
-                  textAlign: 'center' as const,
-                  lineHeight: '1.2'
-                }}>
+                {/* Text - show full label on mobile, short label on desktop */}
+                <span 
+                  className="nav-text"
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: '400',
+                    whiteSpace: 'nowrap' as const,
+                    textAlign: 'center' as const,
+                    lineHeight: '1.2'
+                  }}
+                >
                   {item.shortLabel}
+                </span>
+                <span 
+                  className="nav-text-mobile"
+                  style={{
+                    display: 'none',
+                    fontSize: '1.1rem',
+                    fontWeight: '500',
+                    textAlign: 'left' as const,
+                    lineHeight: '1.2'
+                  }}
+                >
+                  {item.label}
                 </span>
               </Link>
             </li>
           ))}
         </ul>
-      </div>
+          </div>
 
-      {/* Footer Section */}
-      <div className="navigation-footer" style={{ padding: '1rem' }}>
-        <div className="flex flex-col gap-4" style={{ alignItems: 'center' }}>
-          {/* Theme Toggle */}
-          <button 
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-10 h-10 border border-neutral-300 rounded bg-neutral-0 text-neutral-600 transition-all duration-200 hover:border-red-500 hover:text-red-600"
-            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-            style={{
-              backgroundColor: 'var(--page-background)',
-              borderColor: 'var(--page-border)',
-              color: 'var(--page-text-secondary)'
-            }}
-          >
-            {isDarkMode ? (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-              </svg>
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
-              </svg>
-            )}
-          </button>
+          {/* Footer Section */}
+          <div className="navigation-footer" style={{ padding: '1rem' }}>
+            <div className="flex flex-col gap-4" style={{ alignItems: 'center' }}>
+              {/* Theme Toggle */}
+              <button 
+                onClick={toggleTheme}
+                className="flex items-center justify-center w-10 h-10 border border-neutral-300 rounded bg-neutral-0 text-neutral-600 transition-all duration-200 hover:border-red-500 hover:text-red-600"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                style={{
+                  backgroundColor: 'var(--page-background)',
+                  borderColor: 'var(--page-border)',
+                  color: 'var(--page-text-secondary)'
+                }}
+              >
+                {isDarkMode ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+  </>
+);
 };
 
 export default MainNavigation;

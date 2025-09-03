@@ -1,0 +1,100 @@
+/* =============================================================================
+   SIMPLE TABS COMPONENT - MINIMAL VERSION FOR CONSISTENCY
+   ============================================================================= */
+
+:root {
+  /* Simple Tabs Tokens - Essential Only */
+  --tabs-text: #525252;                    /* neutral-600 */
+  --tabs-text-active: #171717;             /* neutral-900 */
+  --tabs-text-hover: #171717;              /* neutral-900 */
+  --tabs-border: #e5e5e5;                  /* neutral-200 */
+  --tabs-indicator: #EE3831;               /* brand red */
+  --tabs-padding: 0.75rem 0;               /* 12px vertical, no horizontal */
+  --tabs-gap: 2rem;                        /* 32px between tabs */
+  --tabs-transition: all 0.2s ease;
+}
+
+/* Simple Tabs Container */
+.simple-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tab List */
+.simple-tabs__list {
+  display: flex;
+  align-items: center;
+  gap: var(--tabs-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+/* Individual Tab */
+.simple-tabs__item {
+  margin: 0;
+}
+
+/* Tab Button */
+.simple-tabs__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--tabs-padding);
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--tabs-text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--tabs-transition);
+  position: relative;
+  white-space: nowrap;
+}
+
+.simple-tabs__button:hover {
+  color: var(--tabs-text-hover);
+}
+
+.simple-tabs__button:focus {
+  outline: none;
+  color: var(--tabs-text-hover);
+}
+
+/* Active State with Underline */
+.simple-tabs__button--active {
+  color: var(--tabs-text-active);
+  font-weight: 600;
+}
+
+.simple-tabs__button--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--tabs-indicator);
+  border-radius: 1px;
+}
+
+/* Disabled State */
+.simple-tabs__button:disabled {
+  color: #d4d4d4; /* neutral-300 */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.simple-tabs__button:disabled:hover {
+  color: #d4d4d4; /* neutral-300 */
+}
+
+/* Tab Content Area */
+.simple-tabs__content {
+  padding-top: 2rem;
+}

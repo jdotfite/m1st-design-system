@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs - Incremental Distribution Test</title>
+    <link rel="stylesheet" href="../dist/incremental/components/tabs.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .status-bar {
+            background: #fff3e0;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: #e65100;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="status-bar">
+            📦 Incremental Distribution - Component-Specific CSS Only
+        </div>
+        
+        <h1>Tabs Component Test</h1>
+        <p>Testing tabs with only the incremental component CSS (no global tokens).</p>
+        
+        <div style="margin: 2rem 0;">
+            <h3>Basic Tabs</h3>
+            <div class="tabs">
+                <ul class="tabs__list">
+                    <li class="tabs__item">
+                        <button class="tabs__button tabs__button--active">Overview</button>
+                    </li>
+                    <li class="tabs__item">
+                        <button class="tabs__button">Features</button>
+                    </li>
+                    <li class="tabs__item">
+                        <button class="tabs__button">Guidelines</button>
+                    </li>
+                    <li class="tabs__item">
+                        <button class="tabs__button">Examples</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px; margin-top: 2rem;">
+            <h4>Expected Visual</h4>
+            <ul>
+                <li>Should look <strong>identical</strong> to monolithic version</li>
+                <li>Active tab should have a <strong>gray underline</strong> (not red)</li>
+                <li>Text should be legible with proper contrast</li>
+                <li>Hover states should work smoothly</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

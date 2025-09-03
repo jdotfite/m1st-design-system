@@ -90,19 +90,10 @@ export const FoundationSidebar: React.FC = () => {
 
   return (
     <aside 
-      className="
-        foundation-sidebar
-        hidden md:block border-r
-        transition-all duration-300 ease-in-out
-        fixed top-0 h-screen z-40
-        w-64
-      "
+      className="foundation-sidebar h-full overflow-y-auto"
       style={{
         backgroundColor: 'var(--page-background)',
-        borderColor: 'var(--page-border)',
-        left: '100px', // Fixed main nav width - sits to the right of main navigation
-        transition: 'left 0.3s ease',
-        paddingTop: '72px' // Account for main navigation header
+        borderRight: '1px solid var(--page-border)'
       }}
     >
       <div className="h-full overflow-y-auto overflow-x-hidden">

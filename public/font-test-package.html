@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Font Package Test - v1.2.1</title>
+    <style>
+        @import url("../node_modules/m1st-design-tokens/css/tokens.css");
+        
+        body {
+            padding: 2rem;
+            background: var(--color-background-primary);
+            color: var(--color-text-primary);
+        }
+        
+        .test-inter {
+            font-family: var(--font-family-body);
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--color-surface-primary);
+            border-radius: 8px;
+        }
+        
+        .test-din {
+            font-family: var(--font-family-heading);
+            font-size: 32px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--color-surface-secondary);
+            border-radius: 8px;
+        }
+        
+        .brand-color {
+            color: var(--color-brand-primary);
+            font-weight: 700;
+        }
+        
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--color-border-primary);
+            border-radius: 12px;
+        }
+        
+        .font-weights {
+            display: grid;
+            gap: 0.5rem;
+        }
+        
+        .weight-test {
+            font-family: var(--font-family-body);
+            font-size: 18px;
+            padding: 0.5rem;
+        }
+        
+        .weight-300 { font-weight: 300; }
+        .weight-400 { font-weight: 400; }
+        .weight-500 { font-weight: 500; }
+        .weight-600 { font-weight: 600; }
+        .weight-700 { font-weight: 700; }
+        
+        .instructions {
+            background: var(--color-info-subtle);
+            color: var(--color-info-emphasis);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-family: var(--font-family-body);
+        }
+        
+        .status {
+            font-family: monospace;
+            font-size: 14px;
+            background: var(--color-surface-elevated);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="test-din brand-color">Font Package Test v1.2.1</h1>
+    
+    <div class="instructions">
+        <strong>Instructions:</strong>
+        <ul>
+            <li>Open browser developer tools (F12)</li>
+            <li>Check the Console tab for 404 font errors</li>
+            <li>Check the Network tab to see if fonts load successfully</li>
+            <li>Verify fonts display correctly below</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="test-din">Inter Font Test</h2>
+        <div class="test-inter">Inter Font Test - Should be Medium Weight (500)</div>
+        
+        <div class="font-weights">
+            <div class="weight-test weight-300">Inter Light (300) - Quick brown fox</div>
+            <div class="weight-test weight-400">Inter Regular (400) - Quick brown fox</div>
+            <div class="weight-test weight-500">Inter Medium (500) - Quick brown fox</div>
+            <div class="weight-test weight-600">Inter SemiBold (600) - Quick brown fox</div>
+            <div class="weight-test weight-700">Inter Bold (700) - Quick brown fox</div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="test-din">DIN-2014 Font Test</h2>
+        <div class="test-din">DIN-2014 Font Test - Should be Semibold</div>
+        <div style="font-family: var(--font-family-heading); font-size: 24px; font-weight: 400;">
+            DIN-2014 Regular (400) - DESIGN SYSTEM
+        </div>
+        <div style="font-family: var(--font-family-heading); font-size: 24px; font-weight: 700;">
+            DIN-2014 Bold (700) - DESIGN SYSTEM
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2 class="test-din">Token Variables Test</h2>
+        <div style="color: var(--color-brand-primary);">Brand Primary Color</div>
+        <div style="color: var(--color-accent-blue);">Accent Blue Color</div>
+        <div style="color: var(--color-success);">Success Color</div>
+        <div style="color: var(--color-danger);">Danger Color</div>
+    </div>
+    
+    <div class="status">
+        Package Version: v1.2.1<br>
+        Expected: No 404 font errors in console<br>
+        Expected: Fonts should display with correct weights<br>
+        Expected: All CSS custom properties should work
+    </div>
+    
+    <script>
+        // Check for font loading
+        document.fonts.ready.then(() => {
+            console.log('✅ All fonts loaded successfully');
+            const status = document.querySelector('.status');
+            status.innerHTML += '<br><span style="color: green;">✅ Fonts loaded successfully</span>';
+        }).catch((error) => {
+            console.error('❌ Font loading error:', error);
+            const status = document.querySelector('.status');
+            status.innerHTML += '<br><span style="color: red;">❌ Font loading failed</span>';
+        });
+        
+        // Log token access test
+        const computedStyle = getComputedStyle(document.documentElement);
+        const brandColor = computedStyle.getPropertyValue('--color-brand-primary').trim();
+        console.log('Brand color from CSS custom property:', brandColor);
+        
+        if (brandColor) {
+            console.log('✅ CSS custom properties working');
+        } else {
+            console.error('❌ CSS custom properties not working');
+        }
+    </script>
+</body>
+</html>

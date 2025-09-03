@@ -1,0 +1,295 @@
+/* =============================================================================
+   PAGE TEMPLATE CSS GRID RESPONSIVE LAYOUT
+   ============================================================================= */
+
+/* Grid Layout Container */
+.page-layout-grid {
+  display: grid;
+  min-height: 100vh;
+  width: 100%;
+  grid-template-areas: 
+    "main-nav content"
+    "footer footer";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  transition: grid-template-columns 0.3s ease;
+}
+
+/* When sidebar is present */
+.page-layout-grid.has-sidebar {
+  grid-template-areas: 
+    "main-nav sidebar content"
+    "footer footer footer";
+  grid-template-columns: auto auto 1fr;
+}
+
+/* Grid Areas */
+.main-nav-area {
+  grid-area: main-nav;
+  background: var(--page-background);
+  z-index: 10;
+  overflow: hidden; /* Prevents nav from affecting content layout */
+  width: 100px; /* Fixed width for main nav */
+}
+
+/* Mobile menu button - hidden by default, shown on mobile */
+.mobile-menu-button-global {
+  display: none !important;
+  position: fixed;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 1100;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--page-border);
+  background: var(--page-background);
+  border-radius: 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* prevent line bleed */
+  box-shadow: 0 4px 14px -4px rgba(0,0,0,0.25);
+}
+
+.mobile-menu-button-global:focus-visible {
+  outline: 2px solid var(--focus-ring, #2563eb);
+  outline-offset: 2px;
+}
+
+.mobile-menu-button-global:hover {
+  border-color: var(--page-text-secondary);
+}
+
+.mobile-menu-button-global.open {
+  background: rgba(0,0,0,0.85);
+  border-color: transparent;
+  box-shadow: 0 6px 22px -6px rgba(0,0,0,0.45);
+}
+
+/* Burger structure */
+.mobile-menu-button-global .burger {
+  position: relative;
+  width: 30px;
+  height: 24px; /* container height */
+  pointer-events: none;
+}
+
+.mobile-menu-button-global .burger-line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  width: 100%;
+  background: var(--page-text-primary);
+  border-radius: 3px;
+  transform-origin: 50% 50%;
+  transition: transform 0.55s cubic-bezier(.68,-0.55,.27,1.55), width 0.4s ease, opacity 0.25s ease, background 0.35s ease;
+}
+
+/* Placement offsets (12px gap total, 8px offset each side from center) */
+.mobile-menu-button-global .burger-line.top { transform: translateY(calc(-50% - 8px)); }
+.mobile-menu-button-global .burger-line.middle { transform: translateY(-50%); }
+.mobile-menu-button-global .burger-line.bottom { transform: translateY(calc(-50% + 8px)); }
+
+/* Add subtle shimmering gradient on hover (fun) */
+.mobile-menu-button-global:not(.open):hover .burger-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.35) 45%, transparent 90%);
+  mix-blend-mode: overlay;
+  animation: shimmer 1.2s linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Fun micro interaction: slight squash on press */
+.mobile-menu-button-global:active .burger-line {
+  transform: scaleX(0.92);
+}
+
+/* OPEN STATE TRANSFORMATIONS */
+.mobile-menu-button-global.open .burger-line {
+  background: #fff;
+}
+
+/* Top line to top-left to diagonally form X */
+.mobile-menu-button-global.open .burger-line.top {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Middle line shrinks & fades */
+.mobile-menu-button-global .burger-line.middle {
+  transition: transform 0.35s ease, opacity 0.25s ease 0.05s;
+}
+.mobile-menu-button-global.open .burger-line.middle {
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0.2);
+}
+
+/* Bottom line to bottom-left to complete X */
+.mobile-menu-button-global.open .burger-line.bottom {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Slight overshoot adjustment for better centering */
+.mobile-menu-button-global.open .burger-line.top,
+.mobile-menu-button-global.open .burger-line.bottom {
+  transition-duration: 0.55s;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-button-global .burger-line,
+  .mobile-menu-button-global.open .burger-line.top,
+  .mobile-menu-button-global.open .burger-line.bottom {
+    transition: none;
+  }
+}
+
+/* Accessibility helper */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+/* Removed stray closing brace */
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .mobile-menu-button-global {
+    display: flex !important;
+  }
+}
+
+/* Desktop and Tablet - ensure button is hidden */
+@media (min-width: 769px) {
+  .mobile-menu-button-global {
+    display: none !important;
+  }
+}
+
+.sidebar-area {
+  grid-area: sidebar;
+  background: var(--page-background);
+  border-right: 1px solid var(--page-border);
+  width: 256px;
+  overflow-y: auto;
+  z-index: 5;
+  /* Ensure sidebar fits in its grid area */
+  min-width: 256px;
+  max-width: 256px;
+}
+
+.content-area {
+  grid-area: content;
+  background: var(--page-background);
+  overflow-y: auto;
+  min-width: 0; /* Allows content to shrink properly */
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Prevents grid item from growing beyond its allocated space */
+}
+
+/* Content padding variable & full-bleed helpers */
+:root { --layout-content-padding: 2rem; }
+@media (max-width: 768px) { :root { --layout-content-padding: 1rem; } }
+
+.content-inner {
+  padding: var(--layout-content-padding);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full-bleed utility: remove the horizontal inset created by content-inner padding */
+.full-bleed {
+  margin-left: calc(-1 * var(--layout-content-padding));
+  margin-right: calc(-1 * var(--layout-content-padding));
+}
+/* Optional: reintroduce internal horizontal padding while keeping background full width */
+.full-bleed-padding {
+  padding-left: var(--layout-content-padding);
+  padding-right: var(--layout-content-padding);
+}
+/* Avoid horizontal scroll if nested elements set width:100vw */
+.full-bleed [data-width-vw] { max-width: 100%; }
+
+.footer-area {
+  grid-area: footer;
+  background: var(--page-background);
+  border-top: 1px solid var(--page-border);
+}
+
+/* Desktop Styles (769px and up) */
+@media (min-width: 769px) {
+  .page-layout-grid {
+    grid-template-columns: 100px 1fr;
+  }
+  
+  .page-layout-grid.has-sidebar {
+    grid-template-columns: 100px 256px 1fr;
+  }
+}
+
+/* Mobile Styles (768px and below) */
+@media (max-width: 768px) {
+  .page-layout-grid,
+  .page-layout-grid.has-sidebar {
+    grid-template-areas: 
+      "content"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  
+  /* Hide main nav and sidebar on mobile - they become slide-out menus */
+  .main-nav-area {
+    display: block; /* Keep it visible but positioned by MainNavigation CSS */
+    position: relative; /* Allow child to break out with fixed positioning */
+    overflow: visible; /* Don't clip the mobile menu */
+  }
+  
+  .sidebar-area {
+    display: none;
+  }
+  
+  /* Show mobile menu button */
+  .mobile-menu-button-global {
+    display: flex !important;
+  }
+  
+  /* Adjust content padding for mobile */
+  .content-inner {
+    padding: 1rem;
+  }
+}
+
+/* Tablet Styles (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page-layout-grid {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  .page-layout-grid.has-sidebar {
+    grid-template-columns: 80px 240px 1fr;
+  }
+  
+  /* Slightly smaller sidebar on tablet */
+  .sidebar-area {
+    width: 240px;
+  }
+}

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ComponentsSidebar } from '../ComponentsSidebar';
 import { FoundationSidebar } from '../FoundationSidebar';
+import { Sidebar } from '../Sidebar';
 import Footer from '../Footer/Footer';
+import { MainNavigation } from '../MainNavigation';
 import { Breadcrumb, type BreadcrumbItem } from '../../ui';
+import './PageTemplate.css';
 
 interface PageTemplateProps {
   children: React.ReactNode;
   showSidebar?: boolean;
-  sidebarType?: 'components' | 'foundation' | 'none';
+  sidebarType?: 'components' | 'foundation' | 'typography' | 'none';
+  sidebarItems?: Array<{ label: string; href: string; children?: Array<{ label: string; href: string }> }>;
   showFooter?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   className?: string;
@@ -20,6 +23,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
   children,
   showSidebar = false,
   sidebarType = 'none',
+  sidebarItems = [],
   showFooter = true,
   breadcrumbs,
   className = '',
@@ -79,68 +83,104 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
   };
 
   const finalBreadcrumbs = generateBreadcrumbs();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Component navigation items for the generic sidebar
+  const componentSidebarItems = [
+    { label: 'Button', href: '/component/button', type: 'route' as const },
+    { label: 'LoadingSpinner', href: '/component/loading-spinner', type: 'route' as const },
+    { label: 'Modal', href: '/component/modal', type: 'route' as const },
+    { label: 'Tabs', href: '/component/tabs', type: 'route' as const }
+  ];
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="flex flex-1">
-        {(showSidebar && sidebarType === 'components') && <ComponentsSidebar />}
-        {(showSidebar && sidebarType === 'foundation') && <FoundationSidebar />}
-        
-        {/* Main Content - adjusted for fixed sidebar */}
-        <div 
-          className={`flex-1 min-w-0 transition-all duration-300 ease-in-out ${className}`}
-          style={{ 
-            marginLeft: showSidebar ? '256px' : '0' // Width of sidebar (w-64)
-          }}
-        >
-          <div className="px-8 py-6 min-h-full flex flex-col">
-            {/* Auto-generated Breadcrumbs */}
-            {finalBreadcrumbs.length > 0 && (
-              <div className="mb-6">
-                <Breadcrumb items={finalBreadcrumbs} />
-              </div>
-            )}
-            
-            {/* Page Header */}
-            {(title || description) && (
-              <div className="mb-8">
-                {title && (
-                  <h1 
-                    className="text-3xl font-bold mb-4"
-                    style={{ color: 'var(--page-text-primary)' }}
-                  >
-                    {title}
-                  </h1>
-                )}
-                {description && (
-                  <p 
-                    className="text-lg leading-relaxed max-w-3xl"
-                    style={{ color: 'var(--page-text-secondary)' }}
-                  >
-                    {description}
-                  </p>
-                )}
-              </div>
-            )}
-            
-            {/* Page Content */}
-            <div className="flex-1">
-              {children}
+    <div className={`page-layout-grid ${showSidebar ? 'has-sidebar' : ''}`}>
+      {/* Mobile Menu Button - top-right position, visible only on mobile */}
+      <button
+        className={`mobile-menu-button-global ${isMobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label={isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
+        aria-expanded={isMobileMenuOpen}
+        aria-pressed={isMobileMenuOpen}
+        type="button"
+      >
+        <div className="burger" aria-hidden="true">
+          <span className="burger-line top" />
+          <span className="burger-line middle" />
+          <span className="burger-line bottom" />
+        </div>
+        <span className="visually-hidden">{isMobileMenuOpen ? 'Close navigation' : 'Open navigation'}</span>
+      </button>
+
+      {/* Main Navigation Area - positioned by CSS Grid */}
+      <div className="main-nav-area">
+        <MainNavigation 
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
+      </div>
+
+      {/* Secondary Sidebar - conditionally rendered */}
+      {(showSidebar && sidebarType === 'components') && (
+        <div className="sidebar-area">
+          <Sidebar items={componentSidebarItems} title="Components" />
+        </div>
+      )}
+      {(showSidebar && sidebarType === 'foundation') && (
+        <div className="sidebar-area">
+          <FoundationSidebar />
+        </div>
+      )}
+      {(showSidebar && sidebarType === 'typography') && (
+        <div className="sidebar-area">
+          <Sidebar items={sidebarItems} />
+        </div>
+      )}
+      
+      {/* Main Content Area */}
+      <main className={`content-area ${className}`}>
+        <div className="content-inner">
+          {/* Auto-generated Breadcrumbs */}
+          {finalBreadcrumbs.length > 0 && (
+            <div className="mb-6">
+              <Breadcrumb items={finalBreadcrumbs} />
             </div>
+          )}
+          
+          {/* Page Header */}
+          {(title || description) && (
+            <div className="mb-8">
+              {title && (
+                <h1 
+                  className="text-3xl font-bold mb-4"
+                  style={{ color: 'var(--page-text-primary)' }}
+                >
+                  {title}
+                </h1>
+              )}
+              {description && (
+                <p 
+                  className="text-lg leading-relaxed max-w-3xl"
+                  style={{ color: 'var(--page-text-secondary)' }}
+                >
+                  {description}
+                </p>
+              )}
+            </div>
+          )}
+          
+          {/* Page Content */}
+          <div className="flex-1">
+            {children}
           </div>
         </div>
-      </div>
+      </main>
       
-      {/* Footer - adjusted for fixed sidebar */}
+      {/* Footer - spans full width */}
       {showFooter && (
-        <div 
-          className="transition-all duration-300 ease-in-out"
-          style={{ 
-            marginLeft: showSidebar ? '256px' : '0' // Match content margin
-          }}
-        >
+        <footer className="footer-area">
           <Footer />
-        </div>
+        </footer>
       )}
     </div>
   );
