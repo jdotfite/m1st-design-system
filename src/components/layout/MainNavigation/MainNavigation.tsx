@@ -216,17 +216,20 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
           {/* Removed "Menu" text and close button */}
         </div>
 
-        <Link 
-          to="/" 
-          className="flex items-center text-neutral-900 font-semibold text-lg no-underline mb-8"
-          style={{ 
-            color: 'var(--page-text-primary)',
-            justifyContent: 'center'
-          }}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          <img src={logo} alt="M1st Design System" className="h-12 w-auto" />
-        </Link>
+        {/* Header Section - Logo with padding */}
+        <div className="navigation-header" style={{ padding: '1rem' }}>
+          <Link 
+            to="/" 
+            className="flex items-center text-neutral-900 font-semibold text-lg no-underline"
+            style={{ 
+              color: 'var(--page-text-primary)',
+              justifyContent: 'center'
+            }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <img src={logo} alt="M1st Design System" className="h-12 w-auto" />
+          </Link>
+        </div>
 
         {/* Navigation Items */}
         <div style={{ flex: 1, overflow: 'auto' }}>
