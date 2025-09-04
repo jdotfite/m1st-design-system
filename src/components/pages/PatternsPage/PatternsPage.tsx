@@ -238,8 +238,8 @@ export const PatternsPage: React.FC = () => {
               id: category,
               label: category === 'all' ? 'All Patterns' : category,
               extra: category === 'all' ? 
-                <span className="ml-1 text-xs opacity-60">({patterns.length})</span> :
-                <span className="ml-1 text-xs opacity-60">({patterns.filter(p => p.category === category).length})</span>
+                <span className="text-xs opacity-60">({patterns.length})</span> :
+                <span className="text-xs opacity-60">({patterns.filter(p => p.category === category).length})</span>
             }))}
             activeItem={activeCategory}
             onItemClick={(item) => setActiveCategory(item.id)}

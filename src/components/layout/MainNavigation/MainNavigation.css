@@ -28,7 +28,8 @@
 .main-navigation {
   /* Remove fixed positioning to work with CSS Grid */
   width: 100px;
-  height: 100vh;
+  min-height: 100vh; /* Minimum height, but can grow */
+  height: 100%; /* Fill the grid area completely */
   background: var(--page-background);
   border-right: 1px solid var(--page-border);
   /* Grid positioning replaces fixed positioning */
@@ -41,8 +42,8 @@
 @media (min-width: 769px) {
   .main-navigation {
     /* On desktop, use auto height to fit grid area */
-    height: 100vh;
     min-height: 100vh;
+    height: 100%; /* Fill the entire grid area */
     position: static; /* Ensure it's positioned by grid, not fixed */
   }
 }

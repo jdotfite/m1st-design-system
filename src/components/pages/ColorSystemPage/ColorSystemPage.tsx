@@ -156,22 +156,22 @@ export const ColorSystemPage: React.FC = () => {
     { 
       id: 'brand', 
       label: 'Brand Colors', 
-      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.brand.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+      extra: <span className="text-xs opacity-60">({colorPalettes.brand.reduce((acc, p) => acc + p.colors.length, 0)})</span>
     },
     { 
       id: 'neutral', 
       label: 'Neutral Scale', 
-      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.neutral.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+      extra: <span className="text-xs opacity-60">({colorPalettes.neutral.reduce((acc, p) => acc + p.colors.length, 0)})</span>
     },
     { 
       id: 'semantic', 
       label: 'Semantic Colors', 
-      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.semantic.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+      extra: <span className="text-xs opacity-60">({colorPalettes.semantic.reduce((acc, p) => acc + p.colors.length, 0)})</span>
     },
     { 
       id: 'component', 
       label: 'Component Tokens', 
-      extra: <span className="ml-1 text-xs opacity-60">({colorPalettes.component.reduce((acc, p) => acc + p.colors.length, 0)})</span>
+      extra: <span className="text-xs opacity-60">({colorPalettes.component.reduce((acc, p) => acc + p.colors.length, 0)})</span>
     }
   ];
 
@@ -436,8 +436,16 @@ export const ColorSystemPage: React.FC = () => {
         </Modal>
 
         {/* Usage Guidelines */}
-        <div className="mt-12 p-6 bg-neutral-50 rounded-lg">
-          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Usage Guidelines</h3>
+        <div 
+          className="mt-12 p-6 rounded-lg"
+          style={{ backgroundColor: 'var(--page-surface-elevated)' }}
+        >
+          <h3 
+            className="text-lg font-semibold mb-4"
+            style={{ color: 'var(--page-text-primary)' }}
+          >
+            Usage Guidelines
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>Color Accessibility</h4>

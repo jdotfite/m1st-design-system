@@ -9,7 +9,7 @@
   width: 100%;
   grid-template-areas: 
     "main-nav content"
-    "footer footer";
+    "main-nav footer";
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
   transition: grid-template-columns 0.3s ease;
@@ -19,7 +19,7 @@
 .page-layout-grid.has-sidebar {
   grid-template-areas: 
     "main-nav sidebar content"
-    "footer footer footer";
+    "main-nav footer footer";
   grid-template-columns: auto auto 1fr;
 }
 

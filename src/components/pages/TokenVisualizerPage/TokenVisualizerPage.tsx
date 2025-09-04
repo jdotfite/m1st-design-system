@@ -509,12 +509,12 @@ const TokenVisualizerPage: React.FC = () => {
               { 
                 id: 'visualizer', 
                 label: 'Token Explorer', 
-                extra: <span className="ml-1 text-xs opacity-60">({Object.values(tokens).flat().length})</span>
+                extra: <span className="text-xs opacity-60">({Object.values(tokens).flat().length})</span>
               },
               { 
                 id: 'architecture', 
                 label: 'Architecture Guide', 
-                extra: <span className="ml-1 text-xs opacity-60">(4)</span>
+                extra: <span className="text-xs opacity-60">(4)</span>
               },
               { 
                 id: 'usage', 

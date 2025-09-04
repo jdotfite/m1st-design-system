@@ -198,15 +198,20 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
         className={`main-navigation ${isMobileMenuOpen ? 'mobile-open' : ''}`}
         data-collapsed="true"
         style={{
-          height: '100vh',
           background: 'var(--page-background)',
           borderRight: '1px solid var(--page-border)',
-          transition: 'transform 0.3s ease, width 0.3s ease',
-          display: 'flex',
-          flexDirection: 'column',
-          overflowY: 'auto'
+          transition: 'transform 0.3s ease, width 0.3s ease'
         }}
       >
+        {/* Navigation Content Wrapper - constrained to viewport height */}
+        <div
+          style={{
+            maxHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            overflowY: 'auto'
+          }}
+        >
         {/* Mobile Close Button - removed since we have one in PageTemplate */}
         <div className="mobile-close-container" style={{ 
           justifyContent: 'center', 
@@ -344,6 +349,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
               </button>
             </div>
           </div>
+        </div>
       </nav>
   </>
 );
