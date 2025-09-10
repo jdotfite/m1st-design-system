@@ -106,6 +106,17 @@ export const ColorSystemPage: React.FC = () => {
         ]
       },
       {
+        name: "Page-Level Tokens",
+        description: "Page-specific semantic tokens for layout and navigation",
+        colors: [
+          { name: "Main Nav Background", lightValue: "#f7f7f7", darkValue: "#171717", cssVar: "--page-main-nav-background", description: "Primary navigation background (light)", category: "page" },
+          { name: "Page Background", lightValue: "#ffffff", darkValue: "#0f0f0f", cssVar: "--page-background", description: "Main page background", category: "page" },
+          { name: "Page Surface", lightValue: "#fefefd", darkValue: "#1e1e1e", cssVar: "--page-surface", description: "Page content surfaces", category: "page" },
+          { name: "Page Surface Elevated", lightValue: "#ffffff", darkValue: "#1e1e1e", cssVar: "--page-surface-elevated", description: "Cards, modals", category: "page" },
+          { name: "Page Surface Sunken", lightValue: "#f7f7f7", darkValue: "#0a0a0a", cssVar: "--page-surface-sunken", description: "Input fields, wells", category: "page" }
+        ]
+      },
+      {
         name: "Text Colors",
         description: "Semantic text colors for different content hierarchies",
         colors: [
