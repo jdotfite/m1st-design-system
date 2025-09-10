@@ -33,7 +33,7 @@ export const ColorSystemPage: React.FC = () => {
         name: "Brand Primary",
         description: "Core M1st brand colors derived from the logo",
         colors: [
-          { name: "Brand Primary", lightValue: "#EE3831", darkValue: "#EE3831", cssVar: "--color-brand-primary", description: "M1st brand red - matches M logo", category: "brand" }
+          { name: "Brand Primary", lightValue: "#E50506", darkValue: "#E50506", cssVar: "--color-brand-primary", description: "M1st brand digital red", category: "brand" }
         ]
       },
       {
@@ -41,22 +41,22 @@ export const ColorSystemPage: React.FC = () => {
         description: "Warm accent colors for highlights, illustrations, and visual interest",
         colors: [
           { name: "Accent Red", lightValue: "#E71C23", darkValue: "#E71C23", cssVar: "--color-accent-red", description: "Vibrant red accent", category: "accent" },
-          { name: "Accent Green", lightValue: "#55A444", darkValue: "#55A444", cssVar: "--color-accent-green", description: "Fresh green accent", category: "accent" },
-          { name: "Accent Blue", lightValue: "#0090C4", darkValue: "#0090C4", cssVar: "--color-accent-blue", description: "Blue accent", category: "accent" },
-          { name: "Accent Orange", lightValue: "#F15C22", darkValue: "#F15C22", cssVar: "--color-accent-orange", description: "Energetic orange accent", category: "accent" },
-          { name: "Accent Yellow", lightValue: "#FAA61A", darkValue: "#FAA61A", cssVar: "--color-accent-yellow", description: "Warm yellow accent", category: "accent" }
+          { name: "Accent Orange", lightValue: "#F37124", darkValue: "#F37124", cssVar: "--color-accent-orange", description: "Energetic orange accent", category: "accent" },
+          { name: "Accent Yellow", lightValue: "#FEC20F", darkValue: "#FEC20F", cssVar: "--color-accent-yellow", description: "Warm yellow accent", category: "accent" },
+          { name: "Accent Magenta", lightValue: "#AD1F63", darkValue: "#AD1F63", cssVar: "--color-accent-magenta", description: "Bold magenta accent", category: "accent" }
         ]
       },
       {
         name: "Accent Colors - Cool",
         description: "Cool accent colors for balance, trust, and professional highlights",
         colors: [
-          { name: "Accent Teal", lightValue: "#006068", darkValue: "#006068", cssVar: "--color-accent-teal", description: "Sophisticated teal accent", category: "accent" },
-          { name: "Accent Blue Light", lightValue: "#0071999", darkValue: "#0071999", cssVar: "--color-accent-blue-light", description: "Light blue accent", category: "accent" },
+          { name: "Accent Green", lightValue: "#55A444", darkValue: "#55A444", cssVar: "--color-accent-green", description: "Fresh green accent", category: "accent" },
+          { name: "Accent Teal", lightValue: "#095F7F", darkValue: "#095F7F", cssVar: "--color-accent-teal", description: "Sophisticated teal accent", category: "accent" },
+          { name: "Accent Teal Dark", lightValue: "#004F51", darkValue: "#004F51", cssVar: "--color-accent-teal-dark", description: "Deep teal accent", category: "accent" },
+          { name: "Accent Blue Light", lightValue: "#0178B5", darkValue: "#0178B5", cssVar: "--color-accent-blue-light", description: "Light blue accent", category: "accent" },
           { name: "Accent Blue Dark", lightValue: "#133156", darkValue: "#133156", cssVar: "--color-accent-blue-dark", description: "Deep blue accent", category: "accent" },
           { name: "Accent Purple", lightValue: "#7C2984", darkValue: "#7C2984", cssVar: "--color-accent-purple", description: "Rich purple accent", category: "accent" },
-          { name: "Accent Magenta", lightValue: "#AD1F63", darkValue: "#AD1F63", cssVar: "--color-accent-magenta", description: "Bold magenta accent", category: "accent" },
-          { name: "Accent Dark Red", lightValue: "#BF0000", darkValue: "#BF0000", cssVar: "--color-accent-dark-red", description: "Dark red accent", category: "accent" }
+          { name: "Accent Red Dark", lightValue: "#BF0000", darkValue: "#BF0000", cssVar: "--color-accent-red-dark", description: "Dark red accent", category: "accent" }
         ]
       }
     ],
@@ -472,23 +472,6 @@ export const ColorSystemPage: React.FC = () => {
               </ul>
             </div>
           </div>
-          
-          <div 
-            className="mt-6 p-4 rounded border-l-4"
-            style={{ 
-              backgroundColor: 'var(--page-info-subtle)', 
-              borderLeftColor: 'var(--color-info)' 
-            }}
-          >
-            <h4 className="font-medium mb-2" style={{ color: 'var(--page-text-primary)' }}>🎯 Theme-Aware Development</h4>
-            <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>
-              The M1st design system uses an inverted neutral scale where <code 
-                className="px-1 rounded"
-                style={{ backgroundColor: 'var(--page-surface-elevated)', color: 'var(--page-text-primary)' }}
-              >--neutral-0</code> is white in light theme 
-              but black in dark theme. This ensures consistent semantic meaning while providing optimal contrast in both themes.
-            </p>
-          </div>
         </div>
 
         {/* 4-Layer CSS System Explanation for UX Team */}
@@ -519,7 +502,7 @@ export const ColorSystemPage: React.FC = () => {
                 >
                   1
                 </div>
-                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Foundation</h3>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)', fontSize: 'var(--font-size-heading-m)' }}>Foundation</h3>
                 <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Raw Values</p>
               </div>
               <div className="space-y-2 text-sm">
@@ -562,7 +545,7 @@ export const ColorSystemPage: React.FC = () => {
                 >
                   2
                 </div>
-                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Semantic</h3>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)', fontSize: 'var(--font-size-heading-m)' }}>Semantic</h3>
                 <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Intent-Based</p>
               </div>
               <div className="space-y-2 text-sm">
@@ -605,7 +588,7 @@ export const ColorSystemPage: React.FC = () => {
                 >
                   3
                 </div>
-                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Page-Level</h3>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)', fontSize: 'var(--font-size-heading-m)' }}>Page-Level</h3>
                 <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Context-Specific</p>
               </div>
               <div className="space-y-2 text-sm">
@@ -648,7 +631,7 @@ export const ColorSystemPage: React.FC = () => {
                 >
                   4
                 </div>
-                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)' }}>Component</h3>
+                <h3 className="font-bold" style={{ color: 'var(--page-text-primary)', fontSize: 'var(--font-size-heading-m)' }}>Component</h3>
                 <p className="text-sm" style={{ color: 'var(--page-text-secondary)' }}>Specialized</p>
               </div>
               <div className="space-y-2 text-sm">
