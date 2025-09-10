@@ -26,7 +26,7 @@ export const ColorSystemPage: React.FC = () => {
   // Set the document title
   useDocumentTitle('Colors');
 
-  // Color palettes organized by category
+  // Color palettes organized by category 
   const colorPalettes: Record<string, ColorPalette[]> = {
     brand: [
       {
