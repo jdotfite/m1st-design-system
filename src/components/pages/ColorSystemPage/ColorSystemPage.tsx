@@ -4,6 +4,7 @@ import { Modal, Tooltip, Tabs } from '../../ui';
 import { useDocumentTitle } from '../../../utils';
 import './ColorSystemPage.css';
 
+// Color system page component 
 interface ColorToken {
   name: string;
   lightValue: string;
