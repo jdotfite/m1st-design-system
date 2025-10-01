@@ -1,0 +1,7 @@
+{
+  "homepage": "https://jdotfite.github.io/m1st-design-system",
+  "scripts": {
+    "build": "react-scripts build",
+    "postbuild": "rm -rf docs && mkdir -p docs && cp -r build/* docs/ && touch docs/.nojekyll && cp docs/index.html docs/404.html"
+  }
+}
