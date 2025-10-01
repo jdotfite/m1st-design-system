@@ -2,7 +2,7 @@
   "name": "m1st-design-system",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://jdotfite.github.io/m1st-design-system",
   "dependencies": {
     "@types/node": "^18.0.0",
     "@types/react": "^19.1.8",
